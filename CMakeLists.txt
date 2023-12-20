@@ -40,7 +40,7 @@ add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/res" "${CMAKE_SOURCE_DIR}/src")
 
 if(WIN32)
-    target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics sfml-network sfml-audio sfml-network sfml-system sfml-window ${CMAKE_SOURCE_DIR}/build/_deps/mysql_connector_cpp-src/lib64/vs14/mysqlcppconn.dylib)
+    target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics sfml-network sfml-audio sfml-network sfml-system sfml-window ${CMAKE_SOURCE_DIR}/build/_deps/mysql_connector_cpp-src/lib64/vs14/mysqlcppconn.lib)
     include_directories(${SFML}include)
     include_directories(${mysql_connector_cpp_SOURCE_DIR}/include/jdbc)
 elseif(APPLE)
