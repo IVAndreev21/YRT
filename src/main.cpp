@@ -1,9 +1,11 @@
-#include "Application.hpp"
+#include "mainwindow.h"
 
-int main()
+#include <QApplication>
+
+int main(int argc, char *argv[])
 {
-	YRT::Application* application = new YRT::Application(1280, 1024, "YRT Bank");
-	application->Run();
-	delete application;
-
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 }
