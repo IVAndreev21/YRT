@@ -16,20 +16,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QRadioButton" name="radioButton">
-   <property name="geometry">
-    <rect>
-     <x>630</x>
-     <y>1200</y>
-     <width>99</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>RadioButton</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="logIn_login_LA">
+  <widget class="QLabel" name="logIn_LA">
    <property name="geometry">
     <rect>
      <x>660</x>
@@ -42,7 +29,7 @@
     <string>LogIn</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="password_login_LE">
+  <widget class="QLineEdit" name="password_LE">
    <property name="geometry">
     <rect>
      <x>630</x>
@@ -52,7 +39,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="username_login_LA">
+  <widget class="QLabel" name="username_LA">
    <property name="geometry">
     <rect>
      <x>650</x>
@@ -65,7 +52,7 @@
     <string>username</string>
    </property>
   </widget>
-  <widget class="QLabel" name="password_login_LA">
+  <widget class="QLabel" name="password_LA">
    <property name="geometry">
     <rect>
      <x>660</x>
@@ -78,7 +65,7 @@
     <string>Password</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="submit_login_BTN">
+  <widget class="QPushButton" name="submit_PB">
    <property name="geometry">
     <rect>
      <x>650</x>
@@ -91,7 +78,7 @@
     <string>Submit</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="username_login_LE">
+  <widget class="QLineEdit" name="username_LE">
    <property name="geometry">
     <rect>
      <x>630</x>

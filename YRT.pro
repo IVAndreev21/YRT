@@ -1,4 +1,4 @@
-QT       += core gui uitools
+QT       += core gui uitools sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,12 +9,14 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/databasemanager.cpp \
     src/login.cpp \
     src/main.cpp \
     src/mainmenu.cpp \
     src/register.cpp
 
 HEADERS += \
+    src/databasemanager.hpp \
     src/login.h \
     src/mainmenu.h \
     src/register.h

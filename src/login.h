@@ -2,7 +2,7 @@
 #define LOGIN_H
 
 #include <QWidget>
-
+#include "databasemanager.hpp"
 namespace Ui {
 class logIn;
 }
@@ -15,8 +15,11 @@ public:
     explicit logIn(QWidget *parent = nullptr);
     ~logIn();
 
+private slots:
+    void on_submit_PB_clicked();
+
 private:
     Ui::logIn *ui;
+    std::unique_ptr<DatabaseManager> databaseManager;
 };
-
 #endif // LOGIN_H
