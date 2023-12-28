@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/forms">
+        <file>bankPage.ui</file>
+        <file>logInPage.ui</file>
+        <file>RegisterPage.ui</file>
+    </qresource>
+</RCC>
