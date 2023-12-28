@@ -25,5 +25,6 @@ void MainMenu::on_Register_PB_clicked()
     registerWindow = new Register(nullptr);
     this->hide();
     registerWindow->show();
+
 }
 
