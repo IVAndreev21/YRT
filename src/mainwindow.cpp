@@ -41,6 +41,38 @@ MainWindow::~MainWindow()
 
 void MainWindow::updatepfp()
 {
+    QLabel* imageLabel = ui->pfp_acc_LA;
+    QLabel* imageLabel2 = ui->pfp_acc_LA_2;
+    QFrame* frame = ui->frame;
+    QFrame* frame2 = ui->frame_2;
+
+    if (databaseManager->openConnection())
+    {
+        QSqlDatabase db = databaseManager->getDatabase();
+        if (db.isValid() && db.isOpen())
+        {
+            QSqlQuery query;
+            query.prepare("SELECT pfp FROM users WHERE Username = :username");
+            query.bindValue(":username", username);
+
+            if (query.exec() && query.first()) // Assuming there's only one user with the given username
+            {
+                QByteArray imageData = query.value(0).toByteArray();
+                QPixmap userPixmap;
+                userPixmap.loadFromData(QByteArray::fromBase64(imageData));
+
+
+            }
+            else
+            {
+                QMessageBox::critical(this, "Database Error", "Failed to retrieve user data from the database." + query.lastError().text());
+            }
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, "Database Error", "Failed to open database connection.");
+    }
 }
 void MainWindow::on_transactions_PB_clicked()
 {
