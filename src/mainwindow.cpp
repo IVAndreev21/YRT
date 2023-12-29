@@ -192,6 +192,117 @@ void MainWindow::on_make_tr_PB_clicked()
 
 void MainWindow::on_confrim_mt_PB_clicked()
 {
+    QString receiverIBAN = ui->IBAN_mt_LE->text(); // Assuming you have an input field for the receiver's username
+    QString amountStr = ui->amount_mt_LE->text();
+    QString type = ui->type_mt_CB->currentText();
+    QString firstName = ui->first_name_mt_LE->text();
+    QString lastName = ui->last_name_mt_LE->text();
 
+    if (databaseManager->openConnection())
+    {
+        QSqlDatabase db = databaseManager->getDatabase();
+        if (db.isValid() && db.isOpen())
+        {
+            QSqlQuery receiverQuery;
+            receiverQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
+            receiverQuery.bindValue(":IBAN", receiverIBAN);
+            if (receiverQuery.exec() && receiverQuery.next())
+            {
+                QString receiverUsername = receiverQuery.value(15).toString();
+                QSqlQuery senderQuery;
+                senderQuery.prepare("SELECT * FROM users WHERE Username = :username");
+                senderQuery.bindValue(":username", username);
+
+                if (senderQuery.exec() && senderQuery.next())
+                {
+                    double senderBalance = senderQuery.value(19).toDouble();
+                    bool conversionOK;
+                    double amount = amountStr.toDouble(&conversionOK);
+
+                    if (conversionOK && senderBalance >= amount)
+                    {
+                        QSqlQuery receiverQuery;
+                        receiverQuery.prepare("SELECT * FROM users WHERE Username = :username");
+                        receiverQuery.bindValue(":username", receiverUsername);
+
+                        if (receiverQuery.exec() && receiverQuery.next())
+                        {
+                            double senderNewBalance = senderBalance - amount;
+                            double receiverBalance = receiverQuery.value(19).toDouble();
+                            double receiverNewBalance = receiverBalance + amount;
+
+                            // Update sender's balance
+                            QSqlQuery updateSenderQuery;
+                            updateSenderQuery.prepare("UPDATE users SET balance = :newBalance WHERE Username = :username");
+                            updateSenderQuery.bindValue(":newBalance", senderNewBalance);
+                            updateSenderQuery.bindValue(":username", username);
+
+                            // Update receiver's balance
+                            QSqlQuery updateReceiverQuery;
+                            updateReceiverQuery.prepare("UPDATE users SET balance = :newBalance WHERE Username = :username");
+                            updateReceiverQuery.bindValue(":newBalance", receiverNewBalance);
+                            updateReceiverQuery.bindValue(":username", receiverUsername);
+
+                            if (updateSenderQuery.exec() && updateReceiverQuery.exec())
+                            {
+                                // Insert the transaction record
+                                QSqlQuery insertQuery;
+                                QString Date = QDateTime::currentDateTime().toString();
+                                insertQuery.prepare("INSERT INTO transactions (Date, IBAN, `Sender First Name`, `Sender Last Name`, `Receiver First Name`, `Receiver Last Name`, Phone, Type, Amount, Description) "
+                                                    "VALUES (:Date, :IBAN, :Sender_First_Name, :Sender_Last_Name, :Receiver_First_Name, :Receiver_Last_Name, :Phone, :Type, :Amount, :Description)");
+                                insertQuery.bindValue(":Date", Date);
+                                insertQuery.bindValue(":IBAN", receiverIBAN);
+                                insertQuery.bindValue(":Sender_First_Name", senderQuery.value(1));
+                                insertQuery.bindValue(":Sender_Last_Name", senderQuery.value(2));
+                                insertQuery.bindValue(":Receiver_First_Name", firstName);
+                                insertQuery.bindValue(":Receiver_Last_Name", lastName);
+                                insertQuery.bindValue(":Phone", senderQuery.value(10));
+                                insertQuery.bindValue(":Type", type);
+                                insertQuery.bindValue(":Amount", amountStr);
+                                insertQuery.bindValue(":Description", "Transfer to " + receiverUsername);
+
+                                if (insertQuery.exec())
+                                {
+                                    QTreeWidgetItem* item = new QTreeWidgetItem(ui->Transactions_tr_TW);
+                                    item->setText(0, QDateTime::currentDateTime().toString()); // Assuming the first column is for the date and time
+                                    item->setText(1, receiverIBAN);
+                                    item->setText(2, senderQuery.value(1).toString() + senderQuery.value(2).toString());
+                                    item->setText(3, firstName + lastName);
+                                    item->setText(4, type);
+                                    item->setText(5, amountStr);
+                                    item->setText(6, "Transfer to " + receiverUsername);
+
+                                    // Add the item to the QTreeWidget
+                                    ui->Transactions_tr_TW->addTopLevelItem(item);
+                                    QMessageBox::information(this, "Transaction success", "Transaction has been successful");
+                                }
+                                else
+                                {
+                                    QMessageBox::critical(this, "Transaction failure", "Transaction failed");
+                                    qDebug() << insertQuery.lastError().text();
+                                }
+                            }
+                            else
+                            {
+                                QMessageBox::critical(this, "Update failure", "Failed to update balances");
+                            }
+                        }
+                        else
+                        {
+                            QMessageBox::critical(this, "Receiver not found", "Receiver not found in the database");
+                        }
+                    }
+                    else
+                    {
+                        QMessageBox::critical(this, "Invalid amount or insufficient funds", "Invalid amount or insufficient funds for this transaction");
+                    }
+                }
+                else
+                {
+                    QMessageBox::critical(this, "Sender not found", "Sender not found in the database");
+                }
+            }
+        }
+    }
 }
 

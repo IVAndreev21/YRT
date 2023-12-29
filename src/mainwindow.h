@@ -34,6 +34,10 @@ private slots:
 
     void on_administration_PB_clicked();
 
+    void on_make_tr_PB_clicked();
+
+    void on_confrim_mt_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<DatabaseManager> databaseManager;
