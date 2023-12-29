@@ -2,7 +2,9 @@
 #define REGISTER_H
 
 #include <QWidget>
-
+#include <QRandomGenerator>
+#include <QMessageBox>
+#include "databasemanager.hpp"
 namespace Ui {
 class Register;
 }
@@ -32,6 +34,7 @@ private slots:
 
 private:
     Ui::Register *ui;
+    std::unique_ptr<DatabaseManager> databaseManager;
 };
 
 #endif // REGISTER_H
