@@ -61,6 +61,36 @@ void MainWindow::updatepfp()
                 QPixmap userPixmap;
                 userPixmap.loadFromData(QByteArray::fromBase64(imageData));
 
+                if (!userPixmap.isNull()) {
+                    imageLabel->setParent(frame);
+                    imageLabel2->setParent(frame2);
+
+                    imageLabel->setGeometry(0, 0, frame->width(), frame->height());
+                    imageLabel2->setGeometry(0, 0, frame2->width(), frame2->height());
+
+                    QBitmap mask1(userPixmap.size());
+                    mask1.fill(Qt::color0); // Transparent mask
+                    QPainter painter1(&mask1);
+                    painter1.setRenderHint(QPainter::Antialiasing);
+                    painter1.setBrush(Qt::color1); // Fill with opaque color
+                    painter1.drawEllipse(QPointF(frame->width() / 2, frame->height() / 2), frame->width() / 2, frame->height() / 2);
+                    frame->setMask(mask1);
+                    frame->setStyleSheet("background-color: white; border-radius: " + QString::number(frame->width() / 2) + "px;");
+
+                    QBitmap mask2(userPixmap.size());
+                    mask2.fill(Qt::color0); // Transparent mask
+                    QPainter painter2(&mask2);
+                    painter2.setRenderHint(QPainter::Antialiasing);
+                    painter2.setBrush(Qt::color1); // Fill with opaque color
+                    painter2.drawEllipse(QPointF(frame2->width() / 2, frame2->height() / 2), frame2->width() / 2, frame2->height() / 2);
+                    frame2->setMask(mask2);
+                    frame2->setStyleSheet("background-color: white; border-radius: " + QString::number(frame2->width() / 2) + "px;");
+
+                    ui->pfp_acc_LA->setPixmap(userPixmap);
+                    ui->pfp_acc_LA_2->setPixmap(userPixmap);
+                } else {
+                    qDebug() << "Invalid or empty image data.";
+                }
 
             }
             else
