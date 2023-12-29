@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    mainwindow.cpp \
     src/databasemanager.cpp \
     src/login.cpp \
     src/main.cpp \
@@ -16,6 +17,7 @@ SOURCES += \
     src/register.cpp
 
 HEADERS += \
+    mainwindow.h \
     src/databasemanager.hpp \
     src/login.h \
     src/mainmenu.h \
@@ -24,7 +26,8 @@ HEADERS += \
 FORMS += \
     forms/login.ui \
     forms/mainmenu.ui \
-    forms/register.ui
+    forms/register.ui \
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

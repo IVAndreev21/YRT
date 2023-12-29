@@ -9,6 +9,7 @@ logIn::logIn(QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle("Log In");
     databaseManager = std::make_unique<DatabaseManager>();
+    mainWindow = std::make_unique<MainWindow>();
 }
 
 logIn::~logIn()
@@ -38,7 +39,9 @@ void logIn::on_submit_PB_clicked()
 
                     if(username == usernameFromDB && password == passworFromDB)
                     {
-                        QMessageBox::information(this, "connection", "successful");
+                        QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
+                        this->hide();
+                        mainWindow->show();
                     }
                     else
                     {

@@ -8,6 +8,7 @@ Register::Register(QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle("Register");
     databaseManager = std::make_unique<DatabaseManager>();
+    mainWindow = std::make_unique<MainWindow>();
 }
 
 Register::~Register()
@@ -152,8 +153,9 @@ void Register::on_submit_PB_clicked()
                 qry.bindValue(":IBAN", IBAN);
                 if(qry.exec())
                 {
-                    QMessageBox::information(this, "Success", "Your registration to trawma bank has been successfull. Redirecting to login page");
-                    ui->stackedWidget->setCurrentIndex(0);
+                    QMessageBox::information(this, "Success", "Your registration to trawma bank has been successfull. \n\nRedirecting to login page..");
+                    this->hide();
+                    mainWindow->show();
                 }
                 else
                 {

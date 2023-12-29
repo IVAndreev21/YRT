@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "databasemanager.hpp"
+#include "mainwindow.h"
 namespace Ui {
 class logIn;
 }
@@ -21,5 +22,6 @@ private slots:
 private:
     Ui::logIn *ui;
     std::unique_ptr<DatabaseManager> databaseManager;
+    std::unique_ptr<MainWindow> mainWindow;
 };
 #endif // LOGIN_H
