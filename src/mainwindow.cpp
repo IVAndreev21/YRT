@@ -182,3 +182,16 @@ void MainWindow::on_administration_PB_clicked()
     ui->stackedWidget->setCurrentIndex(4);
 }
 
+
+
+void MainWindow::on_make_tr_PB_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(5);
+}
+
+
+void MainWindow::on_confrim_mt_PB_clicked()
+{
+
+}
+

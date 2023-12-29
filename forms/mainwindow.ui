@@ -147,10 +147,10 @@ border-radius:20px;
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>5</number>
    </property>
    <widget class="QWidget" name="transacions_page">
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="Bank_tr_LA">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -163,7 +163,7 @@ border-radius:20px;
       <string>Bank Transactions</string>
      </property>
     </widget>
-    <widget class="QTreeWidget" name="Transactions_TW">
+    <widget class="QTreeWidget" name="Transactions_tr_TW">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -217,10 +217,10 @@ border-radius:20px;
       </property>
      </column>
     </widget>
-    <widget class="QPushButton" name="make_BTN">
+    <widget class="QPushButton" name="make_tr_PB">
      <property name="geometry">
       <rect>
-       <x>970</x>
+       <x>980</x>
        <y>20</y>
        <width>75</width>
        <height>24</height>
@@ -329,6 +329,205 @@ border-radius:20px;
      </property>
      <property name="text">
       <string>admin</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="make_transaction_page">
+    <widget class="QLabel" name="type_mt_LA">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>110</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Transaction Type</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="last_name_mt_LE">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>330</y>
+       <width>113</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="IBAN_mt_LA">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>110</y>
+       <width>251</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Recipient Account Number(IBAN)</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="amount_mt_LA">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>200</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Amount</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="amount_mt_LE">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>240</y>
+       <width>113</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="confrim_mt_PB">
+     <property name="geometry">
+      <rect>
+       <x>518</x>
+       <y>500</y>
+       <width>131</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Confrim Transaction</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="description_mt_LA">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>290</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Description</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="type_mt_CB">
+     <property name="geometry">
+      <rect>
+       <x>740</x>
+       <y>160</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Transfer</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Bill Payment</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Online Purchase</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Loan Payment</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLineEdit" name="IBAN_mt_LE">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>150</y>
+       <width>113</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="first_name_mt_LE">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>230</y>
+       <width>113</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="description_mt_LE">
+     <property name="geometry">
+      <rect>
+       <x>710</x>
+       <y>330</y>
+       <width>221</width>
+       <height>61</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cancel_mt_PB">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>500</y>
+       <width>119</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="first_name_mt_LA">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>190</y>
+       <width>321</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Recipient First Name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="make_transaction_LA">
+     <property name="geometry">
+      <rect>
+       <x>560</x>
+       <y>60</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Make Transaction</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="last_name_mt_LA">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>280</y>
+       <width>291</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Recipient Last Name</string>
      </property>
     </widget>
    </widget>
