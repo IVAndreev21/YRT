@@ -147,7 +147,7 @@ border-radius:20px;
     </rect>
    </property>
    <property name="currentIndex">
-    <number>5</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="transacions_page">
     <widget class="QLabel" name="Bank_tr_LA">

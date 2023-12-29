@@ -6,6 +6,7 @@ MainWindow::MainWindow(const QString &username_ref, QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->stackedWidget->setCurrentIndex(0);
     username = username_ref;
     databaseManager = std::make_unique<DatabaseManager>();
     if(databaseManager->openConnection())
@@ -32,6 +33,7 @@ MainWindow::MainWindow(const QString &username_ref, QWidget *parent)
             qDebug() << "Query failed or no record found.";
         }
     }
+    populateTransactionTreeWidget();
 }
 
 MainWindow::~MainWindow()
@@ -306,3 +308,41 @@ void MainWindow::on_confrim_mt_PB_clicked()
     }
 }
 
+    void MainWindow::populateTransactionTreeWidget()
+    {
+        ui->Transactions_tr_TW->clear();
+        if (databaseManager->openConnection())
+        {
+            QSqlDatabase db = databaseManager->getDatabase();
+            if (db.isValid() && db.isOpen())
+            {
+                QSqlQuery query;
+                query.prepare("SELECT * FROM transactions"); // Assuming your transactions table contains the necessary data
+
+                if (query.exec())
+                {
+                    while (query.next())
+                    {
+                        QTreeWidgetItem* item = new QTreeWidgetItem(ui->Transactions_tr_TW);
+
+                        item->setText(0, query.value(1).toString());
+                        item->setText(1, query.value(2).toString());
+                        item->setText(2, query.value(3).toString() + " " + query.value(4).toString());
+                        item->setText(3, query.value(5).toString() + " " + query.value(6).toString());
+                        item->setText(4, query.value(8).toString());
+                        item->setText(5, query.value(9).toString());
+                        item->setText(6, query.value(10).toString());
+                        ui->Transactions_tr_TW->addTopLevelItem(item);
+                    }
+                }
+                else
+                {
+                    QMessageBox::critical(this, "Database Error", "Failed to retrieve transaction data from the database.");
+                }
+            }
+        }
+        else
+        {
+            QMessageBox::critical(this, "Database Error", "Failed to open database connection.");
+        }
+    }

@@ -43,6 +43,7 @@ private:
     std::unique_ptr<DatabaseManager> databaseManager;
 
     void updatepfp();
+    void populateTransactionTreeWidget();
 
     QString username;
 };
