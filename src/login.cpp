@@ -7,9 +7,9 @@ logIn::logIn(QWidget *parent)
     , ui(new Ui::logIn)
 {
     ui->setupUi(this);
+    ui->password_LE->setEchoMode(QLineEdit::Password);
     this->setWindowTitle("Log In");
     databaseManager = std::make_unique<DatabaseManager>();
-    mainWindow = std::make_unique<MainWindow>();
 }
 
 logIn::~logIn()
@@ -41,6 +41,7 @@ void logIn::on_submit_PB_clicked()
                     {
                         QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
                         this->hide();
+                        mainWindow = std::make_unique<MainWindow>(username);
                         mainWindow->show();
                     }
                     else
