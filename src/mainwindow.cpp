@@ -91,7 +91,6 @@ void MainWindow::updatepfp()
                 } else {
                     qDebug() << "Invalid or empty image data.";
                 }
-
             }
             else
             {

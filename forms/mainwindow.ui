@@ -150,17 +150,84 @@ border-radius:20px;
     <number>0</number>
    </property>
    <widget class="QWidget" name="transacions_page">
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>200</y>
-       <width>100</width>
-       <height>32</height>
+       <x>10</x>
+       <y>0</y>
+       <width>101</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>transactions</string>
+      <string>Bank Transactions</string>
+     </property>
+    </widget>
+    <widget class="QTreeWidget" name="Transactions_TW">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>911</width>
+       <height>631</height>
+      </rect>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
+     <column>
+      <property name="text">
+       <string>Date</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>IBAN</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Sender Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Receiver Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Type</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Amount</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Description</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QPushButton" name="make_BTN">
+     <property name="geometry">
+      <rect>
+       <x>970</x>
+       <y>20</y>
+       <width>75</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Make</string>
      </property>
     </widget>
    </widget>
