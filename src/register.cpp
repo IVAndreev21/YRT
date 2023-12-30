@@ -2,8 +2,7 @@
 #include "ui_register.h"
 
 Register::Register(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::Register)
+    : QWidget(parent), ui(new Ui::Register)
 {
     ui->setupUi(this);
     ui->password_LE->setEchoMode(QLineEdit::Password);
@@ -11,7 +10,6 @@ Register::Register(QWidget *parent)
     databaseManager = std::make_unique<DatabaseManager>();
     databaseManager->openConnection();
     db = databaseManager->getDatabase();
-
 }
 
 Register::~Register()
@@ -24,36 +22,30 @@ void Register::on_next1_PB_clicked()
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-
 void Register::on_previous1_PB_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
-
 
 void Register::on_next2_PB_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
 
-
 void Register::on_previous2_PB_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
-
 
 void Register::on_next3_PB_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
 }
 
-
 void Register::on_previous3_PB_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
-
 
 void Register::on_submit_PB_clicked()
 {
@@ -96,70 +88,68 @@ void Register::on_submit_PB_clicked()
 
     QString IBAN = "BG" + QString::number(QRandomGenerator::global()->bounded(10, 100)) + "YRT9661" + randomNumbersString;
 
-            QSqlQuery qry;
-            qry.prepare("SELECT * FROM users WHERE Username = :username");
-            qry.bindValue(":username", usernameToCheck);
-            if (qry.exec() && qry.next()) {
-                usernameTaken = true;
-            }
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM users WHERE Username = :username");
+    qry.bindValue(":username", usernameToCheck);
+    if (qry.exec() && qry.next()) {
+        usernameTaken = true;
+    }
 
-            qry.prepare("SELECT * FROM users WHERE SSN = :ssn");
-            qry.bindValue(":ssn", SSNToCheck);
-            if (qry.exec() && qry.next()) {
-                ssnTaken = true;
-            }
-            qry.prepare("SELECT * FROM users WHERE Phone = :phone");
-            qry.bindValue(":phone", phoneToCheck);
-            if (qry.exec() && qry.next()) {
-                phoneTaken = true;
-            }
+    qry.prepare("SELECT * FROM users WHERE SSN = :ssn");
+    qry.bindValue(":ssn", SSNToCheck);
+    if (qry.exec() && qry.next()) {
+        ssnTaken = true;
+    }
 
-            if (usernameTaken) {
-                QMessageBox::critical(this, "Error", "Username is already taken.");
-            }
+    qry.prepare("SELECT * FROM users WHERE Phone = :phone");
+    qry.bindValue(":phone", phoneToCheck);
+    if (qry.exec() && qry.next()) {
+        phoneTaken = true;
+    }
 
-            if (ssnTaken) {
-                QMessageBox::critical(this, "Error", "SSN is already taken.");
-            }
+    if (usernameTaken) {
+        QMessageBox::critical(this, "Error", "Username is already taken.");
+    }
 
-            if (phoneTaken) {
-                QMessageBox::critical(this, "Error", "Phone number is already taken.");
-            }
-            if (!usernameTaken && !ssnTaken && !phoneTaken)
-            {
-                qry.prepare("INSERT INTO users (`First Name`, `Last Name`, `Date of birth`, Gender, SSN, Street, City, `State/Province`, `Postal code`, Phone, Email, `Employment Status`, Income, Type, Username, Password, `Security question`, `Security answer`, IBAN)"
-                            "VALUES (:First_Name, :Last_Name, :Date_of_birth, :Gender, :SSN, :Street, :City, :State_Province, :Postal_code, :Phone, :Email, :Employment_Status, :Income, :Type, :Username, :Password, :Security_question, :Security_answer, :IBAN)");
+    if (ssnTaken) {
+        QMessageBox::critical(this, "Error", "SSN is already taken.");
+    }
 
-                qry.bindValue(":First_Name", firstName);
-                qry.bindValue(":Last_Name", lastName);
-                qry.bindValue(":Date_of_birth", DateOfBirth);
-                qry.bindValue(":Gender", gender);
-                qry.bindValue(":SSN", SSN);
-                qry.bindValue(":Street", street);
-                qry.bindValue(":City", city);
-                qry.bindValue(":State_Province", stateProvince);
-                qry.bindValue(":Postal_code", postalCode);
-                qry.bindValue(":Phone", phone);
-                qry.bindValue(":Email", email);
-                qry.bindValue(":Employment_Status", status);
-                qry.bindValue(":Income", income);
-                qry.bindValue(":Type", type);
-                qry.bindValue(":Username", username);
-                qry.bindValue(":Password", password);
-                qry.bindValue(":Security_question", securityQuestion);
-                qry.bindValue(":Security_answer", securityAnswer);
-                qry.bindValue(":IBAN", IBAN);
-                if(qry.exec())
-                {
-                    QMessageBox::information(this, "Success", "Your registration to trawma bank has been successfull. \n\nRedirecting to login page..");
-                    this->hide();
-                    mainWindow = std::make_unique<MainWindow>(username);
-                    mainWindow->show();
-                }
-                else
-                {
-                    QMessageBox::information(this, "Failure", "Data has not inserted successfully. Try again or contact us " + qry.lastError().text());
-                }
+    if (phoneTaken) {
+        QMessageBox::critical(this, "Error", "Phone number is already taken.");
+    }
+
+    if (!usernameTaken && !ssnTaken && !phoneTaken) {
+        qry.prepare("INSERT INTO users (`First Name`, `Last Name`, `Date of birth`, Gender, SSN, Street, City, `State/Province`, `Postal code`, Phone, Email, `Employment Status`, Income, Type, Username, Password, `Security question`, `Security answer`, IBAN)"
+                    "VALUES (:First_Name, :Last_Name, :Date_of_birth, :Gender, :SSN, :Street, :City, :State_Province, :Postal_code, :Phone, :Email, :Employment_Status, :Income, :Type, :Username, :Password, :Security_question, :Security_answer, :IBAN)");
+
+        qry.bindValue(":First_Name", firstName);
+        qry.bindValue(":Last_Name", lastName);
+        qry.bindValue(":Date_of_birth", DateOfBirth);
+        qry.bindValue(":Gender", gender);
+        qry.bindValue(":SSN", SSN);
+        qry.bindValue(":Street", street);
+        qry.bindValue(":City", city);
+        qry.bindValue(":State_Province", stateProvince);
+        qry.bindValue(":Postal_code", postalCode);
+        qry.bindValue(":Phone", phone);
+        qry.bindValue(":Email", email);
+        qry.bindValue(":Employment_Status", status);
+        qry.bindValue(":Income", income);
+        qry.bindValue(":Type", type);
+        qry.bindValue(":Username", username);
+        qry.bindValue(":Password", password);
+        qry.bindValue(":Security_question", securityQuestion);
+        qry.bindValue(":Security_answer", securityAnswer);
+        qry.bindValue(":IBAN", IBAN);
+
+        if (qry.exec()) {
+            QMessageBox::information(this, "Success", "Your registration to trawma bank has been successful. \n\nRedirecting to the login page..");
+            this->hide();
+            mainWindow = std::make_unique<MainWindow>(username);
+            mainWindow->show();
+        } else {
+            QMessageBox::information(this, "Failure", "Data has not been inserted successfully. Try again or contact us " + qry.lastError().text());
+        }
     }
 }
-
