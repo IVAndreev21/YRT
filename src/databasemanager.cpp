@@ -8,7 +8,7 @@ QSqlDatabase DatabaseManager::getDatabase() {
     return db;
 }
 
-bool DatabaseManager::openConnection() {
+void DatabaseManager::openConnection() {
     db = QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName("project-yrt.mysql.database.azure.com");
     db.setPort(3306);  // Default MySQL port
@@ -16,11 +16,12 @@ bool DatabaseManager::openConnection() {
     db.setUserName("sqladmin");
     db.setPassword("Project-YRT");
 
-    if (db.open()) {
-        return true;
+    if (db.open() && db.isOpen()) {
+        qDebug() << "Database opened successfully";
     } else {
         // Handle connection error
-        return false;
+        qDebug() << "Database failed to open";
+
     }
 }
 

@@ -10,6 +10,8 @@ logIn::logIn(QWidget *parent)
     ui->password_LE->setEchoMode(QLineEdit::Password);
     this->setWindowTitle("Log In");
     databaseManager = std::make_unique<DatabaseManager>();
+    databaseManager->openConnection();
+    db = databaseManager->getDatabase();
 }
 
 logIn::~logIn()
@@ -21,44 +23,27 @@ void logIn::on_submit_PB_clicked()
 {
     QString username = ui->username_LE->text();
     QString password = ui->password_LE->text();
-    if (databaseManager->openConnection())
-    {
-        QSqlDatabase db = databaseManager->getDatabase();
-        if (db.isValid() && db.isOpen())
-        {
-            QSqlQuery qry;
-            qry.prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM users WHERE username = :username AND password = :password");
             qry.bindValue(":username", username);
             qry.bindValue(":password", password);
-            if(qry.exec())
+            if(qry.exec() && qry.next())
             {
-                while(qry.next())
-                {
                     QString usernameFromDB = qry.value(15).toString();
                     QString passworFromDB = qry.value(16).toString();
+                    QString userIBAN = qry.value(20).toString();
 
                     if(username == usernameFromDB && password == passworFromDB)
                     {
                         QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
                         this->hide();
-                        mainWindow = std::make_unique<MainWindow>(username);
+                        mainWindow = std::make_unique<MainWindow>(userIBAN);
                         mainWindow->show();
                     }
                     else
                     {
                         QMessageBox::critical(this, "failure", "Wrong password or useranme");
                     }
-                }
-            }
-        }
-        else
-        {
-            QMessageBox::critical(this, "Error", "Database is not open or valid.");
-        }
-    }
-    else
-    {
-        QMessageBox::critical(this, "Error", "Database connection failed.");
     }
 }
 

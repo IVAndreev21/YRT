@@ -9,6 +9,9 @@ Register::Register(QWidget *parent)
     ui->password_LE->setEchoMode(QLineEdit::Password);
     this->setWindowTitle("Register");
     databaseManager = std::make_unique<DatabaseManager>();
+    databaseManager->openConnection();
+    db = databaseManager->getDatabase();
+
 }
 
 Register::~Register()
@@ -93,11 +96,6 @@ void Register::on_submit_PB_clicked()
 
     QString IBAN = "BG" + QString::number(QRandomGenerator::global()->bounded(10, 100)) + "YRT9661" + randomNumbersString;
 
-    if (databaseManager->openConnection())
-    {
-        QSqlDatabase db = databaseManager->getDatabase();
-        if (db.isValid() && db.isOpen())
-        {
             QSqlQuery qry;
             qry.prepare("SELECT * FROM users WHERE Username = :username");
             qry.bindValue(":username", usernameToCheck);
@@ -162,8 +160,6 @@ void Register::on_submit_PB_clicked()
                 {
                     QMessageBox::information(this, "Failure", "Data has not inserted successfully. Try again or contact us " + qry.lastError().text());
                 }
-            }
-        }
     }
 }
 

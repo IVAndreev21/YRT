@@ -4,13 +4,13 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QtSql>
-
+#include <QDebug>
 class DatabaseManager
 {
 public:
     DatabaseManager();
     QSqlDatabase getDatabase();
-    bool openConnection();
+    void openConnection();
     void closeConnection();
 private:
     QSqlDatabase db;

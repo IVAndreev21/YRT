@@ -1,20 +1,21 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(const QString &username_ref, QWidget *parent)
+
+MainWindow::MainWindow(const QString &IBAN_ref, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
-    username = username_ref;
+    IBAN = IBAN_ref;
     databaseManager = std::make_unique<DatabaseManager>();
-    if(databaseManager->openConnection())
-    {
+    databaseManager->openConnection();
+    db = databaseManager->getDatabase();
         QSqlQuery qry;
 
-        qry.prepare("SELECT * FROM users WHERE username = :username");
-        qry.bindValue(":username", username);
+        qry.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
+        qry.bindValue(":IBAN", IBAN);
 
 
         if (qry.exec() && qry.next()) // Execute the query and move to the first record
@@ -32,7 +33,7 @@ MainWindow::MainWindow(const QString &username_ref, QWidget *parent)
             // Handle the case where the query fails or no record is found
             qDebug() << "Query failed or no record found.";
         }
-    }
+    on_dashboard_PB_clicked();
     populateTransactionTreeWidget();
 }
 
@@ -47,15 +48,9 @@ void MainWindow::updatepfp()
     QLabel* imageLabel2 = ui->pfp_acc_LA_2;
     QFrame* frame = ui->frame;
     QFrame* frame2 = ui->frame_2;
-
-    if (databaseManager->openConnection())
-    {
-        QSqlDatabase db = databaseManager->getDatabase();
-        if (db.isValid() && db.isOpen())
-        {
             QSqlQuery query;
-            query.prepare("SELECT pfp FROM users WHERE Username = :username");
-            query.bindValue(":username", username);
+            query.prepare("SELECT pfp FROM users WHERE IBAN = :IBAN");
+            query.bindValue(":IBAN", IBAN);
 
             if (query.exec() && query.first()) // Assuming there's only one user with the given username
             {
@@ -90,24 +85,65 @@ void MainWindow::updatepfp()
 
                     ui->pfp_acc_LA->setPixmap(userPixmap);
                     ui->pfp_acc_LA_2->setPixmap(userPixmap);
-                } else {
+                }
+                else
+                {
                     qDebug() << "Invalid or empty image data.";
                 }
             }
-            else
-            {
-                QMessageBox::critical(this, "Database Error", "Failed to retrieve user data from the database." + query.lastError().text());
-            }
-        }
+
     }
-    else
-    {
-        QMessageBox::critical(this, "Database Error", "Failed to open database connection.");
-    }
-}
-void MainWindow::on_transactions_PB_clicked()
+
+void MainWindow::on_dashboard_PB_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+
+    QPieSeries* series = new QPieSeries();
+            QSqlQuery query;
+            query.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
+            query.bindValue(":IBAN", IBAN);
+            if (query.exec() && query.next())
+            {
+                userExpenses = query.value(22).toDouble();
+
+                query.prepare("SELECT SUM(amount) AS totalIncome FROM transactions WHERE IBAN = :IBAN");
+                query.bindValue(":IBAN", IBAN);
+                if (query.exec() && query.next())
+                {
+                    userIncome = query.value("totalIncome").toDouble();
+                }
+            }
+
+    series->append("Income", userIncome);
+    series->append("Expenses", userExpenses);
+
+    QPieSlice* slice0 = series->slices().at(0);
+    slice0->setLabelVisible();
+    slice0->setLabelColor(Qt::white);
+
+    QPieSlice* slice1 = series->slices().at(1);
+    slice1->setLabelVisible();
+    slice1->setPen(QPen(Qt::darkGreen, 2));
+    slice1->setBrush(Qt::green);
+    slice1->setLabelColor(Qt::white);
+
+    QChart* chart = new QChart();
+    chart->setBackgroundBrush(Qt::NoBrush);
+
+    chart->addSeries(series);
+    chart->setTitle("sdd");
+    chart->backgroundBrush();
+    chart->legend()->hide();
+
+    QChartView* chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    ui->layout->addWidget(chartView);
+}
+
+void MainWindow::on_transactions_PB_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 
@@ -132,24 +168,18 @@ void MainWindow::on_pfp_acc_PB_clicked()
 
                 ImageBufferData.close();
                 QByteArray FinalDataToSave = ImageBufferData.buffer().toBase64();
-
-                if (databaseManager->openConnection())
-                {
-                    QSqlDatabase db = databaseManager->getDatabase();
-                    if (db.isValid() && db.isOpen())
-                    {
                         QSqlQuery qry;
-                        qry.prepare("UPDATE users SET pfp = :pfp WHERE Username = :username");
+                        qry.prepare("UPDATE users SET pfp = :pfp WHERE IBAN = :IBAN");
                         qry.bindValue(":pfp", FinalDataToSave);
-                        qry.bindValue(":username", username);
+                        qry.bindValue(":IBAN", IBAN);
                         if(qry.exec())
                         {
                             QSqlDatabase::database().commit();
                             ui->pfp_acc_LA->setPixmap(Image);
                             ui->pfp_acc_LA_2->setPixmap(Image);
                         }
-                    }
-                }
+
+
             }
             else
             {
@@ -163,32 +193,26 @@ void MainWindow::on_pfp_acc_PB_clicked()
 
 void MainWindow::on_payments_PB_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
-}
-
-
-void MainWindow::on_cards_PB_clicked()
-{
     ui->stackedWidget->setCurrentIndex(2);
 }
 
 
-void MainWindow::on_account_PB_clicked()
+void MainWindow::on_crypto_PB_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(3);
+
 }
 
 
-void MainWindow::on_administration_PB_clicked()
+void MainWindow::on_settings_PB_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(4);
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
 
 
 void MainWindow::on_make_tr_PB_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(5);
+    ui->stackedWidget->setCurrentIndex(4);
 }
 
 
@@ -200,50 +224,50 @@ void MainWindow::on_confrim_mt_PB_clicked()
     QString firstName = ui->first_name_mt_LE->text();
     QString lastName = ui->last_name_mt_LE->text();
 
-    if (databaseManager->openConnection())
-    {
-        QSqlDatabase db = databaseManager->getDatabase();
-        if (db.isValid() && db.isOpen())
-        {
             QSqlQuery receiverQuery;
             receiverQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
             receiverQuery.bindValue(":IBAN", receiverIBAN);
             if (receiverQuery.exec() && receiverQuery.next())
             {
-                QString receiverUsername = receiverQuery.value(15).toString();
+                QString receiverFName = receiverQuery.value(1).toString();
+
                 QSqlQuery senderQuery;
-                senderQuery.prepare("SELECT * FROM users WHERE Username = :username");
-                senderQuery.bindValue(":username", username);
+                senderQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
+                senderQuery.bindValue(":IBAN", IBAN);
 
                 if (senderQuery.exec() && senderQuery.next())
                 {
                     double senderBalance = senderQuery.value(19).toDouble();
+                    double senderExpenseBalance = senderQuery.value(22).toDouble();
                     bool conversionOK;
                     double amount = amountStr.toDouble(&conversionOK);
 
                     if (conversionOK && senderBalance >= amount)
                     {
                         QSqlQuery receiverQuery;
-                        receiverQuery.prepare("SELECT * FROM users WHERE Username = :username");
-                        receiverQuery.bindValue(":username", receiverUsername);
+                        receiverQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
+                        receiverQuery.bindValue(":IBAN", receiverIBAN);
 
                         if (receiverQuery.exec() && receiverQuery.next())
                         {
                             double senderNewBalance = senderBalance - amount;
+                            double senderNewExpenseBalance = senderExpenseBalance + amount;
                             double receiverBalance = receiverQuery.value(19).toDouble();
                             double receiverNewBalance = receiverBalance + amount;
 
                             // Update sender's balance
                             QSqlQuery updateSenderQuery;
-                            updateSenderQuery.prepare("UPDATE users SET balance = :newBalance WHERE Username = :username");
+                            updateSenderQuery.prepare("UPDATE users SET balance = :newBalance, expenses = :expense WHERE IBAN = :IBAN");
                             updateSenderQuery.bindValue(":newBalance", senderNewBalance);
-                            updateSenderQuery.bindValue(":username", username);
+                            updateSenderQuery.bindValue(":expense", senderNewExpenseBalance);
+                            updateSenderQuery.bindValue(":IBAN", IBAN);
+
 
                             // Update receiver's balance
                             QSqlQuery updateReceiverQuery;
-                            updateReceiverQuery.prepare("UPDATE users SET balance = :newBalance WHERE Username = :username");
+                            updateReceiverQuery.prepare("UPDATE users SET balance = :newBalance WHERE IBAN = :IBAN");
                             updateReceiverQuery.bindValue(":newBalance", receiverNewBalance);
-                            updateReceiverQuery.bindValue(":username", receiverUsername);
+                            updateReceiverQuery.bindValue(":IBAN", receiverIBAN);
 
                             if (updateSenderQuery.exec() && updateReceiverQuery.exec())
                             {
@@ -261,7 +285,7 @@ void MainWindow::on_confrim_mt_PB_clicked()
                                 insertQuery.bindValue(":Phone", senderQuery.value(10));
                                 insertQuery.bindValue(":Type", type);
                                 insertQuery.bindValue(":Amount", amountStr);
-                                insertQuery.bindValue(":Description", "Transfer to " + receiverUsername);
+                                insertQuery.bindValue(":Description", "Transfer to " + receiverFName);
 
                                 if (insertQuery.exec())
                                 {
@@ -272,7 +296,7 @@ void MainWindow::on_confrim_mt_PB_clicked()
                                     item->setText(3, firstName + lastName);
                                     item->setText(4, type);
                                     item->setText(5, amountStr);
-                                    item->setText(6, "Transfer to " + receiverUsername);
+                                    item->setText(6, "Transfer to " + receiverFName);
 
                                     // Add the item to the QTreeWidget
                                     ui->Transactions_tr_TW->addTopLevelItem(item);
@@ -303,19 +327,14 @@ void MainWindow::on_confrim_mt_PB_clicked()
                 {
                     QMessageBox::critical(this, "Sender not found", "Sender not found in the database");
                 }
-            }
+
         }
-    }
+
 }
 
     void MainWindow::populateTransactionTreeWidget()
     {
         ui->Transactions_tr_TW->clear();
-        if (databaseManager->openConnection())
-        {
-            QSqlDatabase db = databaseManager->getDatabase();
-            if (db.isValid() && db.isOpen())
-            {
                 QSqlQuery query;
                 query.prepare("SELECT * FROM transactions"); // Assuming your transactions table contains the necessary data
 
@@ -335,14 +354,16 @@ void MainWindow::on_confrim_mt_PB_clicked()
                         ui->Transactions_tr_TW->addTopLevelItem(item);
                     }
                 }
-                else
-                {
-                    QMessageBox::critical(this, "Database Error", "Failed to retrieve transaction data from the database.");
-                }
-            }
-        }
-        else
-        {
-            QMessageBox::critical(this, "Database Error", "Failed to open database connection.");
-        }
+
     }
+
+    void MainWindow::updatePieChart()
+    {
+
+    }
+
+void MainWindow::on_cancel_mt_PB_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+

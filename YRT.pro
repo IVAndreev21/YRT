@@ -1,4 +1,4 @@
-QT       += core gui uitools sql
+QT       += core gui uitools sql charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

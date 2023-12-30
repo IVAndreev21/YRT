@@ -37,6 +37,7 @@ private:
     Ui::Register *ui;
     std::unique_ptr<DatabaseManager> databaseManager;
     std::unique_ptr<MainWindow> mainWindow;
+    QSqlDatabase db;
 };
 
 #endif // REGISTER_H
