@@ -140,8 +140,8 @@ border-radius:20px;
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>0</y>
+     <x>150</x>
+     <y>-10</y>
      <width>1081</width>
      <height>720</height>
     </rect>
@@ -153,10 +153,10 @@ border-radius:20px;
     <widget class="QWidget" name="gridLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>50</y>
-       <width>421</width>
-       <height>341</height>
+       <x>10</x>
+       <y>10</y>
+       <width>341</width>
+       <height>251</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="layout"/>

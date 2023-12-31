@@ -59,6 +59,8 @@ private:
     double userIncome;
 
     QString IBAN;
+
+    void updateDashboard();
 };
 
 #endif // MAINWINDOW_H

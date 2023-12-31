@@ -1,41 +1,18 @@
-Certainly! Here is the reformatted code with proper spacing:
-
-```cpp
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-                                                              MainWindow::MainWindow(const QString &IBAN_ref, QWidget *parent)
+MainWindow::MainWindow(const QString &IBAN_ref, QWidget *parent)
     : QWidget(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->stackedWidget->setCurrentIndex(0);
 
-    IBAN = IBAN_ref;
     databaseManager = std::make_unique<DatabaseManager>();
     databaseManager->openConnection();
     db = databaseManager->getDatabase();
+    IBAN = IBAN_ref;
 
-    QSqlQuery qry;
-    qry.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
-    qry.bindValue(":IBAN", IBAN);
-
-    if (qry.exec() && qry.next())
-    {
-        QString firstName = qry.value(1).toString();
-        QString lastName = qry.value(2).toString();
-        QString balance = qry.value(19).toString();
-
-        ui->clientname_LA->setText(firstName + " " + lastName[0] + ".");
-        ui->balance_LA_2->setText("BGN " + balance);
-        updatepfp();
-    }
-    else
-    {
-        qDebug() << "Query failed or no record found.";
-    }
-
-    on_dashboard_PB_clicked();
     populateTransactionTreeWidget();
+    updateDashboard();
 }
 
 MainWindow::~MainWindow()
@@ -99,50 +76,6 @@ void MainWindow::updatepfp()
 void MainWindow::on_dashboard_PB_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
-
-    QPieSeries *series = new QPieSeries();
-    QSqlQuery query;
-    query.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
-    query.bindValue(":IBAN", IBAN);
-
-    if (query.exec() && query.next())
-    {
-        userExpenses = query.value(22).toDouble();
-
-        query.prepare("SELECT SUM(amount) AS totalIncome FROM transactions WHERE IBAN = :IBAN");
-        query.bindValue(":IBAN", IBAN);
-
-        if (query.exec() && query.next())
-        {
-            userIncome = query.value("totalIncome").toDouble();
-        }
-    }
-
-    series->append("Income", userIncome);
-    series->append("Expenses", userExpenses);
-
-    QPieSlice *slice0 = series->slices().at(0);
-    slice0->setLabelVisible();
-    slice0->setLabelColor(Qt::white);
-
-    QPieSlice *slice1 = series->slices().at(1);
-    slice1->setLabelVisible();
-    slice1->setPen(QPen(Qt::darkGreen, 2));
-    slice1->setBrush(Qt::green);
-    slice1->setLabelColor(Qt::white);
-
-    QChart *chart = new QChart();
-    chart->setBackgroundBrush(Qt::NoBrush);
-
-    chart->addSeries(series);
-    chart->setTitle("sdd");
-    chart->backgroundBrush();
-    chart->legend()->hide();
-
-    QChartView *chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
-
-    ui->layout->addWidget(chartView);
 }
 
 void MainWindow::on_transactions_PB_clicked()
@@ -196,9 +129,7 @@ void MainWindow::on_payments_PB_clicked()
     ui->stackedWidget->setCurrentIndex(2);
 }
 
-void MainWindow::on
-
-_crypto_PB_clicked()
+void MainWindow::on_crypto_PB_clicked()
 {
 }
 
@@ -353,4 +284,81 @@ void MainWindow::on_cancel_mt_PB_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
-```
+
+
+void MainWindow::updateDashboard()
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
+    qry.bindValue(":IBAN", IBAN);
+
+    if (qry.exec() && qry.next())
+    {
+        QString firstName = qry.value(1).toString();
+        QString lastName = qry.value(2).toString();
+        QString balance = qry.value(19).toString();
+
+        ui->clientname_LA->setText(firstName + " " + lastName[0] + ".");
+        ui->balance_LA_2->setText("BGN " + balance);
+        updatepfp();
+    }
+    else
+    {
+        qDebug() << "Query failed or no record found.";
+    }
+
+
+    QPieSeries *series = new QPieSeries();
+    QSqlQuery query;
+    query.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
+    query.bindValue(":IBAN", IBAN);
+
+    if (query.exec() && query.next())
+    {
+        userExpenses = query.value(22).toDouble();
+
+        query.prepare("SELECT SUM(amount) AS totalIncome FROM transactions WHERE IBAN = :IBAN");
+        query.bindValue(":IBAN", IBAN);
+
+        if (query.exec() && query.next())
+        {
+            userIncome = query.value("totalIncome").toDouble();
+        }
+    }
+
+    series->append("Income", userIncome);
+    series->append("Expenses", userExpenses);
+
+    QPieSlice *slice0 = series->slices().at(0);
+    slice0->setLabelVisible();
+    slice0->setLabelColor(Qt::white);
+
+    QPieSlice *slice1 = series->slices().at(1);
+    slice1->setLabelVisible();
+    slice1->setPen(QPen(Qt::darkGreen, 2));
+    slice1->setBrush(Qt::green);
+    slice1->setLabelColor(Qt::white);
+
+    QChart *chart = new QChart();
+    chart->setBackgroundBrush(Qt::NoBrush);
+
+    chart->addSeries(series);
+    chart->setTitle("Total Balance");
+    chart->backgroundBrush();
+    chart->setTitleBrush(Qt::white);
+    chart->legend()->hide();
+
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    ui->layout->addWidget(chartView);
+
+    QPainter p(this);
+    p.setRenderHint(QPainter::Antialiasing);
+    QPainterPath path;
+    path.addRoundedRect(QRectF(10, 10, 100, 50), 10, 10);
+    QPen pen(Qt::black, 10);
+    p.setPen(pen);
+    p.fillPath(path, Qt::red);
+    p.drawPath(path);
+}
