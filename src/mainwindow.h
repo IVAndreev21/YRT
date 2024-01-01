@@ -56,6 +56,7 @@ private:
     void updatepfp();
     void populateTransactionTreeWidget();
     void updatePieChart();
+    void performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName);
 
     double userExpenses;
     double userIncome;

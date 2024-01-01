@@ -159,9 +159,9 @@ border-radius:20px;
        <height>251</height>
       </rect>
      </property>
-     <layout class="QGridLayout" name="layout"/>
+     <layout class="QGridLayout" name="PieChart_LY"/>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="My_cards_LA">
      <property name="geometry">
       <rect>
        <x>830</x>
@@ -297,7 +297,7 @@ border-radius:20px;
       <string>**** **** **** 0164</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="Pay_to_LE">
+    <widget class="QLineEdit" name="IBAN_qt_LE">
      <property name="geometry">
       <rect>
        <x>790</x>
@@ -359,11 +359,11 @@ border-radius:20px;
       <string>Send</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="Recent_tr_LA">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>450</y>
+       <x>30</x>
+       <y>420</y>
        <width>301</width>
        <height>16</height>
       </rect>
@@ -372,46 +372,13 @@ border-radius:20px;
       <string>Recent Transactions</string>
      </property>
     </widget>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QTableView" name="Recent_tr_TV">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>520</y>
-       <width>120</width>
-       <height>80</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QMdiArea" name="mdiArea">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>470</y>
-       <width>200</width>
-       <height>160</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QGraphicsView" name="graphicsView">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>580</y>
-       <width>256</width>
-       <height>192</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QOpenGLWidget" name="openGLWidget">
-     <property name="geometry">
-      <rect>
-       <x>410</x>
-       <y>270</y>
-       <width>300</width>
-       <height>200</height>
+       <x>0</x>
+       <y>450</y>
+       <width>761</width>
+       <height>261</height>
       </rect>
      </property>
     </widget>

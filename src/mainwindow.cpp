@@ -14,7 +14,7 @@ MainWindow::MainWindow(const QString &IBAN_ref, QWidget *parent)
     populateTransactionTreeWidget();
     updateDashboard();
 
-    ui->Pay_to_LE->setPlaceholderText("**** **** **** 0164");
+    ui->IBAN_qt_LE->setPlaceholderText("**** **** **** 0164");
 }
 
 MainWindow::~MainWindow()
@@ -144,15 +144,8 @@ void MainWindow::on_make_tr_PB_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
 }
-
-void MainWindow::on_confrim_mt_PB_clicked()
+void MainWindow::performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName)
 {
-    QString receiverIBAN = ui->IBAN_mt_LE->text();
-    QString amountStr = ui->amount_mt_LE->text();
-    QString type = ui->type_mt_CB->currentText();
-    QString firstName = ui->first_name_mt_LE->text();
-    QString lastName = ui->last_name_mt_LE->text();
-
     QSqlQuery receiverQuery;
     receiverQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
     receiverQuery.bindValue(":IBAN", receiverIBAN);
@@ -230,28 +223,44 @@ void MainWindow::on_confrim_mt_PB_clicked()
                         {
                             QMessageBox::critical(this, "Transaction failure", "Transaction failed");
                             qDebug() << insertQuery.lastError().text();
+                            qDebug() << "sds";
                         }
                     }
                     else
                     {
                         QMessageBox::critical(this, "Update failure", "Failed to update balances");
+                        qDebug() << "sds";
                     }
                 }
                 else
                 {
                     QMessageBox::critical(this, "Receiver not found", "Receiver not found in the database");
+                    qDebug() << "sds";
                 }
             }
             else
             {
                 QMessageBox::critical(this, "Invalid amount or insufficient funds", "Invalid amount or insufficient funds for this transaction");
+                qDebug() << "sds";
             }
         }
         else
         {
             QMessageBox::critical(this, "Sender not found", "Sender not found in the database");
+            qDebug() << "sd";
         }
     }
+}
+void MainWindow::on_confrim_mt_PB_clicked()
+{
+    QString receiverIBAN = ui->IBAN_mt_LE->text();
+    QString amountStr = ui->amount_mt_LE->text();
+    QString type = ui->type_mt_CB->currentText();
+    QString firstName = ui->first_name_mt_LE->text();
+    QString lastName = ui->last_name_mt_LE->text();
+
+    performTransaction(receiverIBAN, amountStr, type, firstName, lastName);
+
 }
 
 void MainWindow::populateTransactionTreeWidget()
@@ -358,6 +367,18 @@ void MainWindow::updateDashboard()
 
 void MainWindow::on_Send_QT_PB_clicked()
 {
+    QString receiverIBAN = ui->IBAN_qt_LE->text();
+    QString amountStr = ui->Amount_SB->text();
+    QString type = "transaction";
 
+    QSqlQuery query;
+    query.prepare("SELECT * FROM transactions WHERE IBAN = :IBAN");
+    query.bindValue(":IBAN", receiverIBAN);
+    if(query.exec() && query.next())
+    {
+        QString FName = query.value(5).toString();
+        QString LName = query.value(6).toString();
+        performTransaction(receiverIBAN, amountStr, type, FName, LName);
+    }
 }
 

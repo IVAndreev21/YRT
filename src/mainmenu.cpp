@@ -13,9 +13,10 @@ MainMenu::~MainMenu()
 
 void MainMenu::on_LogIn_PB_clicked()
 {
-    mainWindow = new MainWindow(nullptr);
+    logInWindow = new logIn(nullptr);
+    //mainWindow = new MainWindow(nullptr);
     this->hide();
-    mainWindow->show();
+    logInWindow->show();
 }
 
 void MainMenu::on_Register_PB_clicked()
