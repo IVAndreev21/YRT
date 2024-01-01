@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include "login.h"
 #include "register.h"
+#include "mainwindow.h"
 namespace Ui {
 class MainMenu;
 }
@@ -26,6 +27,7 @@ private:
     Ui::MainMenu *ui;
     logIn* logInWindow;
     Register* registerWindow;
+    MainWindow* mainWindow;
 
 };
 

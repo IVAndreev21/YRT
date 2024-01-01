@@ -13,6 +13,8 @@ MainWindow::MainWindow(const QString &IBAN_ref, QWidget *parent)
 
     populateTransactionTreeWidget();
     updateDashboard();
+
+    ui->Pay_to_LE->setPlaceholderText("**** **** **** 0164");
 }
 
 MainWindow::~MainWindow()
@@ -351,14 +353,11 @@ void MainWindow::updateDashboard()
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    ui->layout->addWidget(chartView);
-
-    QPainter p(this);
-    p.setRenderHint(QPainter::Antialiasing);
-    QPainterPath path;
-    path.addRoundedRect(QRectF(10, 10, 100, 50), 10, 10);
-    QPen pen(Qt::black, 10);
-    p.setPen(pen);
-    p.fillPath(path, Qt::red);
-    p.drawPath(path);
+    ui->PieChart_LY->addWidget(chartView);
 }
+
+void MainWindow::on_Send_QT_PB_clicked()
+{
+
+}
+
