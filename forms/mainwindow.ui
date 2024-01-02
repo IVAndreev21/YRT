@@ -147,7 +147,7 @@ border-radius:20px;
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="dashboard_page">
     <widget class="QWidget" name="gridLayoutWidget">
@@ -397,60 +397,6 @@ border-radius:20px;
       <string>Bank Transactions</string>
      </property>
     </widget>
-    <widget class="QTreeWidget" name="Transactions_tr_TW">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>40</y>
-       <width>911</width>
-       <height>631</height>
-      </rect>
-     </property>
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOn</enum>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOn</enum>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QAbstractScrollArea::AdjustToContents</enum>
-     </property>
-     <column>
-      <property name="text">
-       <string>Date</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>IBAN</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Sender Name</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Receiver Name</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Type</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Amount</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Description</string>
-      </property>
-     </column>
-    </widget>
     <widget class="QPushButton" name="make_tr_PB">
      <property name="geometry">
       <rect>
@@ -462,6 +408,16 @@ border-radius:20px;
      </property>
      <property name="text">
       <string>Make</string>
+     </property>
+    </widget>
+    <widget class="QTableView" name="Transactions_tr_TV">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>881</width>
+       <height>621</height>
+      </rect>
      </property>
     </widget>
    </widget>

@@ -11,15 +11,27 @@ MainWindow::MainWindow(const QString &IBAN_ref, QWidget *parent)
     db = databaseManager->getDatabase();
     IBAN = IBAN_ref;
 
-    populateTransactionTreeWidget();
-    updateDashboard();
+    series = new QPieSeries;
+    chart = new QChart;
+    chartView = new QChartView(chart);
 
-    ui->IBAN_qt_LE->setPlaceholderText("**** **** **** 0164");
+
+    updateDashboard(series, chart, chartView);
+
+    ui->IBAN_qt_LE->setPlaceholderText("BG00YRT00000000000000");
+
+    transactions_TV = ui->Transactions_tr_TV;
+    tableView = ui->Recent_tr_TV;
+
+    UpdateTransactions(transactions_TV, tableView);
 }
 
 MainWindow::~MainWindow()
 {
+    databaseManager->closeConnection();
     delete ui;
+    delete chart;
+    delete chartView;
 }
 
 void MainWindow::updatepfp()
@@ -207,16 +219,6 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
 
                         if (insertQuery.exec())
                         {
-                            QTreeWidgetItem *item = new QTreeWidgetItem(ui->Transactions_tr_TW);
-                            item->setText(0, QDateTime::currentDateTime().toString());
-                            item->setText(1, receiverIBAN);
-                            item->setText(2, senderQuery.value(1).toString() + senderQuery.value(2).toString());
-                            item->setText(3, firstName + lastName);
-                            item->setText(4, type);
-                            item->setText(5, amountStr);
-                            item->setText(6, "Transfer to " + receiverFName);
-
-                            ui->Transactions_tr_TW->addTopLevelItem(item);
                             QMessageBox::information(this, "Transaction success", "Transaction has been successful");
                         }
                         else
@@ -250,6 +252,10 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
             qDebug() << "sd";
         }
     }
+
+    updateDashboard(series, chart, chartView);
+    UpdateTransactions(transactions_TV, tableView);
+
 }
 void MainWindow::on_confrim_mt_PB_clicked()
 {
@@ -260,31 +266,24 @@ void MainWindow::on_confrim_mt_PB_clicked()
     QString lastName = ui->last_name_mt_LE->text();
 
     performTransaction(receiverIBAN, amountStr, type, firstName, lastName);
-
 }
 
-void MainWindow::populateTransactionTreeWidget()
+void MainWindow::UpdateTransactions(QTableView* transasctions_TV, QTableView* tableView)
 {
-    ui->Transactions_tr_TW->clear();
-    QSqlQuery query;
-    query.prepare("SELECT * FROM transactions");
+    QSqlQueryModel* query = new QSqlQueryModel();
+    query->setQuery("SELECT * FROM transactions");
+    transasctions_TV->setModel(query);
+    transasctions_TV->setColumnHidden(0, true);
+    transasctions_TV->setColumnWidth(1, 170);
+    transasctions_TV->setColumnWidth(2, 200);
+    transasctions_TV->setColumnWidth(10, 150);
 
-    if (query.exec())
-    {
-        while (query.next())
-        {
-            QTreeWidgetItem *item = new QTreeWidgetItem(ui->Transactions_tr_TW);
-            item->setText(0, query.value(1).toString());
-            item->setText(1, query.value(2).toString());
-            item->setText(2, query.value(3).toString() + " " + query.value(4).toString());
-            item->setText(3, query.value(5).toString() + " " + query.value(6).toString());
-            item->setText(4, query.value(8).toString());
-            item->setText(5, query.value(9).toString());
-            item->setText(6, query.value(10).toString());
 
-            ui->Transactions_tr_TW->addTopLevelItem(item);
-        }
-    }
+    QSqlQueryModel* queryModel = new QSqlQueryModel();
+    queryModel->setQuery("SELECT * FROM transactions ORDER BY Date DESC LIMIT 5");
+
+    tableView->setModel(queryModel);
+
 }
 
 void MainWindow::updatePieChart()
@@ -297,7 +296,7 @@ void MainWindow::on_cancel_mt_PB_clicked()
 }
 
 
-void MainWindow::updateDashboard()
+void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* chartView)
 {
     QSqlQuery qry;
     qry.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
@@ -319,7 +318,6 @@ void MainWindow::updateDashboard()
     }
 
 
-    QPieSeries *series = new QPieSeries();
     QSqlQuery query;
     query.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
     query.bindValue(":IBAN", IBAN);
@@ -336,21 +334,10 @@ void MainWindow::updateDashboard()
             userIncome = query.value("totalIncome").toDouble();
         }
     }
-
+    series->clear();
     series->append("Income", userIncome);
     series->append("Expenses", userExpenses);
 
-    QPieSlice *slice0 = series->slices().at(0);
-    slice0->setLabelVisible();
-    slice0->setLabelColor(Qt::white);
-
-    QPieSlice *slice1 = series->slices().at(1);
-    slice1->setLabelVisible();
-    slice1->setPen(QPen(Qt::darkGreen, 2));
-    slice1->setBrush(Qt::green);
-    slice1->setLabelColor(Qt::white);
-
-    QChart *chart = new QChart();
     chart->setBackgroundBrush(Qt::NoBrush);
 
     chart->addSeries(series);
@@ -359,7 +346,6 @@ void MainWindow::updateDashboard()
     chart->setTitleBrush(Qt::white);
     chart->legend()->hide();
 
-    QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
     ui->PieChart_LY->addWidget(chartView);
@@ -381,4 +367,3 @@ void MainWindow::on_Send_QT_PB_clicked()
         performTransaction(receiverIBAN, amountStr, type, FName, LName);
     }
 }
-

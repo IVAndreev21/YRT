@@ -14,6 +14,8 @@
 #include <QtCharts/QChart>
 #include <QtCharts/QLegend>
 #include <QtCharts/QChartGlobal>
+#include <QTableView>
+#include <QTreeWidget>
 #include <QPen>
 #include "databasemanager.hpp"
 namespace Ui {
@@ -54,7 +56,7 @@ private:
     std::unique_ptr<DatabaseManager> databaseManager;
     QSqlDatabase db;
     void updatepfp();
-    void populateTransactionTreeWidget();
+    void UpdateTransactions(QTableView* treeWidget, QTableView* tableView);
     void updatePieChart();
     void performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName);
 
@@ -63,7 +65,14 @@ private:
 
     QString IBAN;
 
-    void updateDashboard();
+    void updateDashboard(QPieSeries* series, QChart* chart, QChartView* chartView);
+
+    QPieSeries* series;
+    QChart* chart;
+    QChartView* chartView;
+
+    QTableView* transactions_TV;
+    QTableView* tableView;
 };
 
 #endif // MAINWINDOW_H
