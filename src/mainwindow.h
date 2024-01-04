@@ -56,7 +56,7 @@ private:
     std::unique_ptr<DatabaseManager> databaseManager;
     QSqlDatabase db;
     void updatepfp();
-    void UpdateTransactions(QTableView* treeWidget, QTableView* tableView);
+    void UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV);
     void updatePieChart();
     void performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName);
 
@@ -64,7 +64,8 @@ private:
     double userIncome;
 
     QString IBAN;
-
+    QString clientFName;
+    QString clientLName;
     void updateDashboard(QPieSeries* series, QChart* chart, QChartView* chartView);
 
     QPieSeries* series;
@@ -72,7 +73,7 @@ private:
     QChartView* chartView;
 
     QTableView* transactions_TV;
-    QTableView* tableView;
+    QTableView* Recent_tr_TV;
 };
 
 #endif // MAINWINDOW_H

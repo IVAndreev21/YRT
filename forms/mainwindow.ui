@@ -147,7 +147,7 @@ border-radius:20px;
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="dashboard_page">
     <widget class="QWidget" name="gridLayoutWidget">
@@ -378,8 +378,21 @@ border-radius:20px;
        <x>0</x>
        <y>450</y>
        <width>761</width>
-       <height>261</height>
+       <height>231</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="card_holder_LA">
+     <property name="geometry">
+      <rect>
+       <x>820</x>
+       <y>210</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>

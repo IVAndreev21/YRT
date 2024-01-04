@@ -17,13 +17,14 @@ MainWindow::MainWindow(const QString &IBAN_ref, QWidget *parent)
 
 
     updateDashboard(series, chart, chartView);
+    ui->card_holder_LA->setText(clientFName + " " + clientLName);
 
     ui->IBAN_qt_LE->setPlaceholderText("BG00YRT00000000000000");
 
     transactions_TV = ui->Transactions_tr_TV;
-    tableView = ui->Recent_tr_TV;
+    Recent_tr_TV = ui->Recent_tr_TV;
 
-    UpdateTransactions(transactions_TV, tableView);
+    UpdateTransactions(transactions_TV, Recent_tr_TV);
 }
 
 MainWindow::~MainWindow()
@@ -254,7 +255,7 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
     }
 
     updateDashboard(series, chart, chartView);
-    UpdateTransactions(transactions_TV, tableView);
+    UpdateTransactions(transactions_TV, Recent_tr_TV);
 
 }
 void MainWindow::on_confrim_mt_PB_clicked()
@@ -268,7 +269,7 @@ void MainWindow::on_confrim_mt_PB_clicked()
     performTransaction(receiverIBAN, amountStr, type, firstName, lastName);
 }
 
-void MainWindow::UpdateTransactions(QTableView* transasctions_TV, QTableView* tableView)
+void MainWindow::UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV)
 {
     QSqlQueryModel* query = new QSqlQueryModel();
     query->setQuery("SELECT * FROM transactions");
@@ -282,7 +283,7 @@ void MainWindow::UpdateTransactions(QTableView* transasctions_TV, QTableView* ta
     QSqlQueryModel* queryModel = new QSqlQueryModel();
     queryModel->setQuery("SELECT * FROM transactions ORDER BY Date DESC LIMIT 5");
 
-    tableView->setModel(queryModel);
+    Recent_tr_TV->setModel(queryModel);
 
 }
 
@@ -304,12 +305,13 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
 
     if (qry.exec() && qry.next())
     {
-        QString firstName = qry.value(1).toString();
-        QString lastName = qry.value(2).toString();
+        clientFName = qry.value(1).toString();
+        clientLName = qry.value(2).toString();
         QString balance = qry.value(19).toString();
 
-        ui->clientname_LA->setText(firstName + " " + lastName[0] + ".");
+        ui->clientname_LA->setText(clientFName + " " + clientLName[0] + ".");
         ui->balance_LA_2->setText("BGN " + balance);
+
         updatepfp();
     }
     else

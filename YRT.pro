@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/crypto.cpp \
     src/mainwindow.cpp \
     src/databasemanager.cpp \
     src/login.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
     src/register.cpp
 
 HEADERS += \
+    src/crypto.h \
     src/mainwindow.h \
     src/databasemanager.hpp \
     src/login.h \
@@ -24,6 +26,7 @@ HEADERS += \
     src/register.h
 
 FORMS += \
+    forms/crypto.ui \
     forms/login.ui \
     forms/mainmenu.ui \
     forms/register.ui \
