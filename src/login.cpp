@@ -24,18 +24,20 @@ void logIn::on_submit_PB_clicked()
     QString username = ui->username_LE->text();
     QString password = ui->password_LE->text();
     QSqlQuery qry;
-    qry.prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+    qry.prepare("SELECT * FROM users WHERE username = :username");
     qry.bindValue(":username", username);
-    qry.bindValue(":password", password);
 
     if (qry.exec() && qry.next())
     {
-        QString usernameFromDB = qry.value(15).toString();
-        QString passworFromDB = qry.value(16).toString();
-        QString userIBAN = qry.value(20).toString();
+        QString hashedPasswordFromDB = qry.value(16).toString();
 
-        if (username == usernameFromDB && password == passworFromDB)
+        QString saltFromDB = qry.value(23).toString();
+
+        QString hashedPasswordToCheck = hashPassword(password, saltFromDB);
+
+        if (hashedPasswordToCheck == hashedPasswordFromDB)
         {
+            QString userIBAN = qry.value(20).toString();
             QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
             this->hide();
             mainWindow = std::make_unique<MainWindow>(userIBAN);
@@ -46,4 +48,10 @@ void logIn::on_submit_PB_clicked()
             QMessageBox::critical(this, "failure", "Wrong password or username");
         }
     }
+}
+
+QString logIn::hashPassword(const QString &password, const QString &salt) {
+    QByteArray passwordWithSalt = (password + salt).toUtf8();
+    QByteArray hashedPassword = QCryptographicHash::hash(passwordWithSalt, QCryptographicHash::Sha256);
+    return hashedPassword.toHex();
 }

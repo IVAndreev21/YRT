@@ -86,6 +86,11 @@ void Register::on_submit_PB_clicked()
         randomNumbersString.append(QString::number(number));
     }
 
+
+    QString salt = generateSalt();
+
+    QString hashedPassword = hashPassword(password, salt);
+
     QString IBAN = "BG" + QString::number(QRandomGenerator::global()->bounded(10, 100)) + "YRT9661" + randomNumbersString;
 
     QSqlQuery qry;
@@ -120,8 +125,8 @@ void Register::on_submit_PB_clicked()
     }
 
     if (!usernameTaken && !ssnTaken && !phoneTaken) {
-        qry.prepare("INSERT INTO users (`First Name`, `Last Name`, `Date of birth`, Gender, SSN, Street, City, `State/Province`, `Postal code`, Phone, Email, `Employment Status`, Income, Type, Username, Password, `Security question`, `Security answer`, IBAN)"
-                    "VALUES (:First_Name, :Last_Name, :Date_of_birth, :Gender, :SSN, :Street, :City, :State_Province, :Postal_code, :Phone, :Email, :Employment_Status, :Income, :Type, :Username, :Password, :Security_question, :Security_answer, :IBAN)");
+        qry.prepare("INSERT INTO users (`First Name`, `Last Name`, `Date of birth`, Gender, SSN, Street, City, `State/Province`, `Postal code`, Phone, Email, `Employment Status`, Income, Type, Username, Password, `Security question`, `Security answer`, IBAN, Salt)"
+                    "VALUES (:First_Name, :Last_Name, :Date_of_birth, :Gender, :SSN, :Street, :City, :State_Province, :Postal_code, :Phone, :Email, :Employment_Status, :Income, :Type, :Username, :Password, :Security_question, :Security_answer, :IBAN, :Salt)");
 
         qry.bindValue(":First_Name", firstName);
         qry.bindValue(":Last_Name", lastName);
@@ -138,10 +143,11 @@ void Register::on_submit_PB_clicked()
         qry.bindValue(":Income", income);
         qry.bindValue(":Type", type);
         qry.bindValue(":Username", username);
-        qry.bindValue(":Password", password);
+        qry.bindValue(":Password", hashedPassword);
         qry.bindValue(":Security_question", securityQuestion);
         qry.bindValue(":Security_answer", securityAnswer);
         qry.bindValue(":IBAN", IBAN);
+        qry.bindValue(":Salt", salt);
 
         if (qry.exec()) {
             QMessageBox::information(this, "Success", "Your registration to trawma bank has been successful. \n\nRedirecting to the login page..");
@@ -152,4 +158,20 @@ void Register::on_submit_PB_clicked()
             QMessageBox::information(this, "Failure", "Data has not been inserted successfully. Try again or contact us " + qry.lastError().text());
         }
     }
+}
+
+
+QString Register::generateSalt() {
+    // Generate a random salt
+    QByteArray salt;
+    for (int i = 0; i < 16; ++i) {
+        salt.append(QRandomGenerator::global()->generate());
+    }
+    return salt.toHex();
+}
+
+QString Register::hashPassword(const QString &password, const QString &salt) {
+    QByteArray passwordWithSalt = (password + salt).toUtf8();
+    QByteArray hashedPassword = QCryptographicHash::hash(passwordWithSalt, QCryptographicHash::Sha256);
+    return hashedPassword.toHex();
 }

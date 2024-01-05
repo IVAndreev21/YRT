@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 MainWindow::MainWindow(const QString &IBAN_ref, QWidget *parent)
     : QWidget(parent), ui(new Ui::MainWindow)
 {

@@ -38,6 +38,8 @@ private:
     std::unique_ptr<DatabaseManager> databaseManager;
     std::unique_ptr<MainWindow> mainWindow;
     QSqlDatabase db;
-};
 
+    QString generateSalt();
+    QString hashPassword(const QString &password, const QString &salt);
+};
 #endif // REGISTER_H

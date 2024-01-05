@@ -495,7 +495,7 @@ border-radius:20px;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../Downloads/istockphoto-1210939712-612x612.png</pixmap>
+      <pixmap>../../Downloads/istockphoto-1210939712-612x612.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>

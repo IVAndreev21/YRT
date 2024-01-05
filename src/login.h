@@ -24,5 +24,6 @@ private:
     std::unique_ptr<DatabaseManager> databaseManager;
     QSqlDatabase db;
     std::unique_ptr<MainWindow> mainWindow;
+    QString hashPassword(const QString &password, const QString &salt);
 };
 #endif // LOGIN_H
