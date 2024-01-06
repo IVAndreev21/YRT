@@ -7,7 +7,7 @@ Calendar::Calendar(const QString& username_ref, QWidget *parent)
     ui->setupUi(this);
     username = username_ref;
 
-    calendarPopUp = std::make_unique<CalendarPopUp>();
+    calendarPopUp = std::make_unique<CalendarPopUp>(username);
     calendarPopUp->setParent(this);
     calendarPopUp->hide();
 

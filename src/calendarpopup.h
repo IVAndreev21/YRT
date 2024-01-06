@@ -2,6 +2,7 @@
 #define CALENDARPOPUP_H
 
 #include <QWidget>
+#include <QMessageBox>
 #include "databasemanager.hpp"
 namespace Ui {
 class CalendarPopUp;
@@ -12,7 +13,7 @@ class CalendarPopUp : public QWidget
     Q_OBJECT
 
 public:
-    explicit CalendarPopUp(QWidget *parent = nullptr);
+    explicit CalendarPopUp(const QString& username_ref, QWidget *parent = nullptr);
     ~CalendarPopUp();
 
 private slots:
@@ -20,6 +21,7 @@ private slots:
 
 private:
     Ui::CalendarPopUp *ui;
+    QString username;
 };
 
 #endif // CALENDARPOPUP_H
