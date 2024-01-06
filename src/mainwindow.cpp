@@ -368,3 +368,9 @@ void MainWindow::on_Send_QT_PB_clicked()
         performTransaction(receiverIBAN, amountStr, type, FName, LName);
     }
 }
+
+void MainWindow::on_calendar_PB_clicked()
+{
+
+}
+

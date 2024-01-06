@@ -45,6 +45,13 @@
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="calendar_PB">
+      <property name="text">
+       <string>Calendar</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="crypto_PB">
       <property name="text">
        <string>Crypto</string>

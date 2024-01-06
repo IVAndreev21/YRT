@@ -51,6 +51,8 @@ private slots:
 
     void on_Send_QT_PB_clicked();
 
+    void on_calendar_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<DatabaseManager> databaseManager;
