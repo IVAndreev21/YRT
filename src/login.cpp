@@ -40,7 +40,7 @@ void logIn::on_submit_PB_clicked()
             QString userIBAN = qry.value(20).toString();
             QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
             this->hide();
-            mainWindow = std::make_unique<MainWindow>(userIBAN);
+            mainWindow = std::make_unique<MainWindow>(userIBAN, username);
             mainWindow->show();
         }
         else

@@ -6,6 +6,7 @@ Register::Register(QWidget *parent)
 {
     ui->setupUi(this);
     ui->password_LE->setEchoMode(QLineEdit::Password);
+    LogIn = std::make_unique<logIn>();
     this->setWindowTitle("Register");
     databaseManager = std::make_unique<DatabaseManager>();
     databaseManager->openConnection();
@@ -152,8 +153,7 @@ void Register::on_submit_PB_clicked()
         if (qry.exec()) {
             QMessageBox::information(this, "Success", "Your registration to trawma bank has been successful. \n\nRedirecting to the login page..");
             this->hide();
-            mainWindow = std::make_unique<MainWindow>(username);
-            mainWindow->show();
+            LogIn->show();
         } else {
             QMessageBox::information(this, "Failure", "Data has not been inserted successfully. Try again or contact us " + qry.lastError().text());
         }

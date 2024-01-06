@@ -9,7 +9,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    calendar.cpp \
+    src/calendarpopup.cpp \
+    src/calendar.cpp \
     src/crypto.cpp \
     src/mainwindow.cpp \
     src/databasemanager.cpp \
@@ -19,7 +20,8 @@ SOURCES += \
     src/register.cpp
 
 HEADERS += \
-    calendar.h \
+    src/calendarpopup.h \
+    src/calendar.h \
     src/crypto.h \
     src/mainwindow.h \
     src/databasemanager.hpp \
@@ -28,7 +30,8 @@ HEADERS += \
     src/register.h
 
 FORMS += \
-    calendar.ui \
+    forms/calendarpopup.ui \
+    forms/calendar.ui \
     forms/crypto.ui \
     forms/login.ui \
     forms/mainmenu.ui \

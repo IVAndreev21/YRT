@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-MainWindow::MainWindow(const QString &IBAN_ref, QWidget *parent)
+MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWidget *parent)
     : QWidget(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -9,12 +9,13 @@ MainWindow::MainWindow(const QString &IBAN_ref, QWidget *parent)
     databaseManager->openConnection();
     db = databaseManager->getDatabase();
     IBAN = IBAN_ref;
+    username = username_ref;
 
     series = new QPieSeries;
     chart = new QChart;
     chartView = new QChartView(chart);
 
-
+    calendar = std::make_unique<Calendar>(username);
     updateDashboard(series, chart, chartView);
     ui->card_holder_LA->setText(clientFName + " " + clientLName);
 
@@ -225,25 +226,21 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
                         {
                             QMessageBox::critical(this, "Transaction failure", "Transaction failed");
                             qDebug() << insertQuery.lastError().text();
-                            qDebug() << "sds";
                         }
                     }
                     else
                     {
                         QMessageBox::critical(this, "Update failure", "Failed to update balances");
-                        qDebug() << "sds";
                     }
                 }
                 else
                 {
                     QMessageBox::critical(this, "Receiver not found", "Receiver not found in the database");
-                    qDebug() << "sds";
                 }
             }
             else
             {
                 QMessageBox::critical(this, "Invalid amount or insufficient funds", "Invalid amount or insufficient funds for this transaction");
-                qDebug() << "sds";
             }
         }
         else
@@ -371,6 +368,7 @@ void MainWindow::on_Send_QT_PB_clicked()
 
 void MainWindow::on_calendar_PB_clicked()
 {
-
+    this->hide();
+    calendar->show();
 }
 

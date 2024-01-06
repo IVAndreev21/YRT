@@ -18,6 +18,7 @@
 #include <QTreeWidget>
 #include <QPen>
 #include "databasemanager.hpp"
+#include "calendar.h"
 namespace Ui {
 class MainWindow;
 }
@@ -27,7 +28,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit MainWindow(const QString& IBAN_ref, QWidget *parent = nullptr);
+    explicit MainWindow(const QString& IBAN_ref, const QString& username_ref, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -56,6 +57,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<DatabaseManager> databaseManager;
+    std::unique_ptr<Calendar> calendar;
     QSqlDatabase db;
     void updatepfp();
     void UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV);
@@ -66,6 +68,7 @@ private:
     double userIncome;
 
     QString IBAN;
+    QString username;
     QString clientFName;
     QString clientLName;
     void updateDashboard(QPieSeries* series, QChart* chart, QChartView* chartView);

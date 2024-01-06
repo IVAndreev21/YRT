@@ -5,7 +5,7 @@
 #include <QRandomGenerator>
 #include <QMessageBox>
 #include "databasemanager.hpp"
-#include "mainwindow.h"
+#include "login.h"
 namespace Ui {
 class Register;
 }
@@ -36,7 +36,7 @@ private slots:
 private:
     Ui::Register *ui;
     std::unique_ptr<DatabaseManager> databaseManager;
-    std::unique_ptr<MainWindow> mainWindow;
+    std::unique_ptr<logIn> LogIn;
     QSqlDatabase db;
 
     QString generateSalt();
