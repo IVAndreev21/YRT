@@ -1,5 +1,7 @@
 #include "calendar.h"
 #include "ui_calendar.h"
+#include <QTextCharFormat>
+
 Calendar::Calendar(const QString& username_ref, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Calendar)
@@ -13,6 +15,7 @@ Calendar::Calendar(const QString& username_ref, QWidget *parent)
 
     calendar = ui->calendarWidget;
     calendar->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
+
 }
 
 Calendar::~Calendar()
@@ -25,3 +28,4 @@ void Calendar::on_calendarWidget_clicked(const QDate &date)
     calendarPopUp->move(QPoint(150,150));
     calendarPopUp->show();
 }
+

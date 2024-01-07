@@ -22,7 +22,6 @@ private slots:
 private:
     Ui::logIn *ui;
     std::unique_ptr<DatabaseManager> databaseManager;
-    QSqlDatabase db;
     std::unique_ptr<MainWindow> mainWindow;
     QString hashPassword(const QString &password, const QString &salt);
 };

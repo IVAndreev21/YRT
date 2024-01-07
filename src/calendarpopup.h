@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QMessageBox>
-#include "databasemanager.hpp"
 namespace Ui {
 class CalendarPopUp;
 }
@@ -18,6 +17,8 @@ public:
 
 private slots:
     void on_Save_PB_clicked();
+
+    void on_Abort_PB_clicked();
 
 private:
     Ui::CalendarPopUp *ui;

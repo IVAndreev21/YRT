@@ -1,6 +1,6 @@
 #include "calendarpopup.h"
 #include "ui_calendarpopup.h"
-
+#include <QSqlQuery>
 CalendarPopUp::CalendarPopUp(const QString& username_ref, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CalendarPopUp)
@@ -18,18 +18,19 @@ void CalendarPopUp::on_Save_PB_clicked()
 {
     QString title = ui->Title_LE->text();
     QString description = ui->Description_LE->text();
-    QString timePeriod = ui->From_DE->text() + " - " + ui->Till_DE->text();
+    QDate from = ui->From_DE->date();
+    QDate till = ui->Till_DE->date();
     QString repeat = ui->Repeat_CB->currentText();
 
-    QSqlDatabase db;
     QSqlQuery query;
 
-    query.prepare("INSERT INTO calendar (`Username`, `Title`, `Description`, `Time Period`, `Repeat`)"
-                "VALUES (:username, :title, :description, :timePeriod, :repeat)");
+    query.prepare("INSERT INTO calendar (`Username`, `Title`, `Description`, `From`, `Till`, `Repeat`)"
+                "VALUES (:username, :title, :description, :from, :till, :repeat)");
     query.bindValue(":username", username);
     query.bindValue(":title", title);
     query.bindValue(":description", description);
-    query.bindValue(":timePeriod", timePeriod);
+    query.bindValue(":from", from);
+    query.bindValue(":till", till);
     query.bindValue(":repeat", repeat);
 
     if(query.exec())
@@ -39,9 +40,22 @@ void CalendarPopUp::on_Save_PB_clicked()
     else
     {
         QMessageBox::critical(this, "Event failed", "Event has failed to be made");
-        qDebug() << query.lastError().text();
 
     }
     this->hide();
+}
+
+
+void CalendarPopUp::on_Abort_PB_clicked()
+{
+
+    ui->Title_LE->clear();
+    ui->Description_LE->clear();
+    ui->From_DE->clear();
+    ui->Till_DE->clear();
+    ui->Repeat_CB->clear();
+
+    this->hide();
+
 }
 

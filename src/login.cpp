@@ -11,7 +11,6 @@ logIn::logIn(QWidget *parent) : QWidget(parent), ui(new Ui::logIn)
 
     databaseManager = std::make_unique<DatabaseManager>();
     databaseManager->openConnection();
-    db = databaseManager->getDatabase();
 }
 
 logIn::~logIn()

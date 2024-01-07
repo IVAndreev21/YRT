@@ -5,9 +5,6 @@ MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWi
 {
     ui->setupUi(this);
 
-    databaseManager = std::make_unique<DatabaseManager>();
-    databaseManager->openConnection();
-    db = databaseManager->getDatabase();
     IBAN = IBAN_ref;
     username = username_ref;
 
@@ -25,11 +22,13 @@ MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWi
     Recent_tr_TV = ui->Recent_tr_TV;
 
     UpdateTransactions(transactions_TV, Recent_tr_TV);
+    UpdateSettings();
+
+    ui->Password_LE->setEchoMode(QLineEdit::Password);
 }
 
 MainWindow::~MainWindow()
 {
-    databaseManager->closeConnection();
     delete ui;
     delete chart;
     delete chartView;
@@ -225,7 +224,6 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
                         else
                         {
                             QMessageBox::critical(this, "Transaction failure", "Transaction failed");
-                            qDebug() << insertQuery.lastError().text();
                         }
                     }
                     else
@@ -370,5 +368,35 @@ void MainWindow::on_calendar_PB_clicked()
 {
     this->hide();
     calendar->show();
+}
+
+void MainWindow::UpdateSettings()
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
+    qry.bindValue(":IBAN", IBAN);
+
+    if(qry.exec() && qry.next())
+    {
+        ui->FName_LE->setText(qry.value("First Name").toString());
+        ui->LName_LE->setText(qry.value("Last Name").toString());
+        ui->Birth_LE->setText(qry.value("Date of Birth").toString());
+        ui->Gender_LE->setText(qry.value("Gender").toString());
+        ui->SSN_LE->setText(qry.value("SSN").toString());
+        ui->City_LE->setText(qry.value("City").toString());
+        ui->State_LE->setText(qry.value("State/Province").toString());
+        ui->PostalCode_LE->setText(qry.value("Postal Code").toString());
+        ui->Street_LE->setText(qry.value("Street").toString());
+        ui->Status_LE->setText(qry.value("Employment Status").toString());
+        ui->AccType_LE->setText(qry.value("Type").toString());
+        ui->Income_LE->setText(qry.value("Income").toString());
+        ui->Expenses_LE->setText(qry.value("Expenses").toString());
+        ui->Balance_LE->setText(qry.value("Balance").toString());
+        ui->IBAN_LE->setText(qry.value("IBAN").toString());
+        ui->Username_LE->setText(qry.value("Username").toString());
+        ui->Password_LE->setText(qry.value("Password").toString());
+        ui->SecurityQuestion_LE->setText(qry.value("Security question").toString());
+        ui->SecurityAnswer_LE->setText(qry.value("Security answer").toString());
+    }
 }
 

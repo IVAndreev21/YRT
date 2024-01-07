@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QDebug>
 #include <QCalendarWidget>
+#include <QSqlQuery>
 #include "calendarpopup.h"
 namespace Ui {
 class Calendar;
