@@ -347,23 +347,6 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
     ui->PieChart_LY->addWidget(chartView);
 }
 
-void MainWindow::on_Send_QT_PB_clicked()
-{
-    QString receiverIBAN = ui->IBAN_qt_LE->text();
-    QString amountStr = ui->Amount_SB->text();
-    QString type = "transaction";
-
-    QSqlQuery query;
-    query.prepare("SELECT * FROM transactions WHERE IBAN = :IBAN");
-    query.bindValue(":IBAN", receiverIBAN);
-    if(query.exec() && query.next())
-    {
-        QString FName = query.value(5).toString();
-        QString LName = query.value(6).toString();
-        performTransaction(receiverIBAN, amountStr, type, FName, LName);
-    }
-}
-
 void MainWindow::on_calendar_PB_clicked()
 {
     this->hide();
@@ -397,6 +380,24 @@ void MainWindow::UpdateSettings()
         ui->Password_LE->setText(qry.value("Password").toString());
         ui->SecurityQuestion_LE->setText(qry.value("Security question").toString());
         ui->SecurityAnswer_LE->setText(qry.value("Security answer").toString());
+    }
+}
+
+
+void MainWindow::on_Send_qt_PB_clicked()
+{
+    QString receiverIBAN = ui->IBAN_qt_LE->text();
+    QString amountStr = ui->Amount_SB->text();
+    QString type = "transaction";
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM transactions WHERE IBAN = :IBAN");
+    query.bindValue(":IBAN", receiverIBAN);
+    if(query.exec() && query.next())
+    {
+        QString FName = query.value(5).toString();
+        QString LName = query.value(6).toString();
+        performTransaction(receiverIBAN, amountStr, type, FName, LName);
     }
 }
 

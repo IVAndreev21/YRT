@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include "databasemanager.hpp"
 #include "login.h"
+#include "termsandconditions.h"
 namespace Ui {
 class Register;
 }
@@ -33,13 +34,18 @@ private slots:
 
     void on_submit_PB_clicked();
 
+    void on_Terns_and_conditions_stateChanged(int arg1);
+
 private:
     Ui::Register *ui;
     std::unique_ptr<DatabaseManager> databaseManager;
     std::unique_ptr<logIn> LogIn;
+    std::unique_ptr<TermsAndConditions> termsAndConditions;
     QSqlDatabase db;
 
     QString generateSalt();
     QString hashPassword(const QString &password, const QString &salt);
+
+    bool m_termsAndConditionsChecked;
 };
 #endif // REGISTER_H

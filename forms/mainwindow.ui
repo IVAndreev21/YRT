@@ -154,7 +154,7 @@ border-radius:20px;
     </rect>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="dashboard_page">
     <widget class="QWidget" name="gridLayoutWidget">
@@ -353,19 +353,6 @@ border-radius:20px;
       <number>999999</number>
      </property>
     </widget>
-    <widget class="QPushButton" name="Send_QT_PB">
-     <property name="geometry">
-      <rect>
-       <x>790</x>
-       <y>650</y>
-       <width>221</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Send</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="Recent_tr_LA">
      <property name="geometry">
       <rect>
@@ -385,7 +372,7 @@ border-radius:20px;
        <x>0</x>
        <y>450</y>
        <width>761</width>
-       <height>231</height>
+       <height>191</height>
       </rect>
      </property>
     </widget>
@@ -532,7 +519,7 @@ border-radius:20px;
       <rect>
        <x>140</x>
        <y>160</y>
-       <width>601</width>
+       <width>731</width>
        <height>481</height>
       </rect>
      </property>
@@ -1257,6 +1244,19 @@ border-radius:20px;
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Send_qt_PB">
+   <property name="geometry">
+    <rect>
+     <x>1010</x>
+     <y>670</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Send</string>
    </property>
   </widget>
  </widget>

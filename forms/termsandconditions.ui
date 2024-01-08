@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TermsAndConditions</class>
+ <widget class="QWidget" name="TermsAndConditions">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>704</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QScrollArea" name="scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>771</width>
+     <height>611</height>
+    </rect>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>769</width>
+      <height>609</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="TermsAndConditions_LA">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>761</width>
+       <height>611</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Terms and Conditions
+
+1. Definitions:
+
+User Information:
+First Name
+Last Name
+Date of Birth
+Gender
+Social Security Number (SSN)
+Street
+City
+State/Province
+Phone
+Email
+Employment Status
+Income
+All provided information shall be securely stored in a protected database.
+
+Digital Will Conditions:
+In the event of all types of death
+Lost authentication method
+Agreement from the user
+Users may designate an heir by providing their IBAN for asset transfer.
+
+2. Acknowledgment:
+
+These are the Terms and Conditions governing the use of the Yound Rich Talents OOD service, establishing the rights and obligations of all users. By accessing or using the service, you agree to comply with these Terms and Conditions.
+
+3. Eligibility:
+
+By accessing or using the service, you represent and warrant that you are over the age of 18. Yound Rich Talents OOD does not permit individuals under 18 to use the service.
+
+4. Privacy Policy:
+
+Your use of the service is also conditioned on acceptance and compliance with the Privacy Policy of Yound Rich Talents OOD. Please review the Privacy Policy before using the service.
+
+5. User Accounts:
+
+When creating an account, users must provide accurate, complete, and current information. Failure to do so constitutes a breach of the Terms, leading to immediate termination of the account.
+Users are responsible for safeguarding their passwords and must not disclose them to third parties.
+Notification of any breach of security or unauthorized use of the account must be provided immediately.
+Usernames must not infringe on the rights of others and should not be offensive, vulgar, or obscene.
+6. Asset Transfer and Digital Will:
+
+In the specified conditions, all funds from the user's account, including digital assets, will be transferred to the designated heir.
+If no heir is designated, assets will be securely held until claimed by a verified heir.
+7. Amendments and Updates:
+
+Yound Rich Talents OOD reserves the right to update and modify the Terms and Conditions. Users will be notified of any changes.
+8. Governing Law:
+
+These Terms and Conditions are governed by the laws of the Republic of Digitalia.</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="Agree_PB">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>650</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Agree</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Cancel_PB">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>650</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>801</width>
+     <height>701</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 50px;</string>
+   </property>
+  </widget>
+  <zorder>widget</zorder>
+  <zorder>scrollArea</zorder>
+  <zorder>Agree_PB</zorder>
+  <zorder>Cancel_PB</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

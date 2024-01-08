@@ -575,8 +575,8 @@
     <widget class="QPushButton" name="submit_PB">
      <property name="geometry">
       <rect>
-       <x>580</x>
-       <y>280</y>
+       <x>570</x>
+       <y>340</y>
        <width>75</width>
        <height>24</height>
       </rect>
@@ -588,8 +588,8 @@
     <widget class="QPushButton" name="previous3_PB">
      <property name="geometry">
       <rect>
-       <x>740</x>
-       <y>280</y>
+       <x>710</x>
+       <y>340</y>
        <width>75</width>
        <height>24</height>
       </rect>
@@ -635,6 +635,19 @@
      </property>
      <property name="text">
       <string>Username</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="Terns_and_conditions">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>290</y>
+       <width>181</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Accept Terms and conditions</string>
      </property>
     </widget>
    </widget>

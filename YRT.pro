@@ -17,7 +17,8 @@ SOURCES += \
     src/login.cpp \
     src/main.cpp \
     src/mainmenu.cpp \
-    src/register.cpp
+    src/register.cpp \
+    src/termsandconditions.cpp
 
 HEADERS += \
     src/calendarpopup.h \
@@ -27,7 +28,8 @@ HEADERS += \
     src/databasemanager.hpp \
     src/login.h \
     src/mainmenu.h \
-    src/register.h
+    src/register.h \
+    src/termsandconditions.h
 
 FORMS += \
     forms/calendarpopup.ui \
@@ -36,7 +38,8 @@ FORMS += \
     forms/login.ui \
     forms/mainmenu.ui \
     forms/register.ui \
-    forms/mainwindow.ui
+    forms/mainwindow.ui \
+    forms/termsandconditions.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
