@@ -26,6 +26,8 @@ private:
     Ui::MainMenu *ui;
     logIn* logInWindow;
     Register* registerWindow;
+
+    void launchPythonScript();
 };
 
 #endif // MAINMENU_H
