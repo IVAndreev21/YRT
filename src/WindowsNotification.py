@@ -1,4 +1,6 @@
 import mysql.connector
+from datetime import datetime
+from win10toast import ToastNotifier
 
 config = {
     "user": "sqladmin",
@@ -10,7 +12,7 @@ config = {
     "ssl_disabled": False
 }
 
-desired_variable = "From"
+desired_variable = "From"  # Replace with the actual variable name you want to retrieve
 
 try:
     # Try to establish a connection
@@ -29,7 +31,13 @@ try:
         if results:
             print(f"{desired_variable}s:")
             for result in results:
+                date_str = result[0].strftime("%Y-%d-%m")
+                current_date = datetime.now().strftime("%Y-%m-%d")
                 if date_str == current_date:
+                    # Display notification for matching dates
+                    toaster = ToastNotifier()
+                    toaster.show_toast(f"Notification for {desired_variable}", f"Date: {date_str}", duration=10)
+
                     print(result[0])
         else:
             print("No records found for the given username")
