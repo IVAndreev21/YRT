@@ -26,7 +26,6 @@ private:
     Ui::MainMenu *ui;
     logIn* logInWindow;
     Register* registerWindow;
-
 };
 
 #endif // MAINMENU_H

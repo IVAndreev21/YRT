@@ -17,7 +17,7 @@ public:
     ~logIn();
 
 private slots:
-    void on_submit_PB_clicked();
+    void on_LogIn_PB_clicked();
 
 private:
     Ui::logIn *ui;

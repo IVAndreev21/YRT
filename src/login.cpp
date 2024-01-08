@@ -18,7 +18,13 @@ logIn::~logIn()
     delete ui;
 }
 
-void logIn::on_submit_PB_clicked()
+QString logIn::hashPassword(const QString &password, const QString &salt) {
+    QByteArray passwordWithSalt = (password + salt).toUtf8();
+    QByteArray hashedPassword = QCryptographicHash::hash(passwordWithSalt, QCryptographicHash::Sha256);
+    return hashedPassword.toHex();
+}
+
+void logIn::on_LogIn_PB_clicked()
 {
     QString username = ui->username_LE->text();
     QString password = ui->password_LE->text();
@@ -49,8 +55,3 @@ void logIn::on_submit_PB_clicked()
     }
 }
 
-QString logIn::hashPassword(const QString &password, const QString &salt) {
-    QByteArray passwordWithSalt = (password + salt).toUtf8();
-    QByteArray hashedPassword = QCryptographicHash::hash(passwordWithSalt, QCryptographicHash::Sha256);
-    return hashedPassword.toHex();
-}

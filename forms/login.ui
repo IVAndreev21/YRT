@@ -104,7 +104,7 @@ border-radius:15px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="LogIn_LA">
     <property name="geometry">
      <rect>
       <x>135</x>
@@ -116,7 +116,6 @@ border-radius:15px;</string>
     <property name="font">
      <font>
       <pointsize>20</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -127,7 +126,7 @@ border-radius:15px;</string>
      <string>Log In</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="username_LE">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -153,7 +152,7 @@ padding-bottom:7px;
      <string>  User Name</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="password_LE">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -181,7 +180,7 @@ padding-bottom:7px;</string>
      <string>  Password</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="LogIn_PB">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -193,7 +192,6 @@ padding-bottom:7px;</string>
     <property name="font">
      <font>
       <pointsize>12</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -201,7 +199,7 @@ padding-bottom:7px;</string>
      <string>L o g  I n</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="ForgotenPassword_LA">
     <property name="geometry">
      <rect>
       <x>91</x>

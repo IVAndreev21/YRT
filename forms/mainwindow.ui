@@ -98,10 +98,10 @@
    <widget class="QLabel" name="pfp_acc_LA">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>51</width>
-      <height>41</height>
+      <x>0</x>
+      <y>0</y>
+      <width>61</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -154,7 +154,7 @@ border-radius:20px;
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="dashboard_page">
     <widget class="QWidget" name="gridLayoutWidget">
@@ -524,7 +524,7 @@ border-radius:20px;
       </rect>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <property name="enabled">
@@ -1028,6 +1028,9 @@ border-radius:20px;
          <width>251</width>
          <height>61</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
       </widget>
      </widget>
