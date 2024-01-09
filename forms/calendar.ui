@@ -16,14 +16,81 @@
   <widget class="QCalendarWidget" name="calendarWidget">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>10</y>
-     <width>1000</width>
-     <height>600</height>
+     <x>200</x>
+     <y>20</y>
+     <width>1011</width>
+     <height>611</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true"/>
+   </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>121</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="options_BL">
+    <item>
+     <widget class="QPushButton" name="dashboard_PB">
+      <property name="text">
+       <string>Dashboard</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="transactions_PB">
+      <property name="text">
+       <string>Transactions</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="payments_PB">
+      <property name="text">
+       <string>Payments</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="calendar_PB">
+      <property name="text">
+       <string>Calendar</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="crypto_PB">
+      <property name="text">
+       <string>Crypto</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="settings_PB">
+      <property name="text">
+       <string>Settings</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>143</x>
+     <y>0</y>
+     <width>20</width>
+     <height>741</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
    </property>
   </widget>
  </widget>

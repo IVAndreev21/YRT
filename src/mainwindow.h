@@ -62,7 +62,6 @@ private:
 
     void updatepfp();
     void UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV);
-    void updatePieChart();
     void performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName);
     void UpdateSettings();
     double userExpenses;

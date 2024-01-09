@@ -278,11 +278,6 @@ void MainWindow::UpdateTransactions(QTableView* transasctions_TV, QTableView* Re
     queryModel->setQuery("SELECT * FROM transactions ORDER BY Date DESC LIMIT 5");
 
     Recent_tr_TV->setModel(queryModel);
-
-}
-
-void MainWindow::updatePieChart()
-{
 }
 
 void MainWindow::on_cancel_mt_PB_clicked()
@@ -331,10 +326,17 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
         }
     }
     series->clear();
+
     series->append("Income", userIncome);
     series->append("Expenses", userExpenses);
 
     chart->setBackgroundBrush(Qt::NoBrush);
+
+    QPieSlice* slice0 = series->slices().at(0);
+    slice0->setLabelVisible();
+
+    QPieSlice* slice1 = series->slices().at(1);
+    slice1->setLabelVisible();
 
     chart->addSeries(series);
     chart->setTitle("Total Balance");
@@ -400,4 +402,3 @@ void MainWindow::on_Send_qt_PB_clicked()
         performTransaction(receiverIBAN, amountStr, type, FName, LName);
     }
 }
-

@@ -46,6 +46,6 @@ private:
     QString generateSalt();
     QString hashPassword(const QString &password, const QString &salt);
 
-    bool m_termsAndConditionsChecked;
+    bool m_accepted;
 };
 #endif // REGISTER_H

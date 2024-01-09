@@ -15,6 +15,7 @@ Register::Register(QWidget *parent)
     termsAndConditions = std::make_unique<TermsAndConditions>();
     termsAndConditions->setParent(this);
     termsAndConditions->hide();
+    m_accepted = false;
 }
 
 Register::~Register()
@@ -130,7 +131,7 @@ void Register::on_submit_PB_clicked()
     }
 
 
-    if (!usernameTaken && !ssnTaken && !phoneTaken) {
+    if (!usernameTaken && !ssnTaken && !phoneTaken && m_accepted) {
         qry.prepare("INSERT INTO users (`First Name`, `Last Name`, `Date of birth`, Gender, SSN, Street, City, `State/Province`, `Postal code`, Phone, Email, `Employment Status`, Income, Type, Username, Password, `Security question`, `Security answer`, IBAN, Salt)"
                     "VALUES (:First_Name, :Last_Name, :Date_of_birth, :Gender, :SSN, :Street, :City, :State_Province, :Postal_code, :Phone, :Email, :Employment_Status, :Income, :Type, :Username, :Password, :Security_question, :Security_answer, :IBAN, :Salt)");
 
@@ -187,10 +188,12 @@ void Register::on_Terns_and_conditions_stateChanged(int arg1)
     {
         termsAndConditions->move(QPoint(ui->Terns_and_conditions->pos().x() - 400, ui->Terns_and_conditions->pos().y() - 300));
         termsAndConditions->show();
+        m_accepted = false;
     }
     else if(arg1 == Qt::Unchecked)
     {
         termsAndConditions->hide();
+        m_accepted = false;
     }
 }
 

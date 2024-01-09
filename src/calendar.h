@@ -6,6 +6,7 @@
 #include <QCalendarWidget>
 #include <QSqlQuery>
 #include "calendarpopup.h"
+
 namespace Ui {
 class Calendar;
 }
@@ -27,6 +28,7 @@ private:
     QString username;
 
     QCalendarWidget* calendar;
+
 };
 
 #endif // CALENDAR_H
