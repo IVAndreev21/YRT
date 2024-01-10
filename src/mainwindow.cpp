@@ -278,6 +278,11 @@ void MainWindow::UpdateTransactions(QTableView* transasctions_TV, QTableView* Re
     queryModel->setQuery("SELECT * FROM transactions ORDER BY Date DESC LIMIT 5");
 
     Recent_tr_TV->setModel(queryModel);
+    Recent_tr_TV->hideColumn(0);
+    Recent_tr_TV->hideColumn(3);
+    Recent_tr_TV->hideColumn(4);
+    Recent_tr_TV->hideColumn(7);
+    Recent_tr_TV->hideColumn(10);
 }
 
 void MainWindow::on_cancel_mt_PB_clicked()
@@ -402,3 +407,4 @@ void MainWindow::on_Send_qt_PB_clicked()
         performTransaction(receiverIBAN, amountStr, type, FName, LName);
     }
 }
+

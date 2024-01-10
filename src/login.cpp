@@ -43,15 +43,34 @@ void logIn::on_LogIn_PB_clicked()
         if (hashedPasswordToCheck == hashedPasswordFromDB)
         {
             QString userIBAN = qry.value(20).toString();
-            QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
-            this->hide();
-            mainWindow = std::make_unique<MainWindow>(userIBAN, username);
-            mainWindow->show();
+            QDate currentDate = QDate::currentDate();
+            qry.prepare("UPDATE users SET `Last Active` = :currentDate WHERE username = :username");
+            qry.bindValue(":currentDate", currentDate);
+            qry.bindValue("username", username);
+
+            if(qry.exec())
+            {
+                QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
+                this->hide();
+                mainWindow = std::make_unique<MainWindow>(userIBAN, username);
+                mainWindow->show();
+            }
+            else
+            {
+                QMessageBox::critical(this, "Failure", "Application error please contact us immediately");
+                qDebug() << qry.lastError();
+            }
         }
         else
         {
-            QMessageBox::critical(this, "failure", "Wrong password or username");
+            QMessageBox::critical(this, "Failure", "Wrong password or username");
         }
     }
+}
+
+
+void logIn::on_ForgotenPassword_LA_linkActivated(const QString &link)
+{
+    qDebug() << "sd";
 }
 

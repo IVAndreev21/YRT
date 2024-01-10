@@ -72,6 +72,7 @@ private:
     QString clientFName;
     QString clientLName;
     void updateDashboard(QPieSeries* series, QChart* chart, QChartView* chartView);
+    bool DetectedAccident();
 
     QPieSeries* series;
     QChart* chart;

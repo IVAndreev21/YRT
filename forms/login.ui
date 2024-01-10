@@ -212,7 +212,7 @@ padding-bottom:7px;</string>
      <string notr="true">color:rgba(255, 255, 255, 140);</string>
     </property>
     <property name="text">
-     <string>Forgot your User Name or Password? </string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;s&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Forgot your User Name or Password? &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
   </widget>

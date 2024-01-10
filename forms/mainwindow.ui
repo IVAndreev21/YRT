@@ -371,7 +371,7 @@ border-radius:20px;
       <rect>
        <x>0</x>
        <y>450</y>
-       <width>761</width>
+       <width>721</width>
        <height>191</height>
       </rect>
      </property>
@@ -384,6 +384,9 @@ border-radius:20px;
        <width>101</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string/>
@@ -510,7 +513,7 @@ border-radius:20px;
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab">
       <property name="enabled">
@@ -1085,8 +1088,8 @@ border-radius:20px;
     <widget class="QPushButton" name="confrim_mt_PB">
      <property name="geometry">
       <rect>
-       <x>518</x>
-       <y>500</y>
+       <x>430</x>
+       <y>450</y>
        <width>131</width>
        <height>24</height>
       </rect>
@@ -1171,8 +1174,8 @@ border-radius:20px;
     <widget class="QPushButton" name="cancel_mt_PB">
      <property name="geometry">
       <rect>
-       <x>690</x>
-       <y>500</y>
+       <x>650</x>
+       <y>460</y>
        <width>119</width>
        <height>24</height>
       </rect>
