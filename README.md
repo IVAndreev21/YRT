@@ -39,7 +39,7 @@ The app is created to generate digital will.
 You can download our project by using the green "Code" button.
 
 Or by pasting the following code in your CMD:
-git clone https://github.com/codingburgas/2223-9th-grade-sprint-math-games-whales.git
+https://github.com/IVAndreev21/YRT
 ```
 
   
@@ -47,7 +47,7 @@ git clone https://github.com/codingburgas/2223-9th-grade-sprint-math-games-whale
 
 *You can access our website by pasting this link into your browser.*
 ```
-  https://github.com/codingburgas/2223-9th-grade-sprint-math-games-whales.git
+https://github.com/IVAndreev21/YRT
 ```
 
  
