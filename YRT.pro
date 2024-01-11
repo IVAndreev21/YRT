@@ -18,6 +18,7 @@ SOURCES += \
     src/main.cpp \
     src/mainmenu.cpp \
     src/register.cpp \
+    src/resetcredentials.cpp \
     src/termsandconditions.cpp
 
 HEADERS += \
@@ -29,6 +30,7 @@ HEADERS += \
     src/login.h \
     src/mainmenu.h \
     src/register.h \
+    src/resetcredentials.h \
     src/termsandconditions.h
 
 FORMS += \
@@ -39,7 +41,8 @@ FORMS += \
     forms/mainmenu.ui \
     forms/register.ui \
     forms/mainwindow.ui \
-    forms/termsandconditions.ui
+    forms/termsandconditions.ui \
+    forms/resetcredentials.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

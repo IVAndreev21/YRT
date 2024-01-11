@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "databasemanager.hpp"
 #include "mainwindow.h"
+#include "resetcredentials.h"
 namespace Ui {
 class logIn;
 }
@@ -25,6 +26,8 @@ private:
     Ui::logIn *ui;
     std::unique_ptr<DatabaseManager> databaseManager;
     std::unique_ptr<MainWindow> mainWindow;
+    std::unique_ptr<ResetCredentials> resetCredentials;
+
     QString hashPassword(const QString &password, const QString &salt);
 };
 #endif // LOGIN_H

@@ -37,7 +37,6 @@ void logIn::on_LogIn_PB_clicked()
         QString hashedPasswordFromDB = qry.value(16).toString();
 
         QString saltFromDB = qry.value(23).toString();
-
         QString hashedPasswordToCheck = hashPassword(password, saltFromDB);
 
         if (hashedPasswordToCheck == hashedPasswordFromDB)
@@ -71,6 +70,8 @@ void logIn::on_LogIn_PB_clicked()
 
 void logIn::on_ForgotenPassword_LA_linkActivated(const QString &link)
 {
-    qDebug() << "sd";
+    resetCredentials = std::make_unique<ResetCredentials>();
+    this->hide();
+    resetCredentials->show();
 }
 

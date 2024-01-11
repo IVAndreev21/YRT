@@ -407,4 +407,3 @@ void MainWindow::on_Send_qt_PB_clicked()
         performTransaction(receiverIBAN, amountStr, type, FName, LName);
     }
 }
-

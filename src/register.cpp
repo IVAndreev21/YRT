@@ -93,9 +93,11 @@ void Register::on_submit_PB_clicked()
     }
 
 
-    QString salt = generateSalt();
+    QString passwordSalt = generateSalt();
+    QString securityAnswerSalt = generateSalt();
 
-    QString hashedPassword = hashPassword(password, salt);
+    QString hashedPassword = hashPassword(password, passwordSalt);
+    QString hashedSecurityAnswer = hashPassword(securityAnswer, securityAnswerSalt);
 
     QString IBAN = "BG" + QString::number(QRandomGenerator::global()->bounded(10, 100)) + "YRT9661" + randomNumbersString;
 
@@ -129,11 +131,16 @@ void Register::on_submit_PB_clicked()
     if (phoneTaken) {
         QMessageBox::critical(this, "Error", "Phone number is already taken.");
     }
+    if(!m_accepted)
+    {
+        QMessageBox::critical(this, "Error", "Please agree to our terms and conditions before registrating an account");
+
+    }
 
 
     if (!usernameTaken && !ssnTaken && !phoneTaken && m_accepted) {
-        qry.prepare("INSERT INTO users (`First Name`, `Last Name`, `Date of birth`, Gender, SSN, Street, City, `State/Province`, `Postal code`, Phone, Email, `Employment Status`, Income, Type, Username, Password, `Security question`, `Security answer`, IBAN, Salt)"
-                    "VALUES (:First_Name, :Last_Name, :Date_of_birth, :Gender, :SSN, :Street, :City, :State_Province, :Postal_code, :Phone, :Email, :Employment_Status, :Income, :Type, :Username, :Password, :Security_question, :Security_answer, :IBAN, :Salt)");
+        qry.prepare("INSERT INTO users (`First Name`, `Last Name`, `Date of birth`, Gender, SSN, Street, City, `State/Province`, `Postal code`, Phone, Email, `Employment Status`, Income, Type, Username, Password, `Security question`, `Security answer`, IBAN, `Password Salt`, `Security Answer Salt`)"
+                    "VALUES (:First_Name, :Last_Name, :Date_of_birth, :Gender, :SSN, :Street, :City, :State_Province, :Postal_code, :Phone, :Email, :Employment_Status, :Income, :Type, :Username, :Password, :Security_question, :Security_answer, :IBAN, :passwordSalt, :SQSalt)");
 
         qry.bindValue(":First_Name", firstName);
         qry.bindValue(":Last_Name", lastName);
@@ -152,16 +159,20 @@ void Register::on_submit_PB_clicked()
         qry.bindValue(":Username", username);
         qry.bindValue(":Password", hashedPassword);
         qry.bindValue(":Security_question", securityQuestion);
-        qry.bindValue(":Security_answer", securityAnswer);
+        qry.bindValue(":Security_answer", hashedSecurityAnswer);
         qry.bindValue(":IBAN", IBAN);
-        qry.bindValue(":Salt", salt);
+        qry.bindValue(":passwordSalt", passwordSalt);
+        qry.bindValue(":SQSalt", securityAnswerSalt);
 
         if (qry.exec()) {
             QMessageBox::information(this, "Success", "Your registration to trawma bank has been successful. \n\nRedirecting to the login page..");
             this->hide();
             LogIn->show();
         } else {
-            QMessageBox::information(this, "Failure", "Data has not been inserted successfully. Try again or contact us " + qry.lastError().text());
+            QMessageBox::critical(this, "Failure", "Data has not been inserted successfully. Try again or contact us ");
+            qDebug() << qry.lastError().text();
+            qDebug() << qry.lastQuery();  // Print the last executed query for further inspection
+            qDebug() << qry.boundValues();  // Print the bound values for further inspection
         }
     }
 }
@@ -176,7 +187,7 @@ QString Register::generateSalt() {
     return salt.toHex();
 }
 
-QString Register::hashPassword(const QString &password, const QString &salt) {
+QString Register::hashPassword(const QString& password, const QString& salt) {
     QByteArray passwordWithSalt = (password + salt).toUtf8();
     QByteArray hashedPassword = QCryptographicHash::hash(passwordWithSalt, QCryptographicHash::Sha256);
     return hashedPassword.toHex();
@@ -184,11 +195,11 @@ QString Register::hashPassword(const QString &password, const QString &salt) {
 
 void Register::on_Terns_and_conditions_stateChanged(int arg1)
 {
-    if(arg1 == Qt::Checked && !termsAndConditions->getStatus())
+    if(arg1 == Qt::Checked)
     {
         termsAndConditions->move(QPoint(ui->Terns_and_conditions->pos().x() - 400, ui->Terns_and_conditions->pos().y() - 300));
         termsAndConditions->show();
-        m_accepted = false;
+        m_accepted = true;
     }
     else if(arg1 == Qt::Unchecked)
     {

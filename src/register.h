@@ -44,7 +44,7 @@ private:
     QSqlDatabase db;
 
     QString generateSalt();
-    QString hashPassword(const QString &password, const QString &salt);
+    QString hashPassword(const QString& password, const QString& salt);
 
     bool m_accepted;
 };
