@@ -21,6 +21,7 @@
 #include <QBuffer>
 #include <QSqlQueryModel>
 #include "calendar.h"
+#include "crypto.h"
 namespace Ui {
 class MainWindow;
 }
@@ -59,6 +60,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<Calendar> calendar;
+    std::unique_ptr<Crypto> crypto;
     void updatepfp();
     void UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV);
     void performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName);

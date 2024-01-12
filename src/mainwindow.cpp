@@ -13,6 +13,7 @@ MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWi
     chartView = new QChartView(chart);
 
     calendar = std::make_unique<Calendar>(username);
+    crypto = std::make_unique<Crypto>();
     updateDashboard(series, chart, chartView);
     ui->card_holder_LA->setText(clientFName + " " + clientLName);
 
@@ -145,6 +146,8 @@ void MainWindow::on_payments_PB_clicked()
 
 void MainWindow::on_crypto_PB_clicked()
 {
+    crypto->show();
+    this->hide();
 }
 
 void MainWindow::on_settings_PB_clicked()

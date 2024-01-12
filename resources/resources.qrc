@@ -2,5 +2,9 @@
     <qresource prefix="/images">
         <file>blank_card.png</file>
         <file>BG_flag_icon.png</file>
+        <file>solana.svg</file>
+        <file>bitcoin.png</file>
+        <file>binance.png</file>
+        <file>etherium.png</file>
     </qresource>
 </RCC>

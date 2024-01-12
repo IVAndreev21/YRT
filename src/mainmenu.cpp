@@ -2,6 +2,7 @@
 #include "ui_mainmenu.h"
 #include <QProcess>
 #include <QProcessEnvironment>
+#include <QProcess>
 
 MainMenu::MainMenu(QWidget *parent) : QWidget(parent), ui(new Ui::MainMenu)
 {
