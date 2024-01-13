@@ -324,13 +324,19 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
     if (query.exec() && query.next())
     {
         userExpenses = query.value(22).toDouble();
-
+        heir = query.value(27).toString();
         query.prepare("SELECT SUM(amount) AS totalIncome FROM transactions WHERE IBAN = :IBAN");
         query.bindValue(":IBAN", IBAN);
 
         if (query.exec() && query.next())
         {
             userIncome = query.value("totalIncome").toDouble();
+        }
+
+        if(heir == "")
+        {
+            ui->heir_detected->setText("A hair hasn't been detect! \n For the safety of the account select the heir of your assetts");
+            ui->heir_detected->setStyleSheet("color: rgb(255, 0, 0);");
         }
     }
     series->clear();

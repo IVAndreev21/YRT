@@ -6,5 +6,7 @@
         <file>bitcoin.png</file>
         <file>binance.png</file>
         <file>etherium.png</file>
+        <file>dodgecoin.png</file>
+        <file>tether.png</file>
     </qresource>
 </RCC>

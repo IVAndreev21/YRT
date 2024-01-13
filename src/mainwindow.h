@@ -81,6 +81,8 @@ private:
 
     QTableView* transactions_TV;
     QTableView* Recent_tr_TV;
+
+    QString heir;
 };
 
 #endif // MAINWINDOW_H
