@@ -35,7 +35,6 @@ void logIn::on_LogIn_PB_clicked()
     if (qry.exec() && qry.next())
     {
         QString hashedPasswordFromDB = qry.value(16).toString();
-
         QString saltFromDB = qry.value(23).toString();
         QString hashedPasswordToCheck = hashPassword(password, saltFromDB);
 

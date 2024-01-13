@@ -22,6 +22,7 @@
 #include <QSqlQueryModel>
 #include "calendar.h"
 #include "crypto.h"
+#include "addheir.h"
 namespace Ui {
 class MainWindow;
 }
@@ -57,10 +58,13 @@ private slots:
 
     void on_Send_qt_PB_clicked();
 
+    void on_addHeir_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<Calendar> calendar;
     std::unique_ptr<Crypto> crypto;
+    std::unique_ptr<AddHeir> addHeir;
     void updatepfp();
     void UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV);
     void performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName);

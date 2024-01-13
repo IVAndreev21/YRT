@@ -14,6 +14,9 @@ MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWi
 
     calendar = std::make_unique<Calendar>(username);
     crypto = std::make_unique<Crypto>();
+    addHeir = std::make_unique<AddHeir>(username);
+    addHeir->setParent(this);
+    addHeir->hide();
     updateDashboard(series, chart, chartView);
     ui->card_holder_LA->setText(clientFName + " " + clientLName);
 
@@ -337,6 +340,12 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
         {
             ui->heir_detected->setText("A hair hasn't been detect! \n For the safety of the account select the heir of your assetts");
             ui->heir_detected->setStyleSheet("color: rgb(255, 0, 0);");
+            ui->addHeir_PB->show();
+
+        }
+        else
+        {
+            ui->addHeir_PB->hide();
         }
     }
     series->clear();
@@ -416,3 +425,10 @@ void MainWindow::on_Send_qt_PB_clicked()
         performTransaction(receiverIBAN, amountStr, type, FName, LName);
     }
 }
+
+void MainWindow::on_addHeir_PB_clicked()
+{
+
+    addHeir->show();
+}
+

@@ -34,7 +34,7 @@ void ResetCredentials::on_Email_LE_editingFinished()
         ui->security_question_LA->setText(qry.value(17).toString());
         ui->security_question_LE->show();
 
-        SQSalt = qry.value(25).toString();
+        SQSalt = qry.value(22).toString();
         qDebug() << SQSalt;
 
     } else {
