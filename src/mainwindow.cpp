@@ -12,7 +12,6 @@ MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWi
     chart = new QChart;
     chartView = new QChartView(chart);
 
-    calendar = std::make_unique<Calendar>(username);
     crypto = std::make_unique<Crypto>();
     addHeir = std::make_unique<AddHeir>(username);
     addHeir->setParent(this);
@@ -29,6 +28,8 @@ MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWi
     UpdateSettings();
 
     ui->Password_LE->setEchoMode(QLineEdit::Password);
+    calendar = std::make_unique<Calendar>(std::shared_ptr<MainWindow>(this), username);
+
 }
 
 MainWindow::~MainWindow()
@@ -338,7 +339,7 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
 
         if(heir == "")
         {
-            ui->heir_detected->setText("A hair hasn't been detect! \n For the safety of the account select the heir of your assetts");
+            ui->heir_detected->setText("A heir hasn't been detect! \n For the safety of the account select the heir of your assetts");
             ui->heir_detected->setStyleSheet("color: rgb(255, 0, 0);");
             ui->addHeir_PB->show();
 
@@ -430,5 +431,11 @@ void MainWindow::on_addHeir_PB_clicked()
 {
 
     addHeir->show();
+}
+
+
+void MainWindow::on_signOut_PB_clicked()
+{
+    this->hide();
 }
 

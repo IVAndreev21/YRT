@@ -6,6 +6,9 @@
 #include <QCryptographicHash>
 #include <QMessageBox>
 #include <QSqlError>
+
+class logIn;
+
 namespace Ui {
 class ResetCredentials;
 }
@@ -15,7 +18,7 @@ class ResetCredentials : public QWidget
     Q_OBJECT
 
 public:
-    explicit ResetCredentials(QWidget *parent = nullptr);
+    explicit ResetCredentials(std::shared_ptr<logIn> login, QWidget *parent = nullptr);
     ~ResetCredentials();
 
 private slots:
@@ -36,6 +39,8 @@ private:
 
     QString hashSecurityQuestion(const QString& asnwer, const QString& salt);
     QString SQSalt;
+
+    std::shared_ptr<logIn> LogIn;
 };
 
 #endif // RESETCREDENTIALS_H

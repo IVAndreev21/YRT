@@ -60,6 +60,8 @@ private slots:
 
     void on_addHeir_PB_clicked();
 
+    void on_signOut_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<Calendar> calendar;
