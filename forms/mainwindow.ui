@@ -22,9 +22,25 @@
      <height>231</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
    <layout class="QVBoxLayout" name="options_BL">
     <item>
      <widget class="QPushButton" name="dashboard_PB">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>Dashboard</string>
       </property>
@@ -32,6 +48,14 @@
     </item>
     <item>
      <widget class="QPushButton" name="transactions_PB">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>Transactions</string>
       </property>
@@ -39,6 +63,14 @@
     </item>
     <item>
      <widget class="QPushButton" name="payments_PB">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>Payments</string>
       </property>
@@ -46,6 +78,14 @@
     </item>
     <item>
      <widget class="QPushButton" name="calendar_PB">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>Calendar</string>
       </property>
@@ -53,6 +93,14 @@
     </item>
     <item>
      <widget class="QPushButton" name="crypto_PB">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>Crypto</string>
       </property>
@@ -60,6 +108,14 @@
     </item>
     <item>
      <widget class="QPushButton" name="settings_PB">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>Settings</string>
       </property>
@@ -72,9 +128,20 @@
     <rect>
      <x>10</x>
      <y>60</y>
-     <width>49</width>
+     <width>71</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Balance</string>
@@ -88,6 +155,14 @@
      <width>61</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
@@ -103,6 +178,14 @@
       <width>61</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel
@@ -127,6 +210,18 @@ border-radius:20px;
      <height>20</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string/>
    </property>
@@ -139,6 +234,17 @@ border-radius:20px;
      <width>91</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string/>
@@ -153,8 +259,16 @@ border-radius:20px;
      <height>721</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="dashboard_page">
     <widget class="QWidget" name="gridLayoutWidget">
@@ -166,16 +280,32 @@ border-radius:20px;
        <height>251</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
      <layout class="QGridLayout" name="PieChart_LY"/>
     </widget>
     <widget class="QLabel" name="My_cards_LA">
      <property name="geometry">
       <rect>
-       <x>830</x>
+       <x>810</x>
        <y>30</y>
        <width>91</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>My Cards</string>
@@ -189,6 +319,14 @@ border-radius:20px;
        <width>411</width>
        <height>211</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">image: url(:/images/blank_card.png);</string>
@@ -206,6 +344,14 @@ border-radius:20px;
        <height>16</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="text">
       <string>Status</string>
      </property>
@@ -213,11 +359,19 @@ border-radius:20px;
     <widget class="QLabel" name="Status_Active_LA">
      <property name="geometry">
       <rect>
-       <x>990</x>
+       <x>1020</x>
        <y>250</y>
-       <width>58</width>
+       <width>61</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Active</string>
@@ -232,6 +386,14 @@ border-radius:20px;
        <height>16</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="text">
       <string>Name</string>
      </property>
@@ -239,11 +401,19 @@ border-radius:20px;
     <widget class="QLabel" name="Name_Payment_card_LA">
      <property name="geometry">
       <rect>
-       <x>970</x>
+       <x>960</x>
        <y>290</y>
-       <width>101</width>
+       <width>121</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Payment Card</string>
@@ -254,38 +424,38 @@ border-radius:20px;
       <rect>
        <x>810</x>
        <y>340</y>
-       <width>61</width>
+       <width>81</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Currency</string>
      </property>
     </widget>
-    <widget class="QLabel" name="Currency_BGN_LA">
-     <property name="geometry">
-      <rect>
-       <x>970</x>
-       <y>340</y>
-       <width>101</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">image: url(:/images/BG_flag_icon.png);</string>
-     </property>
-     <property name="text">
-      <string>   BGN</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="Quick_Transfer_LA">
      <property name="geometry">
       <rect>
-       <x>800</x>
-       <y>440</y>
-       <width>91</width>
+       <x>810</x>
+       <y>400</y>
+       <width>131</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Quick Transfer</string>
@@ -294,11 +464,19 @@ border-radius:20px;
     <widget class="QLabel" name="card_number_LA">
      <property name="geometry">
       <rect>
-       <x>800</x>
-       <y>470</y>
+       <x>810</x>
+       <y>430</y>
        <width>191</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>**** **** **** 0164</string>
@@ -307,21 +485,37 @@ border-radius:20px;
     <widget class="QLineEdit" name="IBAN_qt_LE">
      <property name="geometry">
       <rect>
-       <x>790</x>
-       <y>530</y>
-       <width>221</width>
+       <x>810</x>
+       <y>480</y>
+       <width>271</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
     </widget>
     <widget class="QLabel" name="Pay_to_LA">
      <property name="geometry">
       <rect>
-       <x>800</x>
-       <y>510</y>
+       <x>810</x>
+       <y>460</y>
        <width>91</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Pay to</string>
@@ -330,11 +524,19 @@ border-radius:20px;
     <widget class="QLabel" name="Amount_LA">
      <property name="geometry">
       <rect>
-       <x>790</x>
-       <y>580</y>
+       <x>810</x>
+       <y>540</y>
        <width>91</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Amount</string>
@@ -343,11 +545,19 @@ border-radius:20px;
     <widget class="QSpinBox" name="Amount_SB">
      <property name="geometry">
       <rect>
-       <x>790</x>
-       <y>610</y>
-       <width>111</width>
+       <x>810</x>
+       <y>560</y>
+       <width>101</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="maximum">
       <number>999999</number>
@@ -356,11 +566,19 @@ border-radius:20px;
     <widget class="QLabel" name="Recent_tr_LA">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>0</x>
        <y>420</y>
        <width>301</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Recent Transactions</string>
@@ -371,9 +589,23 @@ border-radius:20px;
       <rect>
        <x>0</x>
        <y>450</y>
-       <width>721</width>
-       <height>191</height>
+       <width>617</width>
+       <height>177</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QHeaderView::section{background-color: rgb(39, 40, 40);
+border-radius:30px}
+QHeaderView::section{ background-color: rgb(57, 58, 58); 
+color:white}</string>
      </property>
     </widget>
     <widget class="QLabel" name="card_holder_LA">
@@ -385,6 +617,14 @@ border-radius:20px;
        <height>16</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
@@ -395,11 +635,23 @@ border-radius:20px;
     <widget class="QPushButton" name="Send_qt_PB">
      <property name="geometry">
       <rect>
-       <x>870</x>
-       <y>660</y>
-       <width>80</width>
-       <height>24</height>
+       <x>830</x>
+       <y>613</y>
+       <width>241</width>
+       <height>51</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius:15px;
+color:white</string>
      </property>
      <property name="text">
       <string>Send</string>
@@ -408,11 +660,19 @@ border-radius:20px;
     <widget class="QLabel" name="heir_detected">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>390</x>
        <y>80</y>
-       <width>361</width>
-       <height>51</height>
+       <width>391</width>
+       <height>61</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string/>
@@ -423,22 +683,127 @@ border-radius:20px;
       <rect>
        <x>500</x>
        <y>170</y>
-       <width>100</width>
-       <height>32</height>
+       <width>131</width>
+       <height>61</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+background-color: rgb(95, 97, 97);
+border-radius:30px
+}
+QPushButton
+{
+   color:white;
+}
+QPushButton:hover
+{
+  background-color: rgb(75, 77, 77);
+  transition:0,5s;
+}
+</string>
      </property>
      <property name="text">
       <string>Add heir</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>900</x>
+       <y>630</y>
+       <width>21</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../resources/resources.qrc">:/images/paper-plane-svgrepo-com.svg</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="addHeir_PB_2">
+     <property name="geometry">
+      <rect>
+       <x>810</x>
+       <y>610</y>
+       <width>271</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+background-color: rgb(95, 97, 97);
+border-radius:30px
+}
+QPushButton
+{
+   color:white;
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>addHeir_PB_2</zorder>
+    <zorder>gridLayoutWidget</zorder>
+    <zorder>My_cards_LA</zorder>
+    <zorder>blank_card_LA</zorder>
+    <zorder>statu_LA</zorder>
+    <zorder>Status_Active_LA</zorder>
+    <zorder>name_LA</zorder>
+    <zorder>Name_Payment_card_LA</zorder>
+    <zorder>Currency_LA</zorder>
+    <zorder>Quick_Transfer_LA</zorder>
+    <zorder>card_number_LA</zorder>
+    <zorder>IBAN_qt_LE</zorder>
+    <zorder>Pay_to_LA</zorder>
+    <zorder>Amount_LA</zorder>
+    <zorder>Amount_SB</zorder>
+    <zorder>Recent_tr_LA</zorder>
+    <zorder>Recent_tr_TV</zorder>
+    <zorder>card_holder_LA</zorder>
+    <zorder>Send_qt_PB</zorder>
+    <zorder>heir_detected</zorder>
+    <zorder>addHeir_PB</zorder>
+    <zorder>label</zorder>
    </widget>
    <widget class="QWidget" name="transacions_page">
     <widget class="QLabel" name="Bank_tr_LA">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>0</y>
-       <width>101</width>
+       <x>20</x>
+       <y>10</y>
+       <width>141</width>
        <height>31</height>
       </rect>
      </property>
@@ -449,14 +814,20 @@ border-radius:20px;
     <widget class="QPushButton" name="make_tr_PB">
      <property name="geometry">
       <rect>
-       <x>980</x>
-       <y>20</y>
-       <width>75</width>
-       <height>24</height>
+       <x>950</x>
+       <y>70</y>
+       <width>131</width>
+       <height>41</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+border-radius:30px
+background-color:rgb(66, 66, 66);
+}</string>
+     </property>
      <property name="text">
-      <string>Make</string>
+      <string> Make transaction</string>
      </property>
     </widget>
     <widget class="QTableView" name="Transactions_tr_TV">
@@ -465,7 +836,7 @@ border-radius:20px;
        <x>20</x>
        <y>40</y>
        <width>881</width>
-       <height>621</height>
+       <height>441</height>
       </rect>
      </property>
     </widget>
@@ -1260,6 +1631,14 @@ border-radius:20px;
      <height>721</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
    </property>
@@ -1269,15 +1648,87 @@ border-radius:20px;
     <rect>
      <x>10</x>
      <y>600</y>
-     <width>100</width>
+     <width>121</width>
      <height>32</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Sign out</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>-20</y>
+     <width>141</width>
+     <height>791</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(95, 97, 97);
+border-radius:15px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Currency_BGN_LA">
+   <property name="geometry">
+    <rect>
+     <x>1140</x>
+     <y>330</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/BG_flag_icon.png);</string>
+   </property>
+   <property name="text">
+    <string>   BGN</string>
+   </property>
+  </widget>
+  <zorder>label_3</zorder>
+  <zorder>verticalLayoutWidget</zorder>
+  <zorder>balance_LA</zorder>
+  <zorder>frame_2</zorder>
+  <zorder>balance_LA_2</zorder>
+  <zorder>clientname_LA</zorder>
+  <zorder>stackedWidget</zorder>
+  <zorder>line</zorder>
+  <zorder>signOut_PB</zorder>
+  <zorder>Currency_BGN_LA</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

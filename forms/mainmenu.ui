@@ -98,7 +98,7 @@ QPushButton:hover
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:rgba(0, 0, 0, 100);
+    <string notr="true">background-color:rgba(0, 0, 0, 50);
 border-radius:15px;</string>
    </property>
    <property name="text">
