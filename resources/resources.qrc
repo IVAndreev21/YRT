@@ -8,5 +8,6 @@
         <file>etherium.png</file>
         <file>dodgecoin.png</file>
         <file>tether.png</file>
+        <file>logo.png</file>
     </qresource>
 </RCC>

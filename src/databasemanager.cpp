@@ -5,18 +5,18 @@ DatabaseManager::DatabaseManager() {
 }
 
 QSqlDatabase DatabaseManager::getDatabase() {
-    return db;
+    return m_db;
 }
 
 void DatabaseManager::openConnection() {
-    db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("project-yrt.mysql.database.azure.com");
-    db.setPort(3306);  // Default MySQL port
-    db.setDatabaseName("yrt");
-    db.setUserName("sqladmin");
-    db.setPassword("Project-YRT");
+    m_db = QSqlDatabase::addDatabase("QMYSQL");
+    m_db.setHostName("project-yrt.mysql.database.azure.com");
+    m_db.setPort(3306);  // Default MySQL port
+    m_db.setDatabaseName("yrt");
+    m_db.setUserName("sqladmin");
+    m_db.setPassword("Project-YRT");
 
-    if (db.open() && db.isOpen()) {
+    if (m_db.open() && m_db.isOpen()) {
         qDebug() << "Database opened successfully";
     } else {
         // Handle connection error
@@ -26,6 +26,6 @@ void DatabaseManager::openConnection() {
 }
 
 void DatabaseManager::closeConnection() {
-    db.close();
+    m_db.close();
 }
 

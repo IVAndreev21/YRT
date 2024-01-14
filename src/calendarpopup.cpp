@@ -1,14 +1,16 @@
 #include "calendarpopup.h"
 #include "ui_calendarpopup.h"
+#include "calendar.h"
 #include <QSqlQuery>
-CalendarPopUp::CalendarPopUp(const QString& username_ref, QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::CalendarPopUp)
+CalendarPopUp::CalendarPopUp(std::shared_ptr<Calendar> calendar,const QString& username_ref, QWidget *parent)
+    : QWidget(parent), ui(new Ui::CalendarPopUp), m_calendar(calendar)
 {
     ui->setupUi(this);
-    username = username_ref;
-}
+    m_username = username_ref;
 
+    ui->From_DE->setDate(QDate::currentDate());
+    ui->Till_DE->setDate(QDate::currentDate());
+}
 CalendarPopUp::~CalendarPopUp()
 {
     delete ui;
@@ -26,7 +28,7 @@ void CalendarPopUp::on_Save_PB_clicked()
 
     query.prepare("INSERT INTO calendar (`Username`, `Title`, `Description`, `From`, `Till`, `Repeat`)"
                 "VALUES (:username, :title, :description, :from, :till, :repeat)");
-    query.bindValue(":username", username);
+    query.bindValue(":username", m_username);
     query.bindValue(":title", title);
     query.bindValue(":description", description);
     query.bindValue(":from", from);
@@ -42,7 +44,9 @@ void CalendarPopUp::on_Save_PB_clicked()
         QMessageBox::critical(this, "Event failed", "Event has failed to be made");
 
     }
+
     this->hide();
+    m_calendar->fetchEvents();
 }
 
 
@@ -56,6 +60,5 @@ void CalendarPopUp::on_Abort_PB_clicked()
     ui->Repeat_CB->clear();
 
     this->hide();
-
 }
 

@@ -13,7 +13,7 @@ public:
     void openConnection();
     void closeConnection();
 private:
-    QSqlDatabase db;
+    QSqlDatabase m_db;
 };
 
 #endif // DATABASEMANAGER_HPP

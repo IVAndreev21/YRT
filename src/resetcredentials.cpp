@@ -1,16 +1,15 @@
 #include "resetcredentials.h"
 #include "ui_resetcredentials.h"
-
-ResetCredentials::ResetCredentials(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::ResetCredentials)
+#include "login.h"  // Include the forward declaration of the logIn class
+ResetCredentials::ResetCredentials(std::shared_ptr<logIn> login, QWidget *parent)
+    : QWidget(parent), ui(new Ui::ResetCredentials), m_LogIn(login)
 {
     ui->setupUi(this);
     ui->security_question_LE->hide();
-
     ui->stackedWidget->hide();
     ui->reset_password_PB->hide();
     ui->reset_username_PB->hide();
+
 }
 
 ResetCredentials::~ResetCredentials()
@@ -34,8 +33,8 @@ void ResetCredentials::on_Email_LE_editingFinished()
         ui->security_question_LA->setText(qry.value(17).toString());
         ui->security_question_LE->show();
 
-        SQSalt = qry.value(22).toString();
-        qDebug() << SQSalt;
+        m_SQSalt = qry.value(22).toString();
+        qDebug() << m_SQSalt;
 
     } else {
         // No record found
@@ -134,7 +133,7 @@ void ResetCredentials::on_confirm_username_PB_clicked()
 {
     QSqlQuery qry;
     QString username = ui->new_username_LE->text();
-        QString email = ui->Email_LE->text();
+    QString email = ui->Email_LE->text();
 
         qry.prepare("SELECT * FROM users WHERE email = :email");
         qry.bindValue(":email", email);
@@ -146,7 +145,8 @@ void ResetCredentials::on_confirm_username_PB_clicked()
             if(qry.exec())
             {
                 QMessageBox::information(this, "Username reset", "Your username has been reset");
-                QMessageBox::critical(this, "Data not inserted", "Data was not inserted correctly. Please contact us immediately");
+                this->hide();
+                m_LogIn->show();
                 qDebug() << qry.lastError().text();
                 qDebug() << qry.lastQuery();  // Print the last executed query for further inspection
                 qDebug() << qry.boundValues();  // Print the bound values for further inspection

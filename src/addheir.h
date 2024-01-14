@@ -25,7 +25,7 @@ private slots:
 
 private:
     Ui::AddHeir *ui;
-    QString username;
+    QString m_username;
 
     QString hash(const QString& toHash, const QString& salt);
 };

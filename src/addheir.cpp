@@ -10,7 +10,7 @@ AddHeir::AddHeir(QString& username_ref, QWidget *parent)
     ui->enterPass_LA->hide();
     ui->password_LE->hide();
 
-    username = username_ref;
+    m_username = username_ref;
 }
 
 AddHeir::~AddHeir()
@@ -46,7 +46,7 @@ void AddHeir::on_password_LE_editingFinished()
     QSqlQuery qry;
     QString password = ui->password_LE->text();
     qry.prepare("SELECT * FROM users WHERE Username = :username");
-    qry.bindValue(":username", username);
+    qry.bindValue(":username", m_username);
     if (qry.exec() && qry.next()) {
         QString hashedPasswordFromDB = qry.value(16).toString();
 
@@ -77,7 +77,7 @@ void AddHeir::on_addHeir_PB_clicked()
     QString heirUsername = ui->heir_LE->text();
 
     qry.prepare("SELECT * FROM users WHERE Username = :username");
-    qry.bindValue(":username", username);
+    qry.bindValue(":username", m_username);
     if(qry.exec() && qry.next())
     {
         QString hashedAnswer = hash(ui->securityAnswer_LE->text(), qry.value(26).toString());
@@ -86,7 +86,7 @@ void AddHeir::on_addHeir_PB_clicked()
         if(answerFromDB == hashedAnswer)
         {
             qry.prepare("UPDATE users SET Heir = :heirUsername WHERE Username = :username");
-            qry.bindValue(":username", username);
+            qry.bindValue(":username", m_username);
             qry.bindValue(":heirUsername", heirUsername);
             if(qry.exec())
             {

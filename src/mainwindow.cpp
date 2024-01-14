@@ -1,24 +1,24 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWidget *parent)
+#include "login.h"
+MainWindow::MainWindow(logIn* login, const QString& IBAN_ref, const QString& username_ref, QWidget *parent)
     : QWidget(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    IBAN = IBAN_ref;
-    username = username_ref;
+    m_IBAN = IBAN_ref;
+    m_username = username_ref;
 
     series = new QPieSeries;
     chart = new QChart;
     chartView = new QChartView(chart);
 
-    calendar = std::make_unique<Calendar>(username);
-    crypto = std::make_unique<Crypto>();
-    addHeir = std::make_unique<AddHeir>(username);
-    addHeir->setParent(this);
-    addHeir->hide();
+    m_crypto = std::make_shared<Crypto>(std::shared_ptr<MainWindow>(this));
+    m_addHeir = std::make_shared<AddHeir>(m_username);
+    m_addHeir->setParent(this);
+    m_addHeir->hide();
     updateDashboard(series, chart, chartView);
-    ui->card_holder_LA->setText(clientFName + " " + clientLName);
+    ui->card_holder_LA->setText(m_clientFName + " " + m_clientLName);
 
     ui->IBAN_qt_LE->setPlaceholderText("BG00YRT00000000000000");
 
@@ -29,6 +29,8 @@ MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWi
     UpdateSettings();
 
     ui->Password_LE->setEchoMode(QLineEdit::Password);
+    m_calendar = std::make_shared<Calendar>(std::shared_ptr<MainWindow>(this), m_username);
+
 }
 
 MainWindow::~MainWindow()
@@ -47,11 +49,11 @@ void MainWindow::updatepfp()
 
     QSqlQuery query;
     query.prepare("SELECT pfp FROM users WHERE IBAN = :IBAN");
-    query.bindValue(":IBAN", IBAN);
+    query.bindValue(":IBAN", m_IBAN);
 
     if (query.exec() && query.first())
     {
-        QByteArray imageData = query.value(0).toByteArray();
+        QByteArray imageData = query.value("pfp").toByteArray();
         QPixmap userPixmap;
         userPixmap.loadFromData(QByteArray::fromBase64(imageData));
 
@@ -125,7 +127,7 @@ void MainWindow::on_pfp_acc_PB_clicked()
                 QSqlQuery qry;
                 qry.prepare("UPDATE users SET pfp = :pfp WHERE IBAN = :IBAN");
                 qry.bindValue(":pfp", FinalDataToSave);
-                qry.bindValue(":IBAN", IBAN);
+                qry.bindValue(":IBAN", m_IBAN);
 
                 if (qry.exec())
                 {
@@ -149,7 +151,7 @@ void MainWindow::on_payments_PB_clicked()
 
 void MainWindow::on_crypto_PB_clicked()
 {
-    crypto->show();
+    m_crypto->show();
     this->hide();
 }
 
@@ -164,21 +166,14 @@ void MainWindow::on_make_tr_PB_clicked()
 }
 void MainWindow::performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName)
 {
-    QSqlQuery receiverQuery;
-    receiverQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
-    receiverQuery.bindValue(":IBAN", receiverIBAN);
-
-    if (receiverQuery.exec() && receiverQuery.next())
-    {
-        QString receiverFName = receiverQuery.value(1).toString();
         QSqlQuery senderQuery;
         senderQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
-        senderQuery.bindValue(":IBAN", IBAN);
+        senderQuery.bindValue(":IBAN", m_IBAN);
 
         if (senderQuery.exec() && senderQuery.next())
         {
-            double senderBalance = senderQuery.value(19).toDouble();
-            double senderExpenseBalance = senderQuery.value(22).toDouble();
+            double senderBalance = senderQuery.value("Balance").toDouble();
+            double senderExpenseBalance = senderQuery.value("Expenses").toDouble();
             bool conversionOK;
             double amount = amountStr.toDouble(&conversionOK);
 
@@ -192,14 +187,14 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
                 {
                     double senderNewBalance = senderBalance - amount;
                     double senderNewExpenseBalance = senderExpenseBalance + amount;
-                    double receiverBalance = receiverQuery.value(19).toDouble();
+                    double receiverBalance = receiverQuery.value("Balance").toDouble();
                     double receiverNewBalance = receiverBalance + amount;
 
                     QSqlQuery updateSenderQuery;
                     updateSenderQuery.prepare("UPDATE users SET balance = :newBalance, expenses = :expense WHERE IBAN = :IBAN");
                     updateSenderQuery.bindValue(":newBalance", senderNewBalance);
                     updateSenderQuery.bindValue(":expense", senderNewExpenseBalance);
-                    updateSenderQuery.bindValue(":IBAN", IBAN);
+                    updateSenderQuery.bindValue(":IBAN", m_IBAN);
 
                     QSqlQuery updateReceiverQuery;
                     updateReceiverQuery.prepare("UPDATE users SET balance = :newBalance WHERE IBAN = :IBAN");
@@ -210,8 +205,8 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
                     {
                         QSqlQuery insertQuery;
                         QString Date = QDateTime::currentDateTime().toString();
-                        insertQuery.prepare("INSERT INTO transactions (Date, IBAN, `Sender First Name`, `Sender Last Name`, `Receiver First Name`, `Receiver Last Name`, Phone, Type, Amount, Description) "
-                                            "VALUES (:Date, :IBAN, :Sender_First_Name, :Sender_Last_Name, :Receiver_First_Name, :Receiver_Last_Name, :Phone, :Type, :Amount, :Description)");
+                        insertQuery.prepare("INSERT INTO transactions (Date, `IBAN`, `Sender First Name`, `Sender Last Name`, `Receiver First Name`, `Receiver Last Name`, Phone, Type, Amount, Description, `Sender IBAN`) "
+                                            "VALUES (:Date, :IBAN, :Sender_First_Name, :Sender_Last_Name, :Receiver_First_Name, :Receiver_Last_Name, :Phone, :Type, :Amount, :Description, :Sender_IBAN)");
                         insertQuery.bindValue(":Date", Date);
                         insertQuery.bindValue(":IBAN", receiverIBAN);
                         insertQuery.bindValue(":Sender_First_Name", senderQuery.value(1));
@@ -221,7 +216,8 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
                         insertQuery.bindValue(":Phone", senderQuery.value(10));
                         insertQuery.bindValue(":Type", type);
                         insertQuery.bindValue(":Amount", amountStr);
-                        insertQuery.bindValue(":Description", "Transfer to " + receiverFName);
+                        insertQuery.bindValue(":Description", "Transfer to " + firstName);
+                        insertQuery.bindValue(":Sender_IBAN", m_IBAN);
 
                         if (insertQuery.exec())
                         {
@@ -250,9 +246,8 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
         else
         {
             QMessageBox::critical(this, "Sender not found", "Sender not found in the database");
-            qDebug() << "sd";
         }
-    }
+
 
     updateDashboard(series, chart, chartView);
     UpdateTransactions(transactions_TV, Recent_tr_TV);
@@ -271,25 +266,32 @@ void MainWindow::on_confrim_mt_PB_clicked()
 
 void MainWindow::UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV)
 {
+    // First Query
     QSqlQueryModel* query = new QSqlQueryModel();
-    query->setQuery("SELECT * FROM transactions");
+    QString userIBAN = m_IBAN;
+    QString queryString = "SELECT * FROM transactions WHERE `Sender IBAN` = '" + userIBAN + "' OR `IBAN` = '" + userIBAN + "'";
+    query->setQuery(queryString);
     transasctions_TV->setModel(query);
     transasctions_TV->setColumnHidden(0, true);
     transasctions_TV->setColumnWidth(1, 170);
     transasctions_TV->setColumnWidth(2, 200);
-    transasctions_TV->setColumnWidth(10, 150);
+    transasctions_TV->setColumnWidth(3, 200);
+    transasctions_TV->setColumnWidth(11, 150);
 
-
+    // Second Query
     QSqlQueryModel* queryModel = new QSqlQueryModel();
-    queryModel->setQuery("SELECT * FROM transactions ORDER BY Date DESC LIMIT 5");
+    QString queryStringRecent = "SELECT * FROM transactions WHERE `Sender IBAN` = '" + userIBAN + "' OR `IBAN` = '" + userIBAN + "' ORDER BY Date DESC LIMIT 5";
+    queryModel->setQuery(queryStringRecent);
 
     Recent_tr_TV->setModel(queryModel);
     Recent_tr_TV->hideColumn(0);
     Recent_tr_TV->hideColumn(3);
     Recent_tr_TV->hideColumn(4);
-    Recent_tr_TV->hideColumn(7);
-    Recent_tr_TV->hideColumn(10);
+    Recent_tr_TV->hideColumn(5);
+    Recent_tr_TV->hideColumn(8);
+    Recent_tr_TV->hideColumn(11);
 }
+
 
 void MainWindow::on_cancel_mt_PB_clicked()
 {
@@ -301,15 +303,15 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
 {
     QSqlQuery qry;
     qry.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
-    qry.bindValue(":IBAN", IBAN);
+    qry.bindValue(":IBAN", m_IBAN);
 
     if (qry.exec() && qry.next())
     {
-        clientFName = qry.value(1).toString();
-        clientLName = qry.value(2).toString();
-        QString balance = qry.value(19).toString();
+        m_clientFName = qry.value("First Name").toString();
+        m_clientLName = qry.value("Last Name").toString();
+        QString balance = qry.value("Balance").toString();
 
-        ui->clientname_LA->setText(clientFName + " " + clientLName[0] + ".");
+        ui->clientname_LA->setText(m_clientFName + " " + m_clientLName[0] + ".");
         ui->balance_LA_2->setText("BGN " + balance);
 
         updatepfp();
@@ -322,23 +324,23 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
 
     QSqlQuery query;
     query.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
-    query.bindValue(":IBAN", IBAN);
+    query.bindValue(":IBAN", m_IBAN);
 
     if (query.exec() && query.next())
     {
-        userExpenses = query.value(22).toDouble();
-        heir = query.value(27).toString();
+        m_userExpenses = query.value("Expenses").toDouble();
+        m_heir = query.value("Heir").toString();
         query.prepare("SELECT SUM(amount) AS totalIncome FROM transactions WHERE IBAN = :IBAN");
-        query.bindValue(":IBAN", IBAN);
+        query.bindValue(":IBAN", m_IBAN);
 
         if (query.exec() && query.next())
         {
-            userIncome = query.value("totalIncome").toDouble();
+            m_userIncome = query.value("totalIncome").toDouble();
         }
 
-        if(heir == "")
+        if(m_heir == "")
         {
-            ui->heir_detected->setText("A hair hasn't been detect! \n For the safety of the account select the heir of your assetts");
+            ui->heir_detected->setText("A heir hasn't been detect! \n For the safety of the account select the heir of your assetts");
             ui->heir_detected->setStyleSheet("color: rgb(255, 0, 0);");
             ui->addHeir_PB->show();
 
@@ -350,8 +352,8 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
     }
     series->clear();
 
-    series->append("Income", userIncome);
-    series->append("Expenses", userExpenses);
+    series->append("Income", m_userIncome);
+    series->append("Expenses", m_userExpenses);
 
     chart->setBackgroundBrush(Qt::NoBrush);
 
@@ -375,14 +377,14 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
 void MainWindow::on_calendar_PB_clicked()
 {
     this->hide();
-    calendar->show();
+    m_calendar->show();
 }
 
 void MainWindow::UpdateSettings()
 {
     QSqlQuery qry;
     qry.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
-    qry.bindValue(":IBAN", IBAN);
+    qry.bindValue(":IBAN", m_IBAN);
 
     if(qry.exec() && qry.next())
     {
@@ -400,7 +402,7 @@ void MainWindow::UpdateSettings()
         ui->Income_LE->setText(qry.value("Income").toString());
         ui->Expenses_LE->setText(qry.value("Expenses").toString());
         ui->Balance_LE->setText(qry.value("Balance").toString());
-        ui->IBAN_LE->setText(qry.value("IBAN").toString());
+        ui->IBAN_LE->setText(qry.value("Receiver IBAN").toString());
         ui->Username_LE->setText(qry.value("Username").toString());
         ui->Password_LE->setText(qry.value("Password").toString());
         ui->SecurityQuestion_LE->setText(qry.value("Security question").toString());
@@ -420,8 +422,8 @@ void MainWindow::on_Send_qt_PB_clicked()
     query.bindValue(":IBAN", receiverIBAN);
     if(query.exec() && query.next())
     {
-        QString FName = query.value(5).toString();
-        QString LName = query.value(6).toString();
+        QString FName = query.value("Receiver First Name").toString();
+        QString LName = query.value("Receiver Last Name").toString();
         performTransaction(receiverIBAN, amountStr, type, FName, LName);
     }
 }
@@ -429,6 +431,14 @@ void MainWindow::on_Send_qt_PB_clicked()
 void MainWindow::on_addHeir_PB_clicked()
 {
 
-    addHeir->show();
+    m_addHeir->show();
+}
+
+
+void MainWindow::on_signOut_PB_clicked()
+{
+    logIn* login = new logIn();
+    login->show();
+    this->hide();
 }
 

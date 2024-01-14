@@ -6,15 +6,15 @@ Register::Register(QWidget *parent)
 {
     ui->setupUi(this);
     ui->password_LE->setEchoMode(QLineEdit::Password);
-    LogIn = std::make_unique<logIn>();
+    m_LogIn = std::make_unique<logIn>();
     this->setWindowTitle("Register");
-    databaseManager = std::make_unique<DatabaseManager>();
-    databaseManager->openConnection();
-    db = databaseManager->getDatabase();
+    m_databaseManager = std::make_unique<DatabaseManager>();
+    m_databaseManager->openConnection();
+    m_db = m_databaseManager->getDatabase();
 
-    termsAndConditions = std::make_unique<TermsAndConditions>();
-    termsAndConditions->setParent(this);
-    termsAndConditions->hide();
+    m_termsAndConditions = std::make_unique<TermsAndConditions>();
+    m_termsAndConditions->setParent(this);
+    m_termsAndConditions->hide();
     m_accepted = false;
 }
 
@@ -167,7 +167,7 @@ void Register::on_submit_PB_clicked()
         if (qry.exec()) {
             QMessageBox::information(this, "Success", "Your registration to trawma bank has been successful. \n\nRedirecting to the login page..");
             this->hide();
-            LogIn->show();
+            m_LogIn->show();
         } else {
             QMessageBox::critical(this, "Failure", "Data has not been inserted successfully. Try again or contact us ");
             qDebug() << qry.lastError().text();
@@ -197,13 +197,13 @@ void Register::on_Terns_and_conditions_stateChanged(int arg1)
 {
     if(arg1 == Qt::Checked)
     {
-        termsAndConditions->move(QPoint(ui->Terns_and_conditions->pos().x() - 400, ui->Terns_and_conditions->pos().y() - 300));
-        termsAndConditions->show();
+        m_termsAndConditions->move(QPoint(ui->Terns_and_conditions->pos().x() - 400, ui->Terns_and_conditions->pos().y() - 300));
+        m_termsAndConditions->show();
         m_accepted = true;
     }
     else if(arg1 == Qt::Unchecked)
     {
-        termsAndConditions->hide();
+        m_termsAndConditions->hide();
         m_accepted = false;
     }
 }

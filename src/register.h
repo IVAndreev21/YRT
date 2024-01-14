@@ -38,10 +38,10 @@ private slots:
 
 private:
     Ui::Register *ui;
-    std::unique_ptr<DatabaseManager> databaseManager;
-    std::unique_ptr<logIn> LogIn;
-    std::unique_ptr<TermsAndConditions> termsAndConditions;
-    QSqlDatabase db;
+    std::unique_ptr<DatabaseManager> m_databaseManager;
+    std::unique_ptr<logIn> m_LogIn;
+    std::unique_ptr<TermsAndConditions> m_termsAndConditions;
+    QSqlDatabase m_db;
 
     QString generateSalt();
     QString hashPassword(const QString& password, const QString& salt);
