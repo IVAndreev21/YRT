@@ -66,20 +66,20 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    std::shared_ptr<Calendar> calendar;
-    std::shared_ptr<Crypto> crypto;
-    std::shared_ptr<AddHeir> addHeir;
+    std::shared_ptr<Calendar> m_calendar;
+    std::shared_ptr<Crypto> m_crypto;
+    std::shared_ptr<AddHeir> m_addHeir;
     void updatepfp();
     void UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV);
     void performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName);
     void UpdateSettings();
-    double userExpenses;
-    double userIncome;
+    double m_userExpenses;
+    double m_userIncome;
 
-    QString IBAN;
-    QString username;
-    QString clientFName;
-    QString clientLName;
+    QString m_IBAN;
+    QString m_username;
+    QString m_clientFName;
+    QString m_clientLName;
     void updateDashboard(QPieSeries* series, QChart* chart, QChartView* chartView);
     bool DetectedAccident();
 
@@ -90,7 +90,7 @@ private:
     QTableView* transactions_TV;
     QTableView* Recent_tr_TV;
 
-    QString heir;
+    QString m_heir;
 };
 
 #endif // MAINWINDOW_H

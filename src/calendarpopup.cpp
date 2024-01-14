@@ -6,7 +6,7 @@ CalendarPopUp::CalendarPopUp(std::shared_ptr<Calendar> calendar,const QString& u
     : QWidget(parent), ui(new Ui::CalendarPopUp), m_calendar(calendar)
 {
     ui->setupUi(this);
-    username = username_ref;
+    m_username = username_ref;
 
     ui->From_DE->setDate(QDate::currentDate());
     ui->Till_DE->setDate(QDate::currentDate());
@@ -28,7 +28,7 @@ void CalendarPopUp::on_Save_PB_clicked()
 
     query.prepare("INSERT INTO calendar (`Username`, `Title`, `Description`, `From`, `Till`, `Repeat`)"
                 "VALUES (:username, :title, :description, :from, :till, :repeat)");
-    query.bindValue(":username", username);
+    query.bindValue(":username", m_username);
     query.bindValue(":title", title);
     query.bindValue(":description", description);
     query.bindValue(":from", from);

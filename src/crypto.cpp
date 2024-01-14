@@ -2,7 +2,7 @@
 #include "ui_crypto.h"
 #include "mainwindow.h"
 Crypto::Crypto(std::shared_ptr<MainWindow> mainwindow, QWidget *parent)
-    : QWidget(parent), ui(new Ui::Crypto), mainWindow(mainwindow)
+    : QWidget(parent), ui(new Ui::Crypto), m_mainWindow(mainwindow)
 {
     ui->setupUi(this);
 }
@@ -15,6 +15,6 @@ Crypto::~Crypto()
 void Crypto::on_back_PB_clicked()
 {
     this->hide();
-    mainWindow->show();
+    m_mainWindow->show();
 }
 

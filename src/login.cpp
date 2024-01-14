@@ -9,8 +9,8 @@ logIn::logIn(QWidget *parent) : QWidget(parent), ui(new Ui::logIn)
     ui->password_LE->setEchoMode(QLineEdit::Password);
     this->setWindowTitle("Log In");
 
-    databaseManager = std::make_unique<DatabaseManager>();
-    databaseManager->openConnection();
+    m_databaseManager = std::make_unique<DatabaseManager>();
+    m_databaseManager->openConnection();
 }
 
 logIn::~logIn()
@@ -51,8 +51,8 @@ void logIn::on_LogIn_PB_clicked()
             {
                 QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
                 this->hide();
-                mainWindow = std::make_unique<MainWindow>(this, userIBAN, username);
-                mainWindow->show();
+                m_mainWindow = std::make_unique<MainWindow>(this, userIBAN, username);
+                m_mainWindow->show();
             }
             else
             {
@@ -70,8 +70,8 @@ void logIn::on_LogIn_PB_clicked()
 
 void logIn::on_ForgotenPassword_LA_linkActivated(const QString &link)
 {
-    resetCredentials = std::make_unique<ResetCredentials>(std::shared_ptr<logIn>());
+    m_resetCredentials = std::make_unique<ResetCredentials>(std::shared_ptr<logIn>());
     this->hide();
-    resetCredentials->show();
+    m_resetCredentials->show();
 }
 

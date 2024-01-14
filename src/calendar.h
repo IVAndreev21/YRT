@@ -31,13 +31,11 @@ private slots:
 
 private:
     Ui::Calendar *ui;
-    std::unique_ptr<CalendarPopUp> calendarPopUp;
-    QString username;
-    QCalendarWidget* calendar;
-    std::shared_ptr<MainWindow> mainWindow;
+    std::unique_ptr<CalendarPopUp> m_calendarPopUp;
+    QString m_username;
+    QCalendarWidget* m_calendar;
+    std::shared_ptr<MainWindow> m_mainWindow;
     void displayEvents();
-
-    const QDate selectedDate;
 };
 
 #endif // CALENDAR_H

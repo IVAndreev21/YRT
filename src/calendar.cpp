@@ -3,15 +3,15 @@
 #include "mainwindow.h"
 
 Calendar::Calendar(std::shared_ptr<MainWindow> mainwindow, const QString& username_ref, QWidget *parent)
-    : QWidget(parent), ui(new Ui::Calendar), mainWindow(mainwindow)
+    : QWidget(parent), ui(new Ui::Calendar), m_mainWindow(mainwindow)
 {
     ui->setupUi(this);
-    username = username_ref;
+    m_username = username_ref;
 
-    calendarPopUp = std::make_unique<CalendarPopUp>(std::shared_ptr<Calendar>(this), username);
+    m_calendarPopUp = std::make_unique<CalendarPopUp>(std::shared_ptr<Calendar>(this), m_username);
 
-    calendar = ui->calendarWidget;
-    calendar->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
+    m_calendar = ui->calendarWidget;
+    m_calendar->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
     fetchEvents();
 }
 
@@ -23,7 +23,6 @@ Calendar::~Calendar()
 void Calendar::on_calendarWidget_clicked(const QDate &date)
 {
 
-    selectedDate == date;
     QString selectedDay = QString::number(date.day());
     QString selectedMonth = date.toString("MMMM");
     QString selectedYear = QString::number(date.year());
@@ -34,7 +33,7 @@ void Calendar::on_calendarWidget_clicked(const QDate &date)
 
     QSqlQuery qry;
     qry.prepare("SELECT * FROM calendar WHERE Username = :username AND `From` = :fromDate");
-    qry.bindValue(":username", username);
+    qry.bindValue(":username", m_username);
     qry.bindValue(":fromDate", date);
 
     if (qry.exec())
@@ -60,14 +59,14 @@ void Calendar::on_calendarWidget_clicked(const QDate &date)
 void Calendar::on_back_PB_clicked()
 {
     this->hide();
-    mainWindow->show();
+    m_mainWindow->show();
 }
 
 void Calendar::fetchEvents()
 {
     QSqlQuery qry;
     qry.prepare("SELECT `From` FROM calendar WHERE Username = :username");
-    qry.bindValue(":username", username);
+    qry.bindValue(":username", m_username);
 
     QList<QDate> highlightedDates;
 
@@ -81,7 +80,7 @@ void Calendar::fetchEvents()
     }
 
     // Clear previous date text formats
-    calendar->setDateTextFormat(QDate(), QTextCharFormat());
+    m_calendar->setDateTextFormat(QDate(), QTextCharFormat());
 
     // Set background color for each date in the list
     QBrush brush(QColor(06, 125, 255));  // Set your desired background color
@@ -90,12 +89,12 @@ void Calendar::fetchEvents()
 
     for (const QDate& highlightedDate : highlightedDates)
     {
-        calendar->setDateTextFormat(highlightedDate, format);
+        m_calendar->setDateTextFormat(highlightedDate, format);
     }
 }
 
 void Calendar::on_makeEvent_PB_clicked()
 {
-    calendarPopUp->show();
+    m_calendarPopUp->show();
 }
 

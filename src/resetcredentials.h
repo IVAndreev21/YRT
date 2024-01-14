@@ -38,9 +38,9 @@ private:
     Ui::ResetCredentials *ui;
 
     QString hashSecurityQuestion(const QString& asnwer, const QString& salt);
-    QString SQSalt;
+    QString m_SQSalt;
 
-    std::shared_ptr<logIn> LogIn;
+    std::shared_ptr<logIn> m_LogIn;
 };
 
 #endif // RESETCREDENTIALS_H

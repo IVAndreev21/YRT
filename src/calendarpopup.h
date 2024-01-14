@@ -25,7 +25,7 @@ private slots:
 
 private:
     Ui::CalendarPopUp *ui;
-    QString username;
+    QString m_username;
 
     std::shared_ptr<Calendar> m_calendar;
 };

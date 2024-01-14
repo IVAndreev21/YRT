@@ -2,7 +2,7 @@
 #include "ui_resetcredentials.h"
 #include "login.h"  // Include the forward declaration of the logIn class
 ResetCredentials::ResetCredentials(std::shared_ptr<logIn> login, QWidget *parent)
-    : QWidget(parent), ui(new Ui::ResetCredentials), LogIn(login)
+    : QWidget(parent), ui(new Ui::ResetCredentials), m_LogIn(login)
 {
     ui->setupUi(this);
     ui->security_question_LE->hide();
@@ -33,8 +33,8 @@ void ResetCredentials::on_Email_LE_editingFinished()
         ui->security_question_LA->setText(qry.value(17).toString());
         ui->security_question_LE->show();
 
-        SQSalt = qry.value(22).toString();
-        qDebug() << SQSalt;
+        m_SQSalt = qry.value(22).toString();
+        qDebug() << m_SQSalt;
 
     } else {
         // No record found
@@ -146,7 +146,7 @@ void ResetCredentials::on_confirm_username_PB_clicked()
             {
                 QMessageBox::information(this, "Username reset", "Your username has been reset");
                 this->hide();
-                LogIn->show();
+                m_LogIn->show();
                 qDebug() << qry.lastError().text();
                 qDebug() << qry.lastQuery();  // Print the last executed query for further inspection
                 qDebug() << qry.boundValues();  // Print the bound values for further inspection

@@ -23,7 +23,7 @@ private slots:
 private:
     Ui::Crypto *ui;
 
-    std::shared_ptr<MainWindow> mainWindow;
+    std::shared_ptr<MainWindow> m_mainWindow;
 };
 
 #endif // CRYPTO_H
