@@ -166,13 +166,6 @@ void MainWindow::on_make_tr_PB_clicked()
 }
 void MainWindow::performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName)
 {
-    QSqlQuery receiverQuery;
-    receiverQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
-    receiverQuery.bindValue(":IBAN", receiverIBAN);
-
-    if (receiverQuery.exec() && receiverQuery.next())
-    {
-        QString receiverFName = receiverQuery.value(1).toString();
         QSqlQuery senderQuery;
         senderQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
         senderQuery.bindValue(":IBAN", IBAN);
@@ -212,10 +205,11 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
                     {
                         QSqlQuery insertQuery;
                         QString Date = QDateTime::currentDateTime().toString();
-                        insertQuery.prepare("INSERT INTO transactions (Date, IBAN, `Sender First Name`, `Sender Last Name`, `Receiver First Name`, `Receiver Last Name`, Phone, Type, Amount, Description) "
-                                            "VALUES (:Date, :IBAN, :Sender_First_Name, :Sender_Last_Name, :Receiver_First_Name, :Receiver_Last_Name, :Phone, :Type, :Amount, :Description)");
+                        insertQuery.prepare("INSERT INTO transactions (Date, `Sender IBAN`, `Receiver IBAN`, `Sender First Name`, `Sender Last Name`, `Receiver First Name`, `Receiver Last Name`, Phone, Type, Amount, Description) "
+                                            "VALUES (:Date, :senderIBAN, :receiverIBAN, :Sender_First_Name, :Sender_Last_Name, :Receiver_First_Name, :Receiver_Last_Name, :Phone, :Type, :Amount, :Description)");
                         insertQuery.bindValue(":Date", Date);
-                        insertQuery.bindValue(":IBAN", receiverIBAN);
+                        insertQuery.bindValue(":senderIBAN", IBAN);
+                        insertQuery.bindValue(":receiverIBAN", receiverIBAN);
                         insertQuery.bindValue(":Sender_First_Name", senderQuery.value(1));
                         insertQuery.bindValue(":Sender_Last_Name", senderQuery.value(2));
                         insertQuery.bindValue(":Receiver_First_Name", firstName);
@@ -223,7 +217,7 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
                         insertQuery.bindValue(":Phone", senderQuery.value(10));
                         insertQuery.bindValue(":Type", type);
                         insertQuery.bindValue(":Amount", amountStr);
-                        insertQuery.bindValue(":Description", "Transfer to " + receiverFName);
+                        insertQuery.bindValue(":Description", "Transfer to " + firstName);
 
                         if (insertQuery.exec())
                         {
@@ -252,9 +246,8 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
         else
         {
             QMessageBox::critical(this, "Sender not found", "Sender not found in the database");
-            qDebug() << "sd";
         }
-    }
+
 
     updateDashboard(series, chart, chartView);
     UpdateTransactions(transactions_TV, Recent_tr_TV);
@@ -273,17 +266,21 @@ void MainWindow::on_confrim_mt_PB_clicked()
 
 void MainWindow::UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV)
 {
+    // First Query
     QSqlQueryModel* query = new QSqlQueryModel();
-    query->setQuery("SELECT * FROM transactions");
+    QString userIBAN = IBAN;
+    QString queryString = "SELECT * FROM transactions WHERE `Sender IBAN` = '" + userIBAN + "' OR `Receiver IBAN` = '" + userIBAN + "'";
+    query->setQuery(queryString);
     transasctions_TV->setModel(query);
     transasctions_TV->setColumnHidden(0, true);
     transasctions_TV->setColumnWidth(1, 170);
     transasctions_TV->setColumnWidth(2, 200);
     transasctions_TV->setColumnWidth(10, 150);
 
-
+    // Second Query
     QSqlQueryModel* queryModel = new QSqlQueryModel();
-    queryModel->setQuery("SELECT * FROM transactions ORDER BY Date DESC LIMIT 5");
+    QString queryStringRecent = "SELECT * FROM transactions WHERE `Sender IBAN` = '" + userIBAN + "' OR `Receiver IBAN` = '" + userIBAN + "' ORDER BY Date DESC LIMIT 5";
+    queryModel->setQuery(queryStringRecent);
 
     Recent_tr_TV->setModel(queryModel);
     Recent_tr_TV->hideColumn(0);
@@ -292,6 +289,7 @@ void MainWindow::UpdateTransactions(QTableView* transasctions_TV, QTableView* Re
     Recent_tr_TV->hideColumn(7);
     Recent_tr_TV->hideColumn(10);
 }
+
 
 void MainWindow::on_cancel_mt_PB_clicked()
 {

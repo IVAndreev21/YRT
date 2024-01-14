@@ -193,6 +193,19 @@ color: rgb(255, 255, 255);</string>
       <string/>
      </property>
     </widget>
+    <widget class="QLabel" name="events_LA">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>161</width>
+       <height>371</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QPushButton" name="makeEvent_PB">
     <property name="geometry">

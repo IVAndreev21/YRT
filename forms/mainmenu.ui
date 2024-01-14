@@ -55,7 +55,6 @@ QPushButton:hover
 {
    background-color:white;
   color:black;
-  transition:0,5s;
 };
 </string>
    </property>
@@ -83,7 +82,6 @@ QPushButton:hover
 {
    background-color:white;
   color:black;
-  transition:0,5s;
 };</string>
    </property>
    <property name="text">
