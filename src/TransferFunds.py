@@ -48,7 +48,16 @@ while True:
                         print(f"User {username}'s Heir: {heir}")
 
                         # Transfer balance to the heir's balance if heir is not None and balance is not None
-                        
+                        if heir is not None and balance is not None:
+                            # Update the heir's balance by adding the transferred amount
+                            heir_update_query = f"UPDATE users SET Balance = Balance + {balance} WHERE username = '{heir}'"
+                            cursor.execute(heir_update_query)
+                            print(f"Transferred {balance} from {username} to {heir}'s balance")
+
+                            # Update the user's balance by subtracting the transferred amount
+                            user_update_query = f"UPDATE users SET Balance = Balance - {balance} WHERE username = '{username}'"
+                            cursor.execute(user_update_query)
+                            print(f"Updated {username}'s balance to {balance}")
 
             # Commit the changes to the database
             cnx.commit()
