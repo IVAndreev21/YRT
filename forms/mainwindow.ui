@@ -268,7 +268,7 @@ color: rgb(255, 255, 255);</string>
     </font>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="dashboard_page">
     <widget class="QWidget" name="gridLayoutWidget">
@@ -774,6 +774,30 @@ QPushButton
       <string/>
      </property>
     </widget>
+    <widget class="QLabel" name="Currency_BGN_LA">
+     <property name="geometry">
+      <rect>
+       <x>980</x>
+       <y>340</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/images/BG_flag_icon.png);</string>
+     </property>
+     <property name="text">
+      <string>   BGN</string>
+     </property>
+    </widget>
     <zorder>addHeir_PB_2</zorder>
     <zorder>gridLayoutWidget</zorder>
     <zorder>My_cards_LA</zorder>
@@ -796,6 +820,7 @@ QPushButton
     <zorder>heir_detected</zorder>
     <zorder>addHeir_PB</zorder>
     <zorder>label</zorder>
+    <zorder>Currency_BGN_LA</zorder>
    </widget>
    <widget class="QWidget" name="transacions_page">
     <widget class="QLabel" name="Bank_tr_LA">
@@ -1695,30 +1720,6 @@ border-radius:15px;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="Currency_BGN_LA">
-   <property name="geometry">
-    <rect>
-     <x>1140</x>
-     <y>330</y>
-     <width>131</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <italic>false</italic>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">image: url(:/images/BG_flag_icon.png);</string>
-   </property>
-   <property name="text">
-    <string>   BGN</string>
-   </property>
-  </widget>
   <zorder>label_3</zorder>
   <zorder>verticalLayoutWidget</zorder>
   <zorder>balance_LA</zorder>
@@ -1728,7 +1729,6 @@ border-radius:15px;</string>
   <zorder>stackedWidget</zorder>
   <zorder>line</zorder>
   <zorder>signOut_PB</zorder>
-  <zorder>Currency_BGN_LA</zorder>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>
