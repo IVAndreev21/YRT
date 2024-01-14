@@ -348,6 +348,9 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Now</string>
        </property>
@@ -917,8 +920,8 @@ border-radius:30px;</string>
     <rect>
      <x>0</x>
      <y>10</y>
-     <width>151</width>
-     <height>671</height>
+     <width>161</width>
+     <height>721</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -928,15 +931,15 @@ border-radius:10px;</string>
    <widget class="QPushButton" name="back_PB">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>620</y>
+      <x>30</x>
+      <y>650</y>
       <width>100</width>
       <height>32</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(84, 85, 85);
-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color:white;
+color: black;</string>
     </property>
     <property name="text">
      <string>Back</string>

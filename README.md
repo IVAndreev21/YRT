@@ -36,7 +36,7 @@ To run the project please download the specific release based on your OS
 
 <a href="https://www.qt.io/product/development-tools"><img src="resources/QT-logo.png" alt="qt creator" width="60"/></a>
 
-<a href="https://github.com/"><img src="resources/githob-desktop-logo.png" alt="GitHub Icon" width="60"/></a>
+<a href="https://github.com/"><img src="resources/github-desktop-logo.png" alt="GitHub Icon" width="60"/></a>
 
 <a href="https://git-scm.com/"><img src="resources/git-icon.png" alt="Git" width="60"/></a>
 

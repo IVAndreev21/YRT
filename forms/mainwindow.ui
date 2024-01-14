@@ -137,7 +137,7 @@
      <family>Arial</family>
      <pointsize>12</pointsize>
      <italic>false</italic>
-     <bold>false</bold>
+     <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
@@ -268,7 +268,7 @@ color: rgb(255, 255, 255);</string>
     </font>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="dashboard_page">
     <widget class="QWidget" name="gridLayoutWidget">
@@ -849,11 +849,14 @@ background-color:rgb(66, 66, 66);
      </property>
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>160</y>
-       <width>731</width>
+       <x>0</x>
+       <y>10</y>
+       <width>751</width>
        <height>481</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="currentIndex">
       <number>3</number>
@@ -868,9 +871,9 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="FName_LA">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>20</y>
-         <width>71</width>
+         <width>81</width>
          <height>16</height>
         </rect>
        </property>
@@ -894,9 +897,9 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="LName_LA">
        <property name="geometry">
         <rect>
-         <x>310</x>
+         <x>290</x>
          <y>20</y>
-         <width>71</width>
+         <width>81</width>
          <height>16</height>
         </rect>
        </property>
@@ -920,9 +923,9 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="Birth_LA">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>110</y>
-         <width>81</width>
+         <width>91</width>
          <height>16</height>
         </rect>
        </property>
@@ -946,7 +949,7 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="Gender_LA">
        <property name="geometry">
         <rect>
-         <x>310</x>
+         <x>290</x>
          <y>110</y>
          <width>81</width>
          <height>16</height>
@@ -972,7 +975,7 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="SSN_LA">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>10</x>
          <y>230</y>
          <width>191</width>
          <height>16</height>
@@ -988,9 +991,9 @@ background-color:rgb(66, 66, 66);
        </property>
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>270</y>
-         <width>161</width>
+         <width>171</width>
          <height>31</height>
         </rect>
        </property>
@@ -1016,7 +1019,7 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="City_LA">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>10</x>
          <y>30</y>
          <width>81</width>
          <height>16</height>
@@ -1029,9 +1032,9 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="State_LA">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>220</x>
          <y>30</y>
-         <width>91</width>
+         <width>111</width>
          <height>16</height>
         </rect>
        </property>
@@ -1045,7 +1048,7 @@ background-color:rgb(66, 66, 66);
        </property>
        <property name="geometry">
         <rect>
-         <x>240</x>
+         <x>220</x>
          <y>60</y>
          <width>191</width>
          <height>31</height>
@@ -1055,9 +1058,9 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="PostalCode_LA">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>10</x>
          <y>140</y>
-         <width>81</width>
+         <width>101</width>
          <height>16</height>
         </rect>
        </property>
@@ -1081,7 +1084,7 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="Street_LA">
        <property name="geometry">
         <rect>
-         <x>250</x>
+         <x>220</x>
          <y>150</y>
          <width>81</width>
          <height>16</height>
@@ -1128,7 +1131,7 @@ background-color:rgb(66, 66, 66);
        </property>
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>90</y>
          <width>151</width>
          <height>31</height>
@@ -1138,7 +1141,7 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="AccType_LA">
        <property name="geometry">
         <rect>
-         <x>270</x>
+         <x>250</x>
          <y>60</y>
          <width>181</width>
          <height>16</height>
@@ -1165,7 +1168,7 @@ background-color:rgb(66, 66, 66);
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>160</y>
+         <y>170</y>
          <width>181</width>
          <height>16</height>
         </rect>
@@ -1190,7 +1193,7 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="Expenses_LA">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>250</x>
          <y>170</y>
          <width>181</width>
          <height>16</height>
@@ -1206,7 +1209,7 @@ background-color:rgb(66, 66, 66);
        </property>
        <property name="geometry">
         <rect>
-         <x>240</x>
+         <x>250</x>
          <y>210</y>
          <width>171</width>
          <height>31</height>
@@ -1216,8 +1219,8 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="Balance_LA">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>270</y>
+         <x>10</x>
+         <y>280</y>
          <width>181</width>
          <height>16</height>
         </rect>
@@ -1258,9 +1261,9 @@ background-color:rgb(66, 66, 66);
        </property>
        <property name="geometry">
         <rect>
-         <x>230</x>
+         <x>250</x>
          <y>310</y>
-         <width>191</width>
+         <width>171</width>
          <height>31</height>
         </rect>
        </property>
@@ -1273,7 +1276,7 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="Username_LA">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>20</x>
          <y>30</y>
          <width>121</width>
          <height>16</height>
@@ -1286,7 +1289,7 @@ background-color:rgb(66, 66, 66);
       <widget class="QLineEdit" name="Username_LE">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>20</x>
          <y>60</y>
          <width>151</width>
          <height>41</height>
@@ -1296,7 +1299,7 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="Password_LA">
        <property name="geometry">
         <rect>
-         <x>290</x>
+         <x>260</x>
          <y>30</y>
          <width>121</width>
          <height>16</height>
@@ -1321,7 +1324,7 @@ background-color:rgb(66, 66, 66);
         <rect>
          <x>20</x>
          <y>150</y>
-         <width>121</width>
+         <width>131</width>
          <height>16</height>
         </rect>
        </property>
@@ -1332,9 +1335,9 @@ background-color:rgb(66, 66, 66);
       <widget class="QLineEdit" name="SecurityQuestion_LE">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>20</x>
          <y>180</y>
-         <width>231</width>
+         <width>351</width>
          <height>61</height>
         </rect>
        </property>
@@ -1342,9 +1345,9 @@ background-color:rgb(66, 66, 66);
       <widget class="QLabel" name="SecurityAnswer_LA">
        <property name="geometry">
         <rect>
-         <x>300</x>
+         <x>390</x>
          <y>150</y>
-         <width>121</width>
+         <width>131</width>
          <height>16</height>
         </rect>
        </property>
@@ -1355,7 +1358,7 @@ background-color:rgb(66, 66, 66);
       <widget class="QLineEdit" name="SecurityAnswer_LE">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>390</x>
          <y>180</y>
          <width>251</width>
          <height>61</height>
@@ -1368,9 +1371,9 @@ background-color:rgb(66, 66, 66);
       <widget class="QPushButton" name="pfp_acc_PB">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>350</y>
-         <width>141</width>
+         <width>161</width>
          <height>51</height>
         </rect>
        </property>
