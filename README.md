@@ -15,6 +15,7 @@ Dobril Peev - Python Developer <br>
  🚀 Languages:
 <p align="left">     
 <img src="https://img.icons8.com/color/48/000000/c-plus-plus-logo.png" width = 48px height = 48px/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" width = 48px height = 48px/>
 
   
 🚀 Tools:
@@ -27,7 +28,6 @@ Dobril Peev - Python Developer <br>
   <a href="https://git-scm.com/"><img src="https://img.icons8.com/color/48/000000/git.png" alt="Git"/></a>
   <a href="https://git-scm.com/"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" heigh=48px width=48px/></a>
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Qt_logo_2016.svg/2560px-Qt_logo_2016.svg.png" width = 48px height = 48px/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" width = 48px height = 48px/>
   <img src="https://w7.pngwing.com/pngs/46/626/png-transparent-c-logo-the-c-programming-language-computer-icons-computer-programming-source-code-programming-miscellaneous-template-blue.png" width = 48px height = 48px/>
   
  📋 Description:
