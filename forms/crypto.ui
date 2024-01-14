@@ -811,6 +811,40 @@ border-radius:30px;</string>
    <widget class="QWidget" name="Transactions"/>
    <widget class="QWidget" name="watchlist"/>
   </widget>
+  <widget class="QWidget" name="widget_10" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>10</y>
+     <width>151</width>
+     <height>671</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(39, 40, 40);
+border-radius:10px;</string>
+   </property>
+   <widget class="QPushButton" name="back_PB">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>620</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(84, 85, 85);</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
+  </widget>
+  <zorder>widget_10</zorder>
+  <zorder>line</zorder>
+  <zorder>verticalLayoutWidget</zorder>
+  <zorder>stackedWidget</zorder>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>

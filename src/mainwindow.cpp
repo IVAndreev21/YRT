@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWidget *parent)
+#include "login.h"
+MainWindow::MainWindow(logIn* login, const QString& IBAN_ref, const QString& username_ref, QWidget *parent)
     : QWidget(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -12,8 +13,8 @@ MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWi
     chart = new QChart;
     chartView = new QChartView(chart);
 
-    crypto = std::make_unique<Crypto>();
-    addHeir = std::make_unique<AddHeir>(username);
+    crypto = std::make_shared<Crypto>(std::shared_ptr<MainWindow>(this));
+    addHeir = std::make_shared<AddHeir>(username);
     addHeir->setParent(this);
     addHeir->hide();
     updateDashboard(series, chart, chartView);
@@ -28,7 +29,7 @@ MainWindow::MainWindow(const QString& IBAN_ref, const QString& username_ref, QWi
     UpdateSettings();
 
     ui->Password_LE->setEchoMode(QLineEdit::Password);
-    calendar = std::make_unique<Calendar>(std::shared_ptr<MainWindow>(this), username);
+    calendar = std::make_shared<Calendar>(std::shared_ptr<MainWindow>(this), username);
 
 }
 
@@ -436,6 +437,8 @@ void MainWindow::on_addHeir_PB_clicked()
 
 void MainWindow::on_signOut_PB_clicked()
 {
+    logIn* login = new logIn();
+    login->show();
     this->hide();
 }
 

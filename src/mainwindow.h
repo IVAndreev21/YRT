@@ -23,6 +23,8 @@
 #include "calendar.h"
 #include "crypto.h"
 #include "addheir.h"
+
+class logIn;
 namespace Ui {
 class MainWindow;
 }
@@ -32,7 +34,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit MainWindow(const QString& IBAN_ref, const QString& username_ref, QWidget *parent = nullptr);
+    explicit MainWindow(logIn* login, const QString& IBAN_ref, const QString& username_ref, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -64,9 +66,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    std::unique_ptr<Calendar> calendar;
-    std::unique_ptr<Crypto> crypto;
-    std::unique_ptr<AddHeir> addHeir;
+    std::shared_ptr<Calendar> calendar;
+    std::shared_ptr<Crypto> crypto;
+    std::shared_ptr<AddHeir> addHeir;
     void updatepfp();
     void UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV);
     void performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName);

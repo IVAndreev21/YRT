@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+class MainWindow;
+
 namespace Ui {
 class Crypto;
 }
@@ -12,11 +14,16 @@ class Crypto : public QWidget
     Q_OBJECT
 
 public:
-    explicit Crypto(QWidget *parent = nullptr);
+    explicit Crypto(std::shared_ptr<MainWindow> mainwindow, QWidget *parent = nullptr);
     ~Crypto();
+
+private slots:
+    void on_back_PB_clicked();
 
 private:
     Ui::Crypto *ui;
+
+    std::shared_ptr<MainWindow> mainWindow;
 };
 
 #endif // CRYPTO_H

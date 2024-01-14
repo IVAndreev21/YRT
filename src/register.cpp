@@ -6,7 +6,7 @@ Register::Register(QWidget *parent)
 {
     ui->setupUi(this);
     ui->password_LE->setEchoMode(QLineEdit::Password);
-    LogIn = std::make_unique<logIn>();
+    LogIn = std::make_unique<logIn>(this);
     this->setWindowTitle("Register");
     databaseManager = std::make_unique<DatabaseManager>();
     databaseManager->openConnection();

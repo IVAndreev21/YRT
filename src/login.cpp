@@ -11,9 +11,6 @@ logIn::logIn(QWidget *parent) : QWidget(parent), ui(new Ui::logIn)
 
     databaseManager = std::make_unique<DatabaseManager>();
     databaseManager->openConnection();
-
-    resetCredentials = std::make_unique<ResetCredentials>(std::shared_ptr<logIn>(this));
-
 }
 
 logIn::~logIn()
@@ -38,6 +35,7 @@ void logIn::on_LogIn_PB_clicked()
     if (qry.exec() && qry.next())
     {
         QString hashedPasswordFromDB = qry.value(16).toString();
+
         QString saltFromDB = qry.value(23).toString();
         QString hashedPasswordToCheck = hashPassword(password, saltFromDB);
 
@@ -52,11 +50,9 @@ void logIn::on_LogIn_PB_clicked()
             if(qry.exec())
             {
                 QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
-                mainWindow = std::make_unique<MainWindow>(userIBAN, username);
                 this->hide();
+                mainWindow = std::make_unique<MainWindow>(this, userIBAN, username);
                 mainWindow->show();
-                ui->username_LE->clear();
-                ui->password_LE->clear();
             }
             else
             {
@@ -74,6 +70,8 @@ void logIn::on_LogIn_PB_clicked()
 
 void logIn::on_ForgotenPassword_LA_linkActivated(const QString &link)
 {
+    resetCredentials = std::make_unique<ResetCredentials>(std::shared_ptr<logIn>());
+    this->hide();
     resetCredentials->show();
 }
 
