@@ -16,24 +16,48 @@
   <widget class="QLabel" name="YRTBank_LA">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>40</y>
-     <width>231</width>
-     <height>16</height>
+     <x>480</x>
+     <y>30</y>
+     <width>331</width>
+     <height>161</height>
     </rect>
    </property>
+   <property name="whatsThis">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/logo.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
    <property name="text">
-    <string>YRT Bank</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../resources/resources.qrc">:/images/logo.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="LogIn_PB">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>100</y>
-     <width>101</width>
-     <height>31</height>
+     <x>560</x>
+     <y>220</y>
+     <width>161</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+QPushButton{
+
+	background-color: rgb(70, 70, 70);
+   color:white;
+}
+QPushButton:hover
+{
+   background-color:white;
+  color:black;
+  transition:0,5s;
+};
+</string>
    </property>
    <property name="text">
     <string>LogIn</string>
@@ -42,17 +66,54 @@
   <widget class="QPushButton" name="Register_PB">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>170</y>
-     <width>100</width>
-     <height>32</height>
+     <x>559</x>
+     <y>280</y>
+     <width>161</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+QPushButton{
+
+	background-color: rgb(70, 70, 70);
+   color:white;
+}
+QPushButton:hover
+{
+   background-color:white;
+  color:black;
+  transition:0,5s;
+};</string>
    </property>
    <property name="text">
     <string>Register</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>-160</x>
+     <y>-50</y>
+     <width>1641</width>
+     <height>841</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:rgba(0, 0, 0, 100);
+border-radius:15px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>label_3</zorder>
+  <zorder>YRTBank_LA</zorder>
+  <zorder>LogIn_PB</zorder>
+  <zorder>Register_PB</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
