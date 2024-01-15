@@ -1707,6 +1707,25 @@ border-radius:15px;</string>
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>520</y>
+     <width>71</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../resources/resources.qrc">:/images/BankLogo.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
   <zorder>label_3</zorder>
   <zorder>verticalLayoutWidget</zorder>
   <zorder>balance_LA</zorder>
@@ -1715,7 +1734,10 @@ border-radius:15px;</string>
   <zorder>stackedWidget</zorder>
   <zorder>line</zorder>
   <zorder>signOut_PB</zorder>
+  <zorder>label_2</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

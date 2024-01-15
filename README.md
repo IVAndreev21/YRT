@@ -66,6 +66,10 @@ To run the project please download the specific release based on your OS
 <a href="https://www.microsoft.com/en-us/microsoft-teams/group-chat-software"><img src="resources/teams-logo.png" alt="Teams Icon" width="60"/></a>
 
 
+### PARTNERS
+
+<a href=""><img src="resources/BankLogo.png" alt="PowerPoint Icon" width="60"/></a>
+
 ## 🧑 Collaborators <a name="collaborators"></a>
 - [Ivan Andreev](https://github.com/IVAndreev21) - Scrum trainer 
 - [Boyan Kyovtorov](https://github.com/BKKyovtorov21) - Back-end Developer

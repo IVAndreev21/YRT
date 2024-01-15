@@ -104,11 +104,34 @@ border-radius:15px;</string>
    <property name="text">
     <string/>
    </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>121</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../resources/resources.qrc">:/images/BankLogo.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
   </widget>
   <zorder>label_3</zorder>
   <zorder>YRTBank_LA</zorder>
   <zorder>LogIn_PB</zorder>
   <zorder>Register_PB</zorder>
+  <zorder>label</zorder>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>

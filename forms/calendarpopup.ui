@@ -264,6 +264,25 @@ border-radius:20px;</string>
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>10</y>
+     <width>58</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../resources/resources.qrc">:/images/BankLogo.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
   <zorder>label_2</zorder>
   <zorder>Title_LA</zorder>
   <zorder>Title_LE</zorder>
@@ -278,7 +297,10 @@ border-radius:20px;</string>
   <zorder>Save_PB</zorder>
   <zorder>Repeat_LA</zorder>
   <zorder>Abort_PB</zorder>
+  <zorder>label</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
