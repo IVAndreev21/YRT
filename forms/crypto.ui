@@ -89,7 +89,7 @@
        <x>0</x>
        <y>-20</y>
        <width>941</width>
-       <height>731</height>
+       <height>741</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -122,7 +122,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../resources/resources.qrc">:/images/solana.svg</pixmap>
+        <pixmap>images/solana.svg</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -141,7 +141,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../resources/resources.qrc">:/images/bitcoin.png</pixmap>
+        <pixmap>images/bitcoin.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -160,7 +160,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../resources/resources.qrc">:/images/binance.png</pixmap>
+        <pixmap>images/binance.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -179,7 +179,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../resources/resources.qrc">:/images/etherium.png</pixmap>
+        <pixmap>images/etherium.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -194,9 +194,6 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
        <property name="text">
         <string>Bitcoin</string>
        </property>
@@ -209,9 +206,6 @@ border-radius:30px;</string>
          <width>58</width>
          <height>16</height>
         </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color:rgb(255, 255, 255)</string>
        </property>
        <property name="text">
         <string>BTC</string>
@@ -239,9 +233,6 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
-       <property name="styleSheet">
-        <string notr="true">color:rgb(255, 255, 255)</string>
-       </property>
        <property name="text">
         <string>Solana</string>
        </property>
@@ -254,9 +245,6 @@ border-radius:30px;</string>
          <width>58</width>
          <height>16</height>
         </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color:rgb(255, 255, 255)</string>
        </property>
        <property name="text">
         <string>SOL</string>
@@ -271,9 +259,6 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
-       <property name="styleSheet">
-        <string notr="true">color:rgb(255, 255, 255)</string>
-       </property>
        <property name="text">
         <string>Etherium</string>
        </property>
@@ -286,9 +271,6 @@ border-radius:30px;</string>
          <width>58</width>
          <height>16</height>
         </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color:rgb(255, 255, 255)</string>
        </property>
        <property name="text">
         <string>ETH</string>
@@ -303,9 +285,6 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
        <property name="text">
         <string>Binance</string>
        </property>
@@ -319,9 +298,6 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
        <property name="text">
         <string>BNB</string>
        </property>
@@ -331,8 +307,8 @@ border-radius:30px;</string>
         <rect>
          <x>160</x>
          <y>20</y>
-         <width>91</width>
-         <height>20</height>
+         <width>121</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
@@ -348,9 +324,6 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
        <property name="text">
         <string>Now</string>
        </property>
@@ -358,7 +331,7 @@ border-radius:30px;</string>
       <widget class="QLabel" name="SOL_price_LA">
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>160</x>
          <y>80</y>
          <width>101</width>
          <height>16</height>
@@ -377,9 +350,6 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
-       <property name="styleSheet">
-        <string notr="true">color:rgb(255, 255, 255)</string>
-       </property>
        <property name="text">
         <string>Now</string>
        </property>
@@ -392,9 +362,6 @@ border-radius:30px;</string>
          <width>71</width>
          <height>16</height>
         </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color:rgb(255, 255, 255)</string>
        </property>
        <property name="text">
         <string>Now</string>
@@ -409,9 +376,6 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
        <property name="text">
         <string>Now</string>
        </property>
@@ -419,7 +383,7 @@ border-radius:30px;</string>
       <widget class="QLabel" name="ETH_price_LA">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>160</x>
          <y>140</y>
          <width>91</width>
          <height>20</height>
@@ -432,7 +396,7 @@ border-radius:30px;</string>
       <widget class="QLabel" name="BNB_price_LA">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>160</x>
          <y>220</y>
          <width>101</width>
          <height>20</height>
@@ -451,9 +415,6 @@ border-radius:30px;</string>
          <height>20</height>
         </rect>
        </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
        <property name="text">
         <string>Watchlist</string>
        </property>
@@ -468,9 +429,6 @@ border-radius:30px;</string>
         <height>16</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
       <property name="text">
        <string>Your portfolio</string>
       </property>
@@ -481,7 +439,7 @@ border-radius:30px;</string>
         <x>10</x>
         <y>410</y>
         <width>481</width>
-        <height>301</height>
+        <height>281</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -493,7 +451,7 @@ border-radius:30px;</string>
       <property name="geometry">
        <rect>
         <x>520</x>
-        <y>330</y>
+        <y>340</y>
         <width>401</width>
         <height>381</height>
        </rect>
@@ -505,14 +463,11 @@ border-radius:30px;</string>
       <widget class="QTabWidget" name="tabWidget">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>20</x>
          <y>20</y>
-         <width>381</width>
-         <height>351</height>
+         <width>361</width>
+         <height>371</height>
         </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(57, 58, 58);</string>
        </property>
        <property name="currentIndex">
         <number>0</number>
@@ -534,6 +489,57 @@ border-radius:30px;</string>
           <string notr="true">background-color: rgb(39, 40, 40);
 border-radius:30px;</string>
          </property>
+         <widget class="QComboBox" name="currencySelect_CB">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>10</y>
+            <width>301</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <item>
+           <property name="text">
+            <string>BTC</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ETH</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SOL</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BNB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DODGECOIN</string>
+           </property>
+          </item>
+         </widget>
+         <widget class="QLabel" name="exchange_LA">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>0</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Exchange</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="widget_7" native="true">
          <property name="geometry">
@@ -548,6 +554,45 @@ border-radius:30px;</string>
           <string notr="true">background-color: rgb(39, 40, 40);
 border-radius:30px;</string>
          </property>
+         <widget class="QLabel" name="selling_LA">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>0</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Selling</string>
+          </property>
+         </widget>
+         <widget class="QDoubleSpinBox" name="quantity_SB">
+          <property name="geometry">
+           <rect>
+            <x>270</x>
+            <y>20</y>
+            <width>62</width>
+            <height>31</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLabel" name="sellingCurrency_LA">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>20</y>
+            <width>81</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="widget_8" native="true">
          <property name="geometry">
@@ -562,8 +607,59 @@ border-radius:30px;</string>
           <string notr="true">background-color: rgb(39, 40, 40);
 border-radius:30px;</string>
          </property>
+         <widget class="QLabel" name="buying_LA">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>0</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Buying</string>
+          </property>
+         </widget>
+         <widget class="QComboBox" name="buyingCurrency_CB">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>131</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <item>
+           <property name="text">
+            <string>BTC</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ETH</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SOL</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BNB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DODGECOIN</string>
+           </property>
+          </item>
+         </widget>
         </widget>
-        <widget class="QLabel" name="label_23">
+        <widget class="QLabel" name="exchangeFee_LA">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -571,9 +667,6 @@ border-radius:30px;</string>
            <width>91</width>
            <height>16</height>
           </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>Exchange fee</string>
@@ -583,7 +676,7 @@ border-radius:30px;</string>
          <property name="geometry">
           <rect>
            <x>80</x>
-           <y>260</y>
+           <y>270</y>
            <width>191</width>
            <height>61</height>
           </rect>
@@ -593,62 +686,6 @@ border-radius:30px;</string>
          </property>
          <property name="text">
           <string/>
-         </property>
-        </widget>
-        <widget class="QWidget" name="widget_11" native="true">
-         <property name="geometry">
-          <rect>
-           <x>340</x>
-           <y>-30</y>
-           <width>41</width>
-           <height>81</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(57, 58, 58);
-border-radius:30px;</string>
-         </property>
-        </widget>
-        <widget class="QWidget" name="widget_12" native="true">
-         <property name="geometry">
-          <rect>
-           <x>350</x>
-           <y>-20</y>
-           <width>41</width>
-           <height>321</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(57, 58, 58);
-border-radius:30px;</string>
-         </property>
-        </widget>
-        <widget class="QWidget" name="widget_13" native="true">
-         <property name="geometry">
-          <rect>
-           <x>-10</x>
-           <y>300</y>
-           <width>41</width>
-           <height>51</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(57, 58, 58);
-border-radius:30px;</string>
-         </property>
-        </widget>
-        <widget class="QWidget" name="widget_14" native="true">
-         <property name="geometry">
-          <rect>
-           <x>350</x>
-           <y>280</y>
-           <width>41</width>
-           <height>81</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(57, 58, 58);
-border-radius:30px;</string>
          </property>
         </widget>
        </widget>
@@ -707,7 +744,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../resources/resources.qrc">:/images/bitcoin.png</pixmap>
+        <pixmap>images/bitcoin.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -762,7 +799,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../resources/resources.qrc">:/images/etherium.png</pixmap>
+        <pixmap>images/etherium.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -781,7 +818,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../resources/resources.qrc">:/images/solana.svg</pixmap>
+        <pixmap>images/solana.svg</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -800,7 +837,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../resources/resources.qrc">:/images/tether.png</pixmap>
+        <pixmap>images/tether.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -819,7 +856,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../resources/resources.qrc">:/images/binance.png</pixmap>
+        <pixmap>images/binance.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -838,7 +875,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../resources/resources.qrc">:/images/dodgecoin.png</pixmap>
+        <pixmap>images/dodgecoin.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -920,8 +957,8 @@ border-radius:30px;</string>
     <rect>
      <x>0</x>
      <y>10</y>
-     <width>161</width>
-     <height>721</height>
+     <width>151</width>
+     <height>671</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -931,15 +968,14 @@ border-radius:10px;</string>
    <widget class="QPushButton" name="back_PB">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>650</y>
+      <x>20</x>
+      <y>620</y>
       <width>100</width>
       <height>32</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:white;
-color: black;</string>
+     <string notr="true">background-color: rgb(84, 85, 85);</string>
     </property>
     <property name="text">
      <string>Back</string>
