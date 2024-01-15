@@ -129,8 +129,7 @@ padding-bottom:7px;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgba(0, 0, 0,0);
-color: rgb(255, 255, 255);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="QLabel" name="date_of_birth_LA">
@@ -786,27 +785,6 @@ color: rgb(255, 255, 255);</string>
       <string>Security Question</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="password_LE">
-     <property name="geometry">
-      <rect>
-       <x>592</x>
-       <y>100</y>
-       <width>161</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color:rgba(0,0,0,0);
-border:none;
-border-bottom:2px solid rgba(105, 118, 132, 255);
-color:rgba(255, 255, 255, 230);
-padding-bottom:7px;
-</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
     <widget class="QCheckBox" name="Terns_and_conditions">
      <property name="geometry">
       <rect>
@@ -862,6 +840,27 @@ border-radius:15px;</string>
       <string/>
      </property>
     </widget>
+    <widget class="QLineEdit" name="password_LE">
+     <property name="geometry">
+      <rect>
+       <x>590</x>
+       <y>110</y>
+       <width>161</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:rgba(0,0,0,0);
+border:none;
+border-bottom:2px solid rgba(105, 118, 132, 255);
+color:rgba(255, 255, 255, 230);
+padding-bottom:7px;
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
     <zorder>label_4</zorder>
     <zorder>label_5</zorder>
     <zorder>username_LE</zorder>
@@ -869,9 +868,9 @@ border-radius:15px;</string>
     <zorder>submit_PB</zorder>
     <zorder>previous3_PB</zorder>
     <zorder>security_question_LA</zorder>
-    <zorder>password_LE</zorder>
     <zorder>Terns_and_conditions</zorder>
     <zorder>security_question_CB</zorder>
+    <zorder>password_LE</zorder>
    </widget>
   </widget>
  </widget>
