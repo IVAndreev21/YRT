@@ -34,6 +34,8 @@ private slots:
 
     void on_confirm_username_PB_clicked();
 
+    void on_back_PB_clicked();
+
 private:
     Ui::ResetCredentials *ui;
 

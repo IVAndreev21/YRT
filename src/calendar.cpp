@@ -45,7 +45,7 @@ void Calendar::on_calendarWidget_clicked(const QDate &date)
             QString title = qry.value(2).toString();
             QString description = qry.value(3).toString();
 
-            events.append("Title: " + title + ", Description: " + description);
+            events.append("Title: " + title + "\nDescription: " + description);
         }
         QString eventsText = events.join("\n");
 

@@ -24,9 +24,9 @@ private slots:
 
 private:
     Ui::logIn *ui;
-    std::unique_ptr<DatabaseManager> m_databaseManager;
-    std::unique_ptr<MainWindow> m_mainWindow;
-    std::unique_ptr<ResetCredentials> m_resetCredentials;
+    std::shared_ptr<DatabaseManager> m_databaseManager;
+    std::shared_ptr<MainWindow> m_mainWindow;
+    std::shared_ptr<ResetCredentials> m_resetCredentials;
 
     QString hashPassword(const QString &password, const QString &salt);
 };

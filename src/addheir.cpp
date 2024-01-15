@@ -1,15 +1,16 @@
 #include "addheir.h"
 #include "ui_addheir.h"
 #include <QMessageBox>
-AddHeir::AddHeir(QString& username_ref, QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::AddHeir)
+#include "mainwindow.h"
+AddHeir::AddHeir(std::shared_ptr<MainWindow> mainwindow, QString& username_ref, QWidget *parent)
+    : QWidget(parent), ui(new Ui::AddHeir), m_mainwindow(mainwindow)
 {
     ui->setupUi(this);
     ui->addHeir_PB->hide();
     ui->enterPass_LA->hide();
     ui->password_LE->hide();
-
+    ui->securityAnswer_LE->hide();
+    ui->password_LE->setEchoMode(QLineEdit::Password);
     m_username = username_ref;
 }
 
@@ -90,7 +91,7 @@ void AddHeir::on_addHeir_PB_clicked()
             qry.bindValue(":heirUsername", heirUsername);
             if(qry.exec())
             {
-                QMessageBox::information(this, "success", "success");
+                QMessageBox::information(this, "Heir added", "A heir has successfully been added for your account");
             }
         }
         else
@@ -98,5 +99,18 @@ void AddHeir::on_addHeir_PB_clicked()
             QMessageBox::critical(this, "Security answer incorrect", "Your answer to the security question don't match");
         }
     }
+    else
+    {
+        QMessageBox::critical(this, "Failure", "Wrong password or username");
+    }
+
+}
+
+
+void AddHeir::on_abort_PB_clicked()
+{
+
+    this->hide();
+    m_mainwindow->show();
 }
 

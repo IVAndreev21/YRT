@@ -14,12 +14,10 @@ MainWindow::MainWindow(logIn* login, const QString& IBAN_ref, const QString& use
     chartView = new QChartView(chart);
 
     m_crypto = std::make_shared<Crypto>(std::shared_ptr<MainWindow>(this));
-    m_addHeir = std::make_shared<AddHeir>(m_username);
-    m_addHeir->setParent(this);
-    m_addHeir->hide();
+    m_addHeir = std::make_shared<AddHeir>(std::shared_ptr<MainWindow>(this), m_username);
     updateDashboard(series, chart, chartView);
-    ui->card_holder_LA->setText(m_clientFName + " " + m_clientLName);
-
+    ui->card_holder_LA->setText(m_clientFName + " " + m_clientLName[0]);
+    ui->SecurityAnswer_LE->setEchoMode(QLineEdit::Password);
     ui->IBAN_qt_LE->setPlaceholderText("BG00YRT00000000000000");
 
     transactions_TV = ui->Transactions_tr_TV;
@@ -273,10 +271,10 @@ void MainWindow::UpdateTransactions(QTableView* transasctions_TV, QTableView* Re
     query->setQuery(queryString);
     transasctions_TV->setModel(query);
     transasctions_TV->setColumnHidden(0, true);
-    transasctions_TV->setColumnWidth(1, 170);
-    transasctions_TV->setColumnWidth(2, 200);
-    transasctions_TV->setColumnWidth(3, 200);
-    transasctions_TV->setColumnWidth(11, 150);
+    transasctions_TV->setColumnWidth(1, 200);
+    transasctions_TV->setColumnWidth(2, 220);
+    transasctions_TV->setColumnWidth(3, 220);
+    transasctions_TV->setColumnWidth(11, 170);
 
     // Second Query
     QSqlQueryModel* queryModel = new QSqlQueryModel();
@@ -311,7 +309,7 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
         m_clientLName = qry.value("Last Name").toString();
         QString balance = qry.value("Balance").toString();
 
-        ui->clientname_LA->setText(m_clientFName + " " + m_clientLName[0] + ".");
+        ui->clientname_LA->setText("Hello Again, " + m_clientFName + " " + m_clientLName[0] + ".");
         ui->balance_LA_2->setText("BGN " + balance);
 
         updatepfp();
@@ -402,7 +400,7 @@ void MainWindow::UpdateSettings()
         ui->Income_LE->setText(qry.value("Income").toString());
         ui->Expenses_LE->setText(qry.value("Expenses").toString());
         ui->Balance_LE->setText(qry.value("Balance").toString());
-        ui->IBAN_LE->setText(qry.value("Receiver IBAN").toString());
+        ui->IBAN_LE->setText(qry.value("IBAN").toString());
         ui->Username_LE->setText(qry.value("Username").toString());
         ui->Password_LE->setText(qry.value("Password").toString());
         ui->SecurityQuestion_LE->setText(qry.value("Security question").toString());

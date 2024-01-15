@@ -9,6 +9,8 @@ ResetCredentials::ResetCredentials(std::shared_ptr<logIn> login, QWidget *parent
     ui->stackedWidget->hide();
     ui->reset_password_PB->hide();
     ui->reset_username_PB->hide();
+    ui->confirm_password_LE->setEchoMode(QLineEdit::Password);
+
 
 }
 
@@ -159,5 +161,12 @@ void ResetCredentials::on_confirm_username_PB_clicked()
             qDebug() << qry.lastQuery();  // Print the last executed query for further inspection
             qDebug() << qry.boundValues();  // Print the bound values for further inspection
         }
+}
+
+
+void ResetCredentials::on_back_PB_clicked()
+{
+    this->hide();
+    m_LogIn->show();
 }
 

@@ -16,6 +16,21 @@ Register::Register(QWidget *parent)
     m_termsAndConditions->setParent(this);
     m_termsAndConditions->hide();
     m_accepted = false;
+
+    ui->first_name_LE->setPlaceholderText("First name");
+    ui->last_name_LE->setPlaceholderText("Last name");
+    ui->SSN_LE->setPlaceholderText("SSN");
+    ui->street_LE->setPlaceholderText("Street");
+    ui->city_LE->setPlaceholderText("City");
+    ui->state_province_LE->setPlaceholderText("State/Province");
+    ui->postal_code_LE->setPlaceholderText("Postal code");
+    ui->phone_LE->setPlaceholderText("Phone");
+    ui->email_LE->setPlaceholderText("Email");
+    ui->income_LE->setPlaceholderText("Income");
+    ui->username_LE->setPlaceholderText("Username");
+    ui->password_LE->setPlaceholderText("Password");
+    ui->security_question_LE->setPlaceholderText("Security Answer");
+
 }
 
 Register::~Register()
