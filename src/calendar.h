@@ -35,7 +35,7 @@ private:
     QString m_username;
     QCalendarWidget* m_calendar;
     std::shared_ptr<MainWindow> m_mainWindow;
-    void displayEvents();
+    void DisplayEvents();
 };
 
 #endif // CALENDAR_H

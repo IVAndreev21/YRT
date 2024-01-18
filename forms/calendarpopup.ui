@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">alternate-background-color: rgb(255, 255, 255);</string>
   </property>
-  <widget class="QLabel" name="Title_LA">
+  <widget class="QLabel" name="title_LA">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -32,7 +32,7 @@
     <string>Title</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="Title_LE">
+  <widget class="QLineEdit" name="title_LE">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -46,7 +46,7 @@
 color: rgb(0, 0, 0);</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Description_LA">
+  <widget class="QLabel" name="description_LA">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -62,7 +62,7 @@ color: rgb(0, 0, 0);</string>
     <string>Description</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="Description_LE">
+  <widget class="QLineEdit" name="description_LE">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -76,7 +76,7 @@ color: rgb(0, 0, 0);</string>
 color: rgb(0, 0, 0);</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Time_period_LA">
+  <widget class="QLabel" name="time_period_LA">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -92,7 +92,7 @@ color: rgb(0, 0, 0);</string>
     <string>Time period</string>
    </property>
   </widget>
-  <widget class="QLabel" name="From_LA">
+  <widget class="QLabel" name="from_LA">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -108,7 +108,7 @@ color: rgb(0, 0, 0);</string>
     <string>From</string>
    </property>
   </widget>
-  <widget class="QDateEdit" name="From_DE">
+  <widget class="QDateEdit" name="from_DE">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -125,7 +125,7 @@ color: rgb(0, 0, 0);</string>
     <string>M/d/yy</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Till_LA">
+  <widget class="QLabel" name="till_LA">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -141,7 +141,7 @@ color: rgb(0, 0, 0);</string>
     <string>TIll</string>
    </property>
   </widget>
-  <widget class="QDateEdit" name="Till_DE">
+  <widget class="QDateEdit" name="till_DE">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -158,7 +158,7 @@ color: rgb(0, 0, 0);</string>
     <string>M/d/yy</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="Repeat_CB">
+  <widget class="QComboBox" name="repeat_CB">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -197,7 +197,7 @@ background-color: rgb(255, 255, 255);</string>
     </property>
    </item>
   </widget>
-  <widget class="QPushButton" name="Save_PB">
+  <widget class="QPushButton" name="save_PB">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -214,7 +214,7 @@ background-color: rgb(255, 255, 255);</string>
     <string>Save</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Repeat_LA">
+  <widget class="QLabel" name="repeat_LA">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -230,7 +230,7 @@ background-color: rgb(255, 255, 255);</string>
     <string>Repeat</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Abort_PB">
+  <widget class="QPushButton" name="abort_PB">
    <property name="geometry">
     <rect>
      <x>260</x>
@@ -265,19 +265,19 @@ border-radius:20px;</string>
    </property>
   </widget>
   <zorder>label_2</zorder>
-  <zorder>Title_LA</zorder>
-  <zorder>Title_LE</zorder>
-  <zorder>Description_LA</zorder>
-  <zorder>Description_LE</zorder>
-  <zorder>Time_period_LA</zorder>
-  <zorder>From_LA</zorder>
-  <zorder>From_DE</zorder>
-  <zorder>Till_LA</zorder>
-  <zorder>Till_DE</zorder>
-  <zorder>Repeat_CB</zorder>
-  <zorder>Save_PB</zorder>
-  <zorder>Repeat_LA</zorder>
-  <zorder>Abort_PB</zorder>
+  <zorder>title_LA</zorder>
+  <zorder>title_LE</zorder>
+  <zorder>description_LA</zorder>
+  <zorder>description_LE</zorder>
+  <zorder>time_period_LA</zorder>
+  <zorder>from_LA</zorder>
+  <zorder>from_DE</zorder>
+  <zorder>till_LA</zorder>
+  <zorder>till_DE</zorder>
+  <zorder>repeat_CB</zorder>
+  <zorder>save_PB</zorder>
+  <zorder>repeat_LA</zorder>
+  <zorder>abort_PB</zorder>
  </widget>
  <resources/>
  <connections/>

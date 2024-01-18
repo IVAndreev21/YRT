@@ -34,7 +34,7 @@
       <height>609</height>
      </rect>
     </property>
-    <widget class="QLabel" name="TermsAndConditions_LA">
+    <widget class="QLabel" name="termsAndConditions_LA">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -101,7 +101,7 @@ These Terms and Conditions are governed by the laws of the Republic of Digitalia
     </widget>
    </widget>
   </widget>
-  <widget class="QPushButton" name="Agree_PB">
+  <widget class="QPushButton" name="agree_PB">
    <property name="geometry">
     <rect>
      <x>250</x>
@@ -114,7 +114,7 @@ These Terms and Conditions are governed by the laws of the Republic of Digitalia
     <string>Agree</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Cancel_PB">
+  <widget class="QPushButton" name="cancel_PB">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -143,8 +143,8 @@ border-radius: 50px;</string>
   </widget>
   <zorder>widget</zorder>
   <zorder>scrollArea</zorder>
-  <zorder>Agree_PB</zorder>
-  <zorder>Cancel_PB</zorder>
+  <zorder>agree_PB</zorder>
+  <zorder>cancel_PB</zorder>
  </widget>
  <resources/>
  <connections/>

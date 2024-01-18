@@ -37,6 +37,11 @@ public:
     explicit MainWindow(logIn* login, const QString& IBAN_ref, const QString& username_ref, QWidget *parent = nullptr);
     ~MainWindow();
 
+    void UpdateDashboard();
+
+    void HeirVerified();
+
+
 private slots:
     void on_dashboard_PB_clicked();
 
@@ -69,9 +74,9 @@ private:
     std::shared_ptr<Calendar> m_calendar;
     std::shared_ptr<Crypto> m_crypto;
     std::shared_ptr<AddHeir> m_addHeir;
-    void updatepfp();
+    void Updatepfp();
     void UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV);
-    void performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName);
+    void PerformTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName);
     void UpdateSettings();
     double m_userExpenses;
     double m_userIncome;
@@ -80,8 +85,6 @@ private:
     QString m_username;
     QString m_clientFName;
     QString m_clientLName;
-    void updateDashboard(QPieSeries* series, QChart* chart, QChartView* chartView);
-    bool DetectedAccident();
 
     QPieSeries* series;
     QChart* chart;

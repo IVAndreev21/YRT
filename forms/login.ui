@@ -158,7 +158,7 @@ padding-bottom:7px;</string>
      <string>  Password</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="LogIn_PB">
+   <widget class="QPushButton" name="logIn_PB">
     <property name="geometry">
      <rect>
       <x>540</x>
@@ -177,7 +177,7 @@ padding-bottom:7px;</string>
      <string>L o g  I n</string>
     </property>
    </widget>
-   <widget class="QLabel" name="ForgotenPassword_LA">
+   <widget class="QLabel" name="forgotenPassword_LA">
     <property name="geometry">
      <rect>
       <x>540</x>
@@ -193,7 +193,7 @@ padding-bottom:7px;</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;s&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Forgot your User Name or Password? &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="LogIn_LA">
+   <widget class="QLabel" name="logIn_LA">
     <property name="geometry">
      <rect>
       <x>600</x>

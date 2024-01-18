@@ -229,7 +229,7 @@ color: rgb(255, 255, 255);</string>
     </font>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="dashboard_page">
     <widget class="QWidget" name="gridLayoutWidget">
@@ -237,7 +237,7 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>10</x>
        <y>80</y>
-       <width>341</width>
+       <width>378</width>
        <height>251</height>
       </rect>
      </property>
@@ -251,7 +251,7 @@ color: rgb(255, 255, 255);</string>
      </property>
      <layout class="QGridLayout" name="PieChart_LY"/>
     </widget>
-    <widget class="QLabel" name="My_cards_LA">
+    <widget class="QLabel" name="my_cards_LA">
      <property name="geometry">
       <rect>
        <x>810</x>
@@ -317,7 +317,7 @@ color: rgb(255, 255, 255);</string>
       <string>Status</string>
      </property>
     </widget>
-    <widget class="QLabel" name="Status_Active_LA">
+    <widget class="QLabel" name="status_Active_LA">
      <property name="geometry">
       <rect>
        <x>1020</x>
@@ -359,7 +359,7 @@ color: rgb(255, 255, 255);</string>
       <string>Name</string>
      </property>
     </widget>
-    <widget class="QLabel" name="Name_Payment_card_LA">
+    <widget class="QLabel" name="name_Payment_card_LA">
      <property name="geometry">
       <rect>
        <x>960</x>
@@ -380,7 +380,7 @@ color: rgb(255, 255, 255);</string>
       <string>Payment Card</string>
      </property>
     </widget>
-    <widget class="QLabel" name="Currency_LA">
+    <widget class="QLabel" name="currency_LA">
      <property name="geometry">
       <rect>
        <x>810</x>
@@ -401,7 +401,7 @@ color: rgb(255, 255, 255);</string>
       <string>Currency</string>
      </property>
     </widget>
-    <widget class="QLabel" name="Quick_Transfer_LA">
+    <widget class="QLabel" name="quick_Transfer_LA">
      <property name="geometry">
       <rect>
        <x>810</x>
@@ -461,7 +461,7 @@ color: rgb(255, 255, 255);</string>
       </font>
      </property>
     </widget>
-    <widget class="QLabel" name="Pay_to_LA">
+    <widget class="QLabel" name="pay_to_LA">
      <property name="geometry">
       <rect>
        <x>810</x>
@@ -482,7 +482,7 @@ color: rgb(255, 255, 255);</string>
       <string>Pay to</string>
      </property>
     </widget>
-    <widget class="QLabel" name="Amount_LA">
+    <widget class="QLabel" name="amount_LA">
      <property name="geometry">
       <rect>
        <x>810</x>
@@ -503,7 +503,7 @@ color: rgb(255, 255, 255);</string>
       <string>Amount</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="Amount_SB">
+    <widget class="QSpinBox" name="amount_SB">
      <property name="geometry">
       <rect>
        <x>810</x>
@@ -524,7 +524,7 @@ color: rgb(255, 255, 255);</string>
       <number>999999</number>
      </property>
     </widget>
-    <widget class="QLabel" name="Recent_tr_LA">
+    <widget class="QLabel" name="recent_tr_LA">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -545,7 +545,7 @@ color: rgb(255, 255, 255);</string>
       <string>Recent Transactions</string>
      </property>
     </widget>
-    <widget class="QTableView" name="Recent_tr_TV">
+    <widget class="QTableView" name="recent_tr_TV">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -593,7 +593,7 @@ color:white}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="Send_qt_PB">
+    <widget class="QPushButton" name="send_qt_PB">
      <property name="geometry">
       <rect>
        <x>830</x>
@@ -697,7 +697,7 @@ QPushButton:hover
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/paper-plane-svgrepo-com.svg</pixmap>
+      <pixmap resource="../resources/resources.qrc">:/images/paper-plane.svg</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -735,7 +735,7 @@ QPushButton
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="Currency_BGN_LA">
+    <widget class="QLabel" name="currency_BGN_LA">
      <property name="geometry">
       <rect>
        <x>980</x>
@@ -774,31 +774,31 @@ QPushButton
     </widget>
     <zorder>addHeir_PB_2</zorder>
     <zorder>gridLayoutWidget</zorder>
-    <zorder>My_cards_LA</zorder>
+    <zorder>my_cards_LA</zorder>
     <zorder>blank_card_LA</zorder>
     <zorder>statu_LA</zorder>
-    <zorder>Status_Active_LA</zorder>
+    <zorder>status_Active_LA</zorder>
     <zorder>name_LA</zorder>
-    <zorder>Name_Payment_card_LA</zorder>
-    <zorder>Currency_LA</zorder>
-    <zorder>Quick_Transfer_LA</zorder>
+    <zorder>name_Payment_card_LA</zorder>
+    <zorder>currency_LA</zorder>
+    <zorder>quick_Transfer_LA</zorder>
     <zorder>card_number_LA</zorder>
     <zorder>IBAN_qt_LE</zorder>
-    <zorder>Pay_to_LA</zorder>
-    <zorder>Amount_LA</zorder>
-    <zorder>Amount_SB</zorder>
-    <zorder>Recent_tr_LA</zorder>
-    <zorder>Recent_tr_TV</zorder>
+    <zorder>pay_to_LA</zorder>
+    <zorder>amount_LA</zorder>
+    <zorder>amount_SB</zorder>
+    <zorder>recent_tr_LA</zorder>
+    <zorder>recent_tr_TV</zorder>
     <zorder>card_holder_LA</zorder>
-    <zorder>Send_qt_PB</zorder>
+    <zorder>send_qt_PB</zorder>
     <zorder>heir_detected</zorder>
     <zorder>addHeir_PB</zorder>
     <zorder>label</zorder>
-    <zorder>Currency_BGN_LA</zorder>
+    <zorder>currency_BGN_LA</zorder>
     <zorder>clientname_LA</zorder>
    </widget>
    <widget class="QWidget" name="transacions_page">
-    <widget class="QLabel" name="Bank_tr_LA">
+    <widget class="QLabel" name="bank_tr_LA">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -830,7 +830,7 @@ background-color:rgb(66, 66, 66);
       <string> Make transaction</string>
      </property>
     </widget>
-    <widget class="QTableView" name="Transactions_tr_TV">
+    <widget class="QTableView" name="transactions_tr_TV">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -868,7 +868,7 @@ background-color:rgb(66, 66, 66);
       <attribute name="title">
        <string>Personal Information</string>
       </attribute>
-      <widget class="QLabel" name="FName_LA">
+      <widget class="QLabel" name="fName_LA">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -881,7 +881,7 @@ background-color:rgb(66, 66, 66);
         <string>First Name</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="FName_LE">
+      <widget class="QLineEdit" name="fName_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -894,7 +894,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="LName_LA">
+      <widget class="QLabel" name="lName_LA">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -907,7 +907,7 @@ background-color:rgb(66, 66, 66);
         <string>Last Name</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="LName_LE">
+      <widget class="QLineEdit" name="lName_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -920,7 +920,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="Birth_LA">
+      <widget class="QLabel" name="birth_LA">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -933,7 +933,7 @@ background-color:rgb(66, 66, 66);
         <string>Date of birth</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="Birth_LE">
+      <widget class="QLineEdit" name="birth_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -946,7 +946,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="Gender_LA">
+      <widget class="QLabel" name="gender_LA">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -959,7 +959,7 @@ background-color:rgb(66, 66, 66);
         <string>Gender</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="Gender_LE">
+      <widget class="QLineEdit" name="gender_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1003,7 +1003,7 @@ background-color:rgb(66, 66, 66);
       <attribute name="title">
        <string>Address Information</string>
       </attribute>
-      <widget class="QLineEdit" name="City_LE">
+      <widget class="QLineEdit" name="city_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1016,7 +1016,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="City_LA">
+      <widget class="QLabel" name="city_LA">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1029,7 +1029,7 @@ background-color:rgb(66, 66, 66);
         <string>City</string>
        </property>
       </widget>
-      <widget class="QLabel" name="State_LA">
+      <widget class="QLabel" name="state_LA">
        <property name="geometry">
         <rect>
          <x>220</x>
@@ -1042,7 +1042,7 @@ background-color:rgb(66, 66, 66);
         <string>State/Province</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="State_LE">
+      <widget class="QLineEdit" name="state_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1055,7 +1055,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="PostalCode_LA">
+      <widget class="QLabel" name="postalCode_LA">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1068,7 +1068,7 @@ background-color:rgb(66, 66, 66);
         <string>Postal Code</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="PostalCode_LE">
+      <widget class="QLineEdit" name="postalCode_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1081,7 +1081,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="Street_LA">
+      <widget class="QLabel" name="street_LA">
        <property name="geometry">
         <rect>
          <x>220</x>
@@ -1094,7 +1094,7 @@ background-color:rgb(66, 66, 66);
         <string>Street</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="Street_LE">
+      <widget class="QLineEdit" name="street_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1112,7 +1112,7 @@ background-color:rgb(66, 66, 66);
       <attribute name="title">
        <string>Financial Information</string>
       </attribute>
-      <widget class="QLabel" name="Status_LA">
+      <widget class="QLabel" name="status_LA">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1125,7 +1125,7 @@ background-color:rgb(66, 66, 66);
         <string>Employment Status</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="Status_LE">
+      <widget class="QLineEdit" name="status_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1138,7 +1138,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="AccType_LA">
+      <widget class="QLabel" name="accType_LA">
        <property name="geometry">
         <rect>
          <x>250</x>
@@ -1151,7 +1151,7 @@ background-color:rgb(66, 66, 66);
         <string>Account Type</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="AccType_LE">
+      <widget class="QLineEdit" name="accType_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1164,7 +1164,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="Income_LA">
+      <widget class="QLabel" name="income_LA">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1190,7 +1190,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="Expenses_LA">
+      <widget class="QLabel" name="expenses_LA">
        <property name="geometry">
         <rect>
          <x>250</x>
@@ -1203,7 +1203,7 @@ background-color:rgb(66, 66, 66);
         <string>Expenses</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="Expenses_LE">
+      <widget class="QLineEdit" name="expenses_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1216,7 +1216,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="Balance_LA">
+      <widget class="QLabel" name="balance_LA_3">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1229,7 +1229,7 @@ background-color:rgb(66, 66, 66);
         <string>Balance</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="Balance_LE">
+      <widget class="QLineEdit" name="balance_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1273,7 +1273,7 @@ background-color:rgb(66, 66, 66);
       <attribute name="title">
        <string>Account and Security Information</string>
       </attribute>
-      <widget class="QLabel" name="Username_LA">
+      <widget class="QLabel" name="username_LA">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -1286,7 +1286,7 @@ background-color:rgb(66, 66, 66);
         <string>Username</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="Username_LE">
+      <widget class="QLineEdit" name="username_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1299,7 +1299,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="Password_LA">
+      <widget class="QLabel" name="password_LA">
        <property name="geometry">
         <rect>
          <x>260</x>
@@ -1312,7 +1312,7 @@ background-color:rgb(66, 66, 66);
         <string>Password</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="Password_LE">
+      <widget class="QLineEdit" name="password_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1325,7 +1325,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="SecurityQuestion_LA">
+      <widget class="QLabel" name="securityQuestion_LA">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -1338,7 +1338,7 @@ background-color:rgb(66, 66, 66);
         <string>Security Question</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="SecurityQuestion_LE">
+      <widget class="QLineEdit" name="securityQuestion_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1351,7 +1351,7 @@ background-color:rgb(66, 66, 66);
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="SecurityAnswer_LA">
+      <widget class="QLabel" name="securityAnswer_LA">
        <property name="geometry">
         <rect>
          <x>390</x>
@@ -1364,7 +1364,7 @@ background-color:rgb(66, 66, 66);
         <string>Security Answer</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="SecurityAnswer_LE">
+      <widget class="QLineEdit" name="securityAnswer_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1716,6 +1716,8 @@ border-radius:15px;</string>
   <zorder>line</zorder>
   <zorder>signOut_PB</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -28,6 +28,6 @@ private:
     std::shared_ptr<MainWindow> m_mainWindow;
     std::shared_ptr<ResetCredentials> m_resetCredentials;
 
-    QString hashPassword(const QString &password, const QString &salt);
+    QString Hash(const QString &password, const QString &salt);
 };
 #endif // LOGIN_H

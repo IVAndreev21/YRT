@@ -35,7 +35,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="LogIn_PB">
+  <widget class="QPushButton" name="logIn_PB">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -62,7 +62,7 @@ QPushButton:hover
     <string>LogIn</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Register_PB">
+  <widget class="QPushButton" name="register_PB">
    <property name="geometry">
     <rect>
      <x>559</x>
@@ -107,8 +107,8 @@ border-radius:15px;</string>
   </widget>
   <zorder>label_3</zorder>
   <zorder>YRTBank_LA</zorder>
-  <zorder>LogIn_PB</zorder>
-  <zorder>Register_PB</zorder>
+  <zorder>logIn_PB</zorder>
+  <zorder>register_PB</zorder>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>

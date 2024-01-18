@@ -49,14 +49,14 @@ void AddHeir::on_password_LE_editingFinished()
     qry.prepare("SELECT * FROM users WHERE Username = :username");
     qry.bindValue(":username", m_username);
     if (qry.exec() && qry.next()) {
-        QString hashedPasswordFromDB = qry.value(16).toString();
+        QString hashedPasswordFromDB = qry.value("Password").toString();
 
-        QString saltFromDB = qry.value(23).toString();
-        QString hashedPasswordToCheck = hash(password, saltFromDB);
+        QString saltFromDB = qry.value("Password Salt").toString();
+        QString hashedPasswordToCheck = Hash(password, saltFromDB);
 
         if (hashedPasswordToCheck == hashedPasswordFromDB)
         {
-            QString securityQuestion = qry.value(17).toString();
+            QString securityQuestion = qry.value("Security Question").toString();
             ui->securityQuestion_LA->setText(securityQuestion);
             ui->securityAnswer_LE->show();
             ui->addHeir_PB->show();
@@ -65,7 +65,7 @@ void AddHeir::on_password_LE_editingFinished()
 }
 
 
-QString AddHeir::hash(const QString& toHash, const QString& salt) {
+QString AddHeir::Hash(const QString& toHash, const QString& salt) {
     QByteArray toHashWithSalt = (toHash + salt).toUtf8();
     QByteArray hashed = QCryptographicHash::hash(toHashWithSalt, QCryptographicHash::Sha256);
     return hashed.toHex();
@@ -81,8 +81,8 @@ void AddHeir::on_addHeir_PB_clicked()
     qry.bindValue(":username", m_username);
     if(qry.exec() && qry.next())
     {
-        QString hashedAnswer = hash(ui->securityAnswer_LE->text(), qry.value(26).toString());
-        QString answerFromDB = qry.value(18).toString();
+        QString hashedAnswer = Hash(ui->securityAnswer_LE->text(), qry.value("Security Answer Salt").toString());
+        QString answerFromDB = qry.value("Security Answer").toString();
 
         if(answerFromDB == hashedAnswer)
         {
@@ -92,6 +92,8 @@ void AddHeir::on_addHeir_PB_clicked()
             if(qry.exec())
             {
                 QMessageBox::information(this, "Heir added", "A heir has successfully been added for your account");
+                this->hide();
+                m_mainwindow->HeirVerified();
             }
         }
         else

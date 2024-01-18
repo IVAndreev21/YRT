@@ -35,8 +35,3 @@ void TermsAndConditions::on_Cancel_PB_clicked()
 
 }
 
-bool TermsAndConditions::getStatus()
-{
-    return m_accepted;
-}
-

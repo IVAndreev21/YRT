@@ -15,7 +15,7 @@ MainWindow::MainWindow(logIn* login, const QString& IBAN_ref, const QString& use
 
     m_crypto = std::make_shared<Crypto>(std::shared_ptr<MainWindow>(this));
     m_addHeir = std::make_shared<AddHeir>(std::shared_ptr<MainWindow>(this), m_username);
-    updateDashboard(series, chart, chartView);
+    UpdateDashboard();
     ui->card_holder_LA->setText(m_clientFName + " " + m_clientLName[0]);
     ui->SecurityAnswer_LE->setEchoMode(QLineEdit::Password);
     ui->IBAN_qt_LE->setPlaceholderText("BG00YRT00000000000000");
@@ -38,7 +38,7 @@ MainWindow::~MainWindow()
     delete chartView;
 }
 
-void MainWindow::updatepfp()
+void MainWindow::Updatepfp()
 {
     QLabel *imageLabel = ui->pfp_acc_LA;
     QLabel *imageLabel2 = ui->pfp_acc_LA_2;
@@ -88,6 +88,7 @@ void MainWindow::updatepfp()
         {
             qDebug() << "Invalid or empty image data.";
         }
+
     }
 }
 
@@ -162,7 +163,7 @@ void MainWindow::on_make_tr_PB_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
 }
-void MainWindow::performTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName)
+void MainWindow::PerformTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName)
 {
         QSqlQuery senderQuery;
         senderQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
@@ -224,6 +225,7 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
                         else
                         {
                             QMessageBox::critical(this, "Transaction failure", "Transaction failed");
+                            qDebug() << insertQuery.lastError();
                         }
                     }
                     else
@@ -247,7 +249,7 @@ void MainWindow::performTransaction(const QString& receiverIBAN, const QString& 
         }
 
 
-    updateDashboard(series, chart, chartView);
+    UpdateDashboard();
     UpdateTransactions(transactions_TV, Recent_tr_TV);
 
 }
@@ -259,9 +261,15 @@ void MainWindow::on_confrim_mt_PB_clicked()
     QString firstName = ui->first_name_mt_LE->text();
     QString lastName = ui->last_name_mt_LE->text();
 
-    performTransaction(receiverIBAN, amountStr, type, firstName, lastName);
+    PerformTransaction(receiverIBAN, amountStr, type, firstName, lastName);
 }
 
+
+void MainWindow::HeirVerified()
+{
+    ui->heir_detected->hide();
+    ui->addHeir_PB->hide();
+}
 void MainWindow::UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV)
 {
     // First Query
@@ -297,7 +305,7 @@ void MainWindow::on_cancel_mt_PB_clicked()
 }
 
 
-void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* chartView)
+void MainWindow::UpdateDashboard()
 {
     QSqlQuery qry;
     qry.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
@@ -312,7 +320,7 @@ void MainWindow::updateDashboard(QPieSeries* series, QChart* chart, QChartView* 
         ui->clientname_LA->setText("Hello Again, " + m_clientFName + " " + m_clientLName[0] + ".");
         ui->balance_LA_2->setText("BGN " + balance);
 
-        updatepfp();
+        Updatepfp();
     }
     else
     {
@@ -412,7 +420,7 @@ void MainWindow::UpdateSettings()
 void MainWindow::on_Send_qt_PB_clicked()
 {
     QString receiverIBAN = ui->IBAN_qt_LE->text();
-    QString amountStr = ui->Amount_SB->text();
+    QString amountStr = ui->amount_SB->text();
     QString type = "transaction";
 
     QSqlQuery query;
@@ -422,7 +430,7 @@ void MainWindow::on_Send_qt_PB_clicked()
     {
         QString FName = query.value("Receiver First Name").toString();
         QString LName = query.value("Receiver Last Name").toString();
-        performTransaction(receiverIBAN, amountStr, type, FName, LName);
+        PerformTransaction(receiverIBAN, amountStr, type, FName, LName);
     }
 }
 

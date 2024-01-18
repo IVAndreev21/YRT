@@ -46,7 +46,7 @@ void ResetCredentials::on_Email_LE_editingFinished()
     }
 }
 
-QString ResetCredentials::hashSecurityQuestion(const QString& answer, const QString& salt)
+QString ResetCredentials::Hash(const QString& answer, const QString& salt)
 {
     QByteArray answerWithSalt = (answer + salt).toUtf8();
     QByteArray hashedAnswer = QCryptographicHash::hash(answerWithSalt, QCryptographicHash::Sha256);
@@ -61,7 +61,7 @@ void ResetCredentials::on_security_question_LE_editingFinished()
     qry.bindValue(":email", email);
     if(qry.exec() && qry.next())
     {
-        QString hashedAnswer = hashSecurityQuestion(ui->security_question_LE->text(), qry.value(26).toString());
+        QString hashedAnswer = Hash(ui->security_question_LE->text(), qry.value(26).toString());
         QString answerFromDB = qry.value(18).toString();
 
         if(answerFromDB == hashedAnswer)
@@ -106,7 +106,7 @@ void ResetCredentials::on_confirm_password_PB_clicked()
         if(qry.exec() && qry.next())
         {
             QString salt = qry.value(23).toString();
-            QString hashedPassword = hashSecurityQuestion(password, salt);
+            QString hashedPassword = Hash(password, salt);
 
             qry.prepare("UPDATE users SET Password = :password WHERE email = :email");
             qry.bindValue(":email", email);

@@ -60,7 +60,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="LogIn_LA">
+   <widget class="QLabel" name="logIn_LA">
     <property name="geometry">
      <rect>
       <x>160</x>

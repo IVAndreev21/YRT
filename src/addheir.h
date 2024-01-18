@@ -31,7 +31,7 @@ private:
     Ui::AddHeir *ui;
     QString m_username;
 
-    QString hash(const QString& toHash, const QString& salt);
+    QString Hash(const QString& toHash, const QString& salt);
 
     std::shared_ptr<MainWindow> m_mainwindow;
 };

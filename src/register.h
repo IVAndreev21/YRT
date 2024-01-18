@@ -43,8 +43,8 @@ private:
     std::unique_ptr<TermsAndConditions> m_termsAndConditions;
     QSqlDatabase m_db;
 
-    QString generateSalt();
-    QString hashPassword(const QString& password, const QString& salt);
+    QString GenerateSalt();
+    QString Hash(const QString& password, const QString& salt);
 
     bool m_accepted;
 };

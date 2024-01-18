@@ -9,8 +9,7 @@ Register::Register(QWidget *parent)
     m_LogIn = std::make_unique<logIn>();
     this->setWindowTitle("Register");
     m_databaseManager = std::make_unique<DatabaseManager>();
-    m_databaseManager->openConnection();
-    m_db = m_databaseManager->getDatabase();
+    m_databaseManager->OpenConnection();
 
     m_termsAndConditions = std::make_unique<TermsAndConditions>();
     m_termsAndConditions->setParent(this);
@@ -108,11 +107,11 @@ void Register::on_submit_PB_clicked()
     }
 
 
-    QString passwordSalt = generateSalt();
-    QString securityAnswerSalt = generateSalt();
+    QString passwordSalt = GenerateSalt();
+    QString securityAnswerSalt = GenerateSalt();
 
-    QString hashedPassword = hashPassword(password, passwordSalt);
-    QString hashedSecurityAnswer = hashPassword(securityAnswer, securityAnswerSalt);
+    QString hashedPassword = Hash(password, passwordSalt);
+    QString hashedSecurityAnswer = Hash(securityAnswer, securityAnswerSalt);
 
     QString IBAN = "BG" + QString::number(QRandomGenerator::global()->bounded(10, 100)) + "YRT9661" + randomNumbersString;
 
@@ -193,7 +192,7 @@ void Register::on_submit_PB_clicked()
 }
 
 
-QString Register::generateSalt() {
+QString Register::GenerateSalt() {
     // Generate a random salt
     QByteArray salt;
     for (int i = 0; i < 16; ++i) {
@@ -202,7 +201,7 @@ QString Register::generateSalt() {
     return salt.toHex();
 }
 
-QString Register::hashPassword(const QString& password, const QString& salt) {
+QString Register::Hash(const QString& password, const QString& salt) {
     QByteArray passwordWithSalt = (password + salt).toUtf8();
     QByteArray hashedPassword = QCryptographicHash::hash(passwordWithSalt, QCryptographicHash::Sha256);
     return hashedPassword.toHex();

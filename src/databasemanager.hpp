@@ -9,9 +9,9 @@ class DatabaseManager
 {
 public:
     DatabaseManager();
-    QSqlDatabase getDatabase();
-    void openConnection();
-    void closeConnection();
+    QSqlDatabase GetDatabase();
+    void OpenConnection();
+    void CloseConnection();
 private:
     QSqlDatabase m_db;
 };

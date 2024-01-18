@@ -39,7 +39,7 @@ private slots:
 private:
     Ui::ResetCredentials *ui;
 
-    QString hashSecurityQuestion(const QString& asnwer, const QString& salt);
+    QString Hash(const QString& asnwer, const QString& salt);
     QString m_SQSalt;
 
     std::shared_ptr<logIn> m_LogIn;
