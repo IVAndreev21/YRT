@@ -10,5 +10,6 @@
         <file>tether.png</file>
         <file>logo.png</file>
         <file>paper-plane.svg</file>
+        <file>BankLogo.png</file>
     </qresource>
 </RCC>
