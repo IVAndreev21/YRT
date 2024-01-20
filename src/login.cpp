@@ -28,11 +28,11 @@ QString logIn::Hash(const QString &password, const QString &salt) {
 
 void logIn::on_logIn_PB_clicked()
 {
-    QString username = ui->username_LE->text();
+    m_username = ui->username_LE->text();
     QString password = ui->password_LE->text();
     QSqlQuery qry;
     qry.prepare("SELECT * FROM users WHERE Username = :username");
-    qry.bindValue(":username", username);
+    qry.bindValue(":username", m_username);
 
     if (qry.exec() && qry.next())
     {
@@ -48,13 +48,13 @@ void logIn::on_logIn_PB_clicked()
 
             qry.prepare("UPDATE users SET `Last Active` = :currentDate WHERE Username = :username");
             qry.bindValue(":currentDate", currentDate);
-            qry.bindValue(":username", username);
+            qry.bindValue(":username", m_username);
 
             if(qry.exec())
             {
                 QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
                 this->hide();
-                m_mainWindow = std::make_shared<MainWindow>(this, userIBAN, username);
+                m_mainWindow = std::make_shared<MainWindow>(this, userIBAN, m_username);
                 m_mainWindow->show();
                 DisplayEventsNotification();
             }
@@ -94,25 +94,19 @@ void logIn::DisplayEventsNotification()
 {
     QString executablePath = QCoreApplication::applicationDirPath();
     QProcess process;
-
     QFileInfo executableInfo(executablePath);
     QString sourceFolderPath = executableInfo.absolutePath() + "/../../../YRT/src";
 
-    qDebug() << "Source Folder Path:" << sourceFolderPath;
+    // Specify the working directory as an argument
+    QStringList arguments;
+    arguments << "AppleNotification.py" << m_username;
 
-    // Set the working directory
-    process.setWorkingDirectory(sourceFolderPath);
-    process.start("/usr/local/bin/python3.12", QStringList() << "AppleNotification.py");
+    // Start the process detached with the specified working directory
+    bool success = QProcess::startDetached("/usr/local/bin/python3.12", arguments, sourceFolderPath);
 
-    if (!process.waitForFinished()) {
-        qDebug() << "Error: " << process.errorString();
+    if (!success) {
+        qDebug() << "Error starting process: " << process.errorString();
     } else {
-        qDebug() << "Process finished successfully.";
-
-        // Read standard output of the process
-        QByteArray outputData = process.readAllStandardError();
-        QString outputString = QString::fromUtf8(outputData);
-
-        qDebug() << "Output:" << outputString;
+        qDebug() << "Process started successfully.";
     }
 }

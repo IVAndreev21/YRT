@@ -460,24 +460,22 @@ void MainWindow::on_signOut_PB_clicked()
 
 void MainWindow::DisplayCrypto()
 {
+    QProcess process;
     QString executablePath = QCoreApplication::applicationDirPath();
     QFileInfo executableInfo(executablePath);
     QString sourceFolderPath = executableInfo.absolutePath() + "/../../../YRT/src";
-    QProcess process;
 
-    // Set the working directory
-    process.setWorkingDirectory(sourceFolderPath);
-    process.start("/usr/local/bin/python3.12", QStringList() << "crypto.py");
+    // Specify the working directory as an argument
+    QStringList arguments;
+    arguments << "crypto.py" << m_username;
 
-    if (!process.waitForFinished()) {
-        qDebug() << "Error: " << process.errorString();
+    // Start the process detached with the specified working directory
+    bool success = QProcess::startDetached("/usr/local/bin/python3.12", arguments, sourceFolderPath);
+
+    if (!success) {
+        qDebug() << "Error starting process: " << process.errorString();
     } else {
-        qDebug() << "Process finished successfully.";
-
-        // Read standard output of the process
-        QByteArray outputData = process.readAllStandardError();
-        QString outputString = QString::fromUtf8(outputData);
-
-        qDebug() << "Output:" << outputString;
+        qDebug() << "Process started successfully.";
     }
 }
+

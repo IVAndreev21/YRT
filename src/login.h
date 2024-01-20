@@ -32,5 +32,8 @@ private:
     QString Hash(const QString &password, const QString &salt);
 
     void DisplayEventsNotification();
+
+    QString m_username;
+
 };
 #endif // LOGIN_H
