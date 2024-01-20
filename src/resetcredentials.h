@@ -22,7 +22,7 @@ public:
     ~ResetCredentials();
 
 private slots:
-    void on_Email_LE_editingFinished();
+    void on_email_LE_editingFinished();
 
     void on_security_question_LE_editingFinished();
 

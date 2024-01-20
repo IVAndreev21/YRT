@@ -207,11 +207,11 @@ QString Register::Hash(const QString& password, const QString& salt) {
     return hashedPassword.toHex();
 }
 
-void Register::on_Terns_and_conditions_stateChanged(int arg1)
+void Register::on_terms_and_conditions_stateChanged(int arg1)
 {
     if(arg1 == Qt::Checked)
     {
-        m_termsAndConditions->move(QPoint(ui->Terns_and_conditions->pos().x() - 400, ui->Terns_and_conditions->pos().y() - 300));
+        m_termsAndConditions->move(QPoint(ui->terms_and_conditions->pos().x() - 400, ui->terms_and_conditions->pos().y() - 300));
         m_termsAndConditions->show();
         m_accepted = true;
     }

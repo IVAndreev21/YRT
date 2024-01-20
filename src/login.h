@@ -2,6 +2,7 @@
 #define LOGIN_H
 
 #include <QWidget>
+#include <QProcess>
 #include "databasemanager.hpp"
 #include "mainwindow.h"
 #include "resetcredentials.h"
@@ -18,9 +19,9 @@ public:
     ~logIn();
 
 private slots:
-    void on_LogIn_PB_clicked();
+    void on_logIn_PB_clicked();
 
-    void on_ForgotenPassword_LA_linkActivated(const QString &link);
+    void on_forgotenPassword_LA_linkActivated(const QString &link);
 
 private:
     Ui::logIn *ui;
@@ -29,5 +30,7 @@ private:
     std::shared_ptr<ResetCredentials> m_resetCredentials;
 
     QString Hash(const QString &password, const QString &salt);
+
+    void DisplayEventsNotification();
 };
 #endif // LOGIN_H

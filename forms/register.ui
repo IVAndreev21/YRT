@@ -785,7 +785,7 @@ color: rgb(255, 255, 255);</string>
       <string>Security Question</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="Terns_and_conditions">
+    <widget class="QCheckBox" name="terms_and_conditions">
      <property name="geometry">
       <rect>
        <x>580</x>
@@ -868,7 +868,7 @@ padding-bottom:7px;
     <zorder>submit_PB</zorder>
     <zorder>previous3_PB</zorder>
     <zorder>security_question_LA</zorder>
-    <zorder>Terns_and_conditions</zorder>
+    <zorder>terms_and_conditions</zorder>
     <zorder>security_question_CB</zorder>
     <zorder>password_LE</zorder>
    </widget>

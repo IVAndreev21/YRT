@@ -284,19 +284,20 @@ border-radius:20px;</string>
    </property>
   </widget>
   <zorder>label_2</zorder>
-  <zorder>Title_LA</zorder>
-  <zorder>Title_LE</zorder>
-  <zorder>Description_LA</zorder>
-  <zorder>Description_LE</zorder>
-  <zorder>Time_period_LA</zorder>
-  <zorder>From_LA</zorder>
-  <zorder>From_DE</zorder>
-  <zorder>Till_LA</zorder>
-  <zorder>Till_DE</zorder>
-  <zorder>Repeat_CB</zorder>
-  <zorder>Save_PB</zorder>
-  <zorder>Repeat_LA</zorder>
-  <zorder>Abort_PB</zorder>
+  <zorder>title_LA</zorder>
+  <zorder>title_LE</zorder>
+  <zorder>description_LA</zorder>
+  <zorder>description_LE</zorder>
+  <zorder>time_period_LA</zorder>
+  <zorder>from_LA</zorder>
+  <zorder>from_DE</zorder>
+  <zorder>till_LA</zorder>
+  <zorder>till_DE</zorder>
+  <zorder>repeat_CB</zorder>
+  <zorder>save_PB</zorder>
+  <zorder>repeat_LA</zorder>
+  <zorder>abort_PB</zorder>
+  <zorder>label</zorder>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>

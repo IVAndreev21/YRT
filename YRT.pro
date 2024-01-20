@@ -12,7 +12,6 @@ SOURCES += \
     src/addheir.cpp \
     src/calendarpopup.cpp \
     src/calendar.cpp \
-    src/crypto.cpp \
     src/mainwindow.cpp \
     src/databasemanager.cpp \
     src/login.cpp \
@@ -26,7 +25,6 @@ HEADERS += \
     src/addheir.h \
     src/calendarpopup.h \
     src/calendar.h \
-    src/crypto.h \
     src/mainwindow.h \
     src/databasemanager.hpp \
     src/login.h \
@@ -39,13 +37,13 @@ FORMS += \
     forms/addheir.ui \
     forms/calendarpopup.ui \
     forms/calendar.ui \
-    forms/crypto.ui \
     forms/login.ui \
     forms/mainmenu.ui \
     forms/register.ui \
     forms/mainwindow.ui \
     forms/termsandconditions.ui \
-    forms/resetcredentials.ui
+    forms/resetcredentials.ui \
+    forms/crypto.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

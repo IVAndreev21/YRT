@@ -34,7 +34,7 @@ private slots:
 
     void on_submit_PB_clicked();
 
-    void on_Terns_and_conditions_stateChanged(int arg1);
+    void on_terms_and_conditions_stateChanged(int arg1);
 
 private:
     Ui::Register *ui;

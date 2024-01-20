@@ -229,7 +229,7 @@ color: rgb(255, 255, 255);</string>
     </font>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="dashboard_page">
     <widget class="QWidget" name="gridLayoutWidget">
@@ -611,8 +611,15 @@ color:white}</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-radius:15px;
-color:white</string>
+      <string notr="true">QPushButton{
+background-color: rgb(95, 97, 97);
+border-radius:20px
+}
+QPushButton
+{
+   color:white;
+}
+</string>
      </property>
      <property name="text">
       <string>Send</string>
@@ -668,7 +675,6 @@ QPushButton
 QPushButton:hover
 {
   background-color: rgb(75, 77, 77);
-  transition:0,5s;
 }
 </string>
      </property>
@@ -701,38 +707,6 @@ QPushButton:hover
      </property>
      <property name="scaledContents">
       <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="addHeir_PB_2">
-     <property name="geometry">
-      <rect>
-       <x>810</x>
-       <y>610</y>
-       <width>271</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>12</pointsize>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton{
-background-color: rgb(95, 97, 97);
-border-radius:30px
-}
-QPushButton
-{
-   color:white;
-}
-</string>
-     </property>
-     <property name="text">
-      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="currency_BGN_LA">
@@ -772,30 +746,6 @@ QPushButton
       <string/>
      </property>
     </widget>
-    <zorder>addHeir_PB_2</zorder>
-    <zorder>gridLayoutWidget</zorder>
-    <zorder>my_cards_LA</zorder>
-    <zorder>blank_card_LA</zorder>
-    <zorder>statu_LA</zorder>
-    <zorder>status_Active_LA</zorder>
-    <zorder>name_LA</zorder>
-    <zorder>name_Payment_card_LA</zorder>
-    <zorder>currency_LA</zorder>
-    <zorder>quick_Transfer_LA</zorder>
-    <zorder>card_number_LA</zorder>
-    <zorder>IBAN_qt_LE</zorder>
-    <zorder>pay_to_LA</zorder>
-    <zorder>amount_LA</zorder>
-    <zorder>amount_SB</zorder>
-    <zorder>recent_tr_LA</zorder>
-    <zorder>recent_tr_TV</zorder>
-    <zorder>card_holder_LA</zorder>
-    <zorder>send_qt_PB</zorder>
-    <zorder>heir_detected</zorder>
-    <zorder>addHeir_PB</zorder>
-    <zorder>label</zorder>
-    <zorder>currency_BGN_LA</zorder>
-    <zorder>clientname_LA</zorder>
    </widget>
    <widget class="QWidget" name="transacions_page">
     <widget class="QLabel" name="bank_tr_LA">
@@ -859,7 +809,7 @@ background-color:rgb(66, 66, 66);
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <property name="enabled">
@@ -1177,7 +1127,7 @@ background-color:rgb(66, 66, 66);
         <string>Income</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="Income_LE">
+      <widget class="QLineEdit" name="income_LE">
        <property name="enabled">
         <bool>false</bool>
        </property>

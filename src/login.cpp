@@ -26,15 +26,13 @@ QString logIn::Hash(const QString &password, const QString &salt) {
     return hashedPassword.toHex();
 }
 
-void logIn::on_LogIn_PB_clicked()
+void logIn::on_logIn_PB_clicked()
 {
     QString username = ui->username_LE->text();
     QString password = ui->password_LE->text();
     QSqlQuery qry;
     qry.prepare("SELECT * FROM users WHERE Username = :username");
     qry.bindValue(":username", username);
-
-    qDebug() << qry.value("Username");
 
     if (qry.exec() && qry.next())
     {
@@ -45,23 +43,20 @@ void logIn::on_LogIn_PB_clicked()
         QString hashedPasswordToCheck = Hash(password, saltFromDB);
         if (hashedPasswordToCheck == hashedPasswordFromDB)
         {
-            qDebug() << "sds";
             QString userIBAN = qry.value("IBAN").toString();
             QDate currentDate = QDate::currentDate();
 
-            qDebug() << currentDate.toString();
-            qDebug() << username;
             qry.prepare("UPDATE users SET `Last Active` = :currentDate WHERE Username = :username");
             qry.bindValue(":currentDate", currentDate);
             qry.bindValue(":username", username);
 
-            qDebug() << username;
             if(qry.exec())
             {
                 QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
                 this->hide();
                 m_mainWindow = std::make_shared<MainWindow>(this, userIBAN, username);
                 m_mainWindow->show();
+                DisplayEventsNotification();
             }
             else
             {
@@ -89,9 +84,35 @@ void logIn::on_LogIn_PB_clicked()
 }
 
 
-void logIn::on_ForgotenPassword_LA_linkActivated(const QString &link)
+void logIn::on_forgotenPassword_LA_linkActivated(const QString &link)
 {
     this->hide();
     m_resetCredentials->show();
 }
 
+void logIn::DisplayEventsNotification()
+{
+    QString executablePath = QCoreApplication::applicationDirPath();
+    QProcess process;
+
+    QFileInfo executableInfo(executablePath);
+    QString sourceFolderPath = executableInfo.absolutePath() + "/../../../YRT/src";
+
+    qDebug() << "Source Folder Path:" << sourceFolderPath;
+
+    // Set the working directory
+    process.setWorkingDirectory(sourceFolderPath);
+    process.start("/usr/local/bin/python3.12", QStringList() << "AppleNotification.py");
+
+    if (!process.waitForFinished()) {
+        qDebug() << "Error: " << process.errorString();
+    } else {
+        qDebug() << "Process finished successfully.";
+
+        // Read standard output of the process
+        QByteArray outputData = process.readAllStandardError();
+        QString outputString = QString::fromUtf8(outputData);
+
+        qDebug() << "Output:" << outputString;
+    }
+}

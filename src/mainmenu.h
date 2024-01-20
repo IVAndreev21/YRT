@@ -18,9 +18,9 @@ public:
     ~MainMenu();
 
 private slots:
-    void on_LogIn_PB_clicked();
+    void on_logIn_PB_clicked();
 
-    void on_Register_PB_clicked();
+    void on_register_PB_clicked();
 
 private:
     Ui::MainMenu *ui;

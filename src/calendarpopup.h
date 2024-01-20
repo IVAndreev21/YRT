@@ -19,9 +19,9 @@ public:
     ~CalendarPopUp();
 
 private slots:
-    void on_Save_PB_clicked();
+    void on_save_PB_clicked();
 
-    void on_Abort_PB_clicked();
+    void on_abort_PB_clicked();
 
 private:
     Ui::CalendarPopUp *ui;

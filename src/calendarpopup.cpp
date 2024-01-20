@@ -9,19 +9,19 @@ CalendarPopUp::CalendarPopUp(std::shared_ptr<Calendar> calendar,const QString& u
     m_username = username_ref;
 
     ui->from_DE->setDate(QDate::currentDate());
-    ui->Till_DE->setDate(QDate::currentDate());
+    ui->till_DE->setDate(QDate::currentDate());
 }
 CalendarPopUp::~CalendarPopUp()
 {
     delete ui;
 }
 
-void CalendarPopUp::on_Save_PB_clicked()
+void CalendarPopUp::on_save_PB_clicked()
 {
     QString title = ui->title_LE->text();
     QString description = ui->description_LE->text();
     QDate from = ui->from_DE->date();
-    QDate till = ui->Till_DE->date();
+    QDate till = ui->till_DE->date();
     QString repeat = ui->repeat_CB->currentText();
 
     QSqlQuery query;
@@ -50,13 +50,13 @@ void CalendarPopUp::on_Save_PB_clicked()
 }
 
 
-void CalendarPopUp::on_Abort_PB_clicked()
+void CalendarPopUp::on_abort_PB_clicked()
 {
 
     ui->title_LE->clear();
     ui->description_LE->clear();
     ui->from_DE->clear();
-    ui->Till_DE->clear();
+    ui->till_DE->clear();
     ui->repeat_CB->clear();
 
     this->hide();

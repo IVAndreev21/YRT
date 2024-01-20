@@ -18,9 +18,9 @@ public:
     bool getStatus();
 
 private slots:
-    void on_Agree_PB_clicked();
+    void on_agree_PB_clicked();
 
-    void on_Cancel_PB_clicked();
+    void on_cancel_PB_clicked();
 
 private:
     Ui::TermsAndConditions *ui;

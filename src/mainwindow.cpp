@@ -13,20 +13,19 @@ MainWindow::MainWindow(logIn* login, const QString& IBAN_ref, const QString& use
     chart = new QChart;
     chartView = new QChartView(chart);
 
-    m_crypto = std::make_shared<Crypto>(std::shared_ptr<MainWindow>(this));
     m_addHeir = std::make_shared<AddHeir>(std::shared_ptr<MainWindow>(this), m_username);
     UpdateDashboard();
     ui->card_holder_LA->setText(m_clientFName + " " + m_clientLName[0]);
-    ui->SecurityAnswer_LE->setEchoMode(QLineEdit::Password);
+    ui->securityAnswer_LE->setEchoMode(QLineEdit::Password);
     ui->IBAN_qt_LE->setPlaceholderText("BG00YRT00000000000000");
 
-    transactions_TV = ui->Transactions_tr_TV;
-    Recent_tr_TV = ui->Recent_tr_TV;
+    transactions_TV = ui->transactions_tr_TV;
+    Recent_tr_TV = ui->recent_tr_TV;
 
     UpdateTransactions(transactions_TV, Recent_tr_TV);
     UpdateSettings();
 
-    ui->Password_LE->setEchoMode(QLineEdit::Password);
+    ui->password_LE->setEchoMode(QLineEdit::Password);
     m_calendar = std::make_shared<Calendar>(std::shared_ptr<MainWindow>(this), m_username);
 
 }
@@ -141,17 +140,15 @@ void MainWindow::on_pfp_acc_PB_clicked()
             }
         }
     }
-}
-
-void MainWindow::on_payments_PB_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(2);
+    else
+    {
+        qDebug() << "invalid image";
+    }
 }
 
 void MainWindow::on_crypto_PB_clicked()
 {
-    m_crypto->show();
-    this->hide();
+    DisplayCrypto();
 }
 
 void MainWindow::on_settings_PB_clicked()
@@ -315,13 +312,15 @@ void MainWindow::UpdateDashboard()
     {
         m_clientFName = qry.value("First Name").toString();
         m_clientLName = qry.value("Last Name").toString();
-        QString balance = qry.value("Balance").toString();
+        double balance = qry.value("Balance").toDouble(); // Convert to double
+        balance = round(balance * 100) / 100; // Round to two decimal places
+        QString balanceStr = QString::number(balance, 'f', 2); // Convert back to formatted string
 
         ui->clientname_LA->setText("Hello Again, " + m_clientFName + " " + m_clientLName[0] + ".");
-        ui->balance_LA_2->setText("BGN " + balance);
-
+        ui->balance_LA_2->setText("BGN " + balanceStr);
         Updatepfp();
     }
+
     else
     {
         qDebug() << "Query failed or no record found.";
@@ -361,8 +360,6 @@ void MainWindow::UpdateDashboard()
     series->append("Income", m_userIncome);
     series->append("Expenses", m_userExpenses);
 
-    chart->setBackgroundBrush(Qt::NoBrush);
-
     QPieSlice* slice0 = series->slices().at(0);
     slice0->setLabelVisible();
 
@@ -371,9 +368,21 @@ void MainWindow::UpdateDashboard()
 
     chart->addSeries(series);
     chart->setTitle("Total Balance");
-    chart->backgroundBrush();
+
+    // Set background color
+    QBrush backgroundBrush(QColor(180, 184, 184));
+    chart->setBackgroundBrush(backgroundBrush);
+
+    // If you want to add rounded corners, you may need to use a QGraphicsDropShadowEffect
+    QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect;
+    shadowEffect->setBlurRadius(30);
+    shadowEffect->setColor(QColor(180, 184, 184));
+    shadowEffect->setOffset(0, 0);
+    chart->setGraphicsEffect(shadowEffect);
+
     chart->setTitleBrush(Qt::white);
     chart->legend()->hide();
+
 
     chartView->setRenderHint(QPainter::Antialiasing);
 
@@ -394,30 +403,30 @@ void MainWindow::UpdateSettings()
 
     if(qry.exec() && qry.next())
     {
-        ui->FName_LE->setText(qry.value("First Name").toString());
-        ui->LName_LE->setText(qry.value("Last Name").toString());
-        ui->Birth_LE->setText(qry.value("Date of Birth").toString());
-        ui->Gender_LE->setText(qry.value("Gender").toString());
+        ui->fName_LE->setText(qry.value("First Name").toString());
+        ui->lName_LE->setText(qry.value("Last Name").toString());
+        ui->birth_LE->setText(qry.value("Date of Birth").toString());
+        ui->gender_LE->setText(qry.value("Gender").toString());
         ui->SSN_LE->setText(qry.value("SSN").toString());
-        ui->City_LE->setText(qry.value("City").toString());
-        ui->State_LE->setText(qry.value("State/Province").toString());
-        ui->PostalCode_LE->setText(qry.value("Postal Code").toString());
-        ui->Street_LE->setText(qry.value("Street").toString());
-        ui->Status_LE->setText(qry.value("Employment Status").toString());
-        ui->AccType_LE->setText(qry.value("Type").toString());
-        ui->Income_LE->setText(qry.value("Income").toString());
-        ui->Expenses_LE->setText(qry.value("Expenses").toString());
-        ui->Balance_LE->setText(qry.value("Balance").toString());
+        ui->city_LE->setText(qry.value("City").toString());
+        ui->state_LE->setText(qry.value("State/Province").toString());
+        ui->postalCode_LE->setText(qry.value("Postal Code").toString());
+        ui->street_LE->setText(qry.value("Street").toString());
+        ui->status_LE->setText(qry.value("Employment Status").toString());
+        ui->accType_LE->setText(qry.value("Type").toString());
+        ui->income_LE->setText(qry.value("Income").toString());
+        ui->expenses_LE->setText(qry.value("Expenses").toString());
+        ui->balance_LE->setText(qry.value("Balance").toString());
         ui->IBAN_LE->setText(qry.value("IBAN").toString());
-        ui->Username_LE->setText(qry.value("Username").toString());
-        ui->Password_LE->setText(qry.value("Password").toString());
-        ui->SecurityQuestion_LE->setText(qry.value("Security question").toString());
-        ui->SecurityAnswer_LE->setText(qry.value("Security answer").toString());
+        ui->username_LE->setText(qry.value("Username").toString());
+        ui->password_LE->setText(qry.value("Password").toString());
+        ui->securityQuestion_LE->setText(qry.value("Security question").toString());
+        ui->securityAnswer_LE->setText(qry.value("Security answer").toString());
     }
 }
 
 
-void MainWindow::on_Send_qt_PB_clicked()
+void MainWindow::on_send_qt_PB_clicked()
 {
     QString receiverIBAN = ui->IBAN_qt_LE->text();
     QString amountStr = ui->amount_SB->text();
@@ -448,3 +457,27 @@ void MainWindow::on_signOut_PB_clicked()
     this->hide();
 }
 
+
+void MainWindow::DisplayCrypto()
+{
+    QString executablePath = QCoreApplication::applicationDirPath();
+    QFileInfo executableInfo(executablePath);
+    QString sourceFolderPath = executableInfo.absolutePath() + "/../../../YRT/src";
+    QProcess process;
+
+    // Set the working directory
+    process.setWorkingDirectory(sourceFolderPath);
+    process.start("/usr/local/bin/python3.12", QStringList() << "crypto.py");
+
+    if (!process.waitForFinished()) {
+        qDebug() << "Error: " << process.errorString();
+    } else {
+        qDebug() << "Process finished successfully.";
+
+        // Read standard output of the process
+        QByteArray outputData = process.readAllStandardError();
+        QString outputString = QString::fromUtf8(outputData);
+
+        qDebug() << "Output:" << outputString;
+    }
+}

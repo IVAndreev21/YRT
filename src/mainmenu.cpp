@@ -14,14 +14,14 @@ MainMenu::~MainMenu()
     delete ui;
 }
 
-void MainMenu::on_LogIn_PB_clicked()
+void MainMenu::on_logIn_PB_clicked()
 {
     logInWindow = new logIn(nullptr);
     this->hide();
     logInWindow->show();
 }
 
-void MainMenu::on_Register_PB_clicked()
+void MainMenu::on_register_PB_clicked()
 {
     registerWindow = new Register(nullptr);
     this->hide();

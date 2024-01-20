@@ -15,13 +15,13 @@
 #include <QtCharts/QLegend>
 #include <QtCharts/QChartGlobal>
 #include <QTableView>
+#include <QGraphicsDropShadowEffect>
 #include <QTreeWidget>
 #include <QPen>
 #include <QSqlQuery>
 #include <QBuffer>
 #include <QSqlQueryModel>
 #include "calendar.h"
-#include "crypto.h"
 #include "addheir.h"
 
 class logIn;
@@ -49,8 +49,6 @@ private slots:
 
     void on_transactions_PB_clicked();
 
-    void on_payments_PB_clicked();
-
     void on_crypto_PB_clicked();
 
     void on_settings_PB_clicked();
@@ -63,7 +61,7 @@ private slots:
 
     void on_calendar_PB_clicked();
 
-    void on_Send_qt_PB_clicked();
+    void on_send_qt_PB_clicked();
 
     void on_addHeir_PB_clicked();
 
@@ -72,7 +70,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<Calendar> m_calendar;
-    std::shared_ptr<Crypto> m_crypto;
     std::shared_ptr<AddHeir> m_addHeir;
     void Updatepfp();
     void UpdateTransactions(QTableView* transasctions_TV, QTableView* Recent_tr_TV);
@@ -94,6 +91,9 @@ private:
     QTableView* Recent_tr_TV;
 
     QString m_heir;
+
+
+    void DisplayCrypto();
 };
 
 #endif // MAINWINDOW_H

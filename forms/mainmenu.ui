@@ -128,9 +128,10 @@ border-radius:15px;</string>
    </property>
   </widget>
   <zorder>label_3</zorder>
+  <zorder>logIn_PB</zorder>
+  <zorder>register_PB</zorder>
+  <zorder>label</zorder>
   <zorder>YRTBank_LA</zorder>
-  <zorder>LogIn_PB</zorder>
-  <zorder>Register_PB</zorder>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>

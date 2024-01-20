@@ -19,9 +19,9 @@ ResetCredentials::~ResetCredentials()
     delete ui;
 }
 
-void ResetCredentials::on_Email_LE_editingFinished()
+void ResetCredentials::on_email_LE_editingFinished()
 {
-    QString email = ui->Email_LE->text();
+    QString email = ui->email_LE->text();
     qDebug() << email;
 
     QSqlQuery qry;
@@ -56,7 +56,7 @@ QString ResetCredentials::Hash(const QString& answer, const QString& salt)
 void ResetCredentials::on_security_question_LE_editingFinished()
 {
     QSqlQuery qry;
-    QString email = ui->Email_LE->text();
+    QString email = ui->email_LE->text();
     qry.prepare("SELECT * FROM users WHERE Email = :email");
     qry.bindValue(":email", email);
     if(qry.exec() && qry.next())
@@ -98,7 +98,7 @@ void ResetCredentials::on_confirm_password_PB_clicked()
     QSqlQuery qry;
     if(ui->new_password_LE->text() == ui->confirm_password_LE->text())
     {
-        QString email = ui->Email_LE->text();
+        QString email = ui->email_LE->text();
         QString password = ui->new_password_LE->text();
 
         qry.prepare("SELECT * FROM users WHERE email = :email");
@@ -135,7 +135,7 @@ void ResetCredentials::on_confirm_username_PB_clicked()
 {
     QSqlQuery qry;
     QString username = ui->new_username_LE->text();
-    QString email = ui->Email_LE->text();
+    QString email = ui->email_LE->text();
 
         qry.prepare("SELECT * FROM users WHERE email = :email");
         qry.bindValue(":email", email);

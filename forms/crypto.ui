@@ -122,7 +122,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>images/solana.svg</pixmap>
+        <pixmap>:/images/solana.svg</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -139,9 +139,6 @@ border-radius:30px;</string>
        </property>
        <property name="text">
         <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>images/bitcoin.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -160,7 +157,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>images/binance.png</pixmap>
+        <pixmap>:/images/binance.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -179,7 +176,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>images/etherium.png</pixmap>
+        <pixmap>:/images/etherium.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -470,7 +467,7 @@ border-radius:30px;</string>
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
@@ -570,7 +567,7 @@ border-radius:30px;</string>
            <string>Selling</string>
           </property>
          </widget>
-         <widget class="QDoubleSpinBox" name="quantity_SB">
+         <widget class="QDoubleSpinBox" name="quantity_swap_SB">
           <property name="geometry">
            <rect>
             <x>270</x>
@@ -623,12 +620,12 @@ border-radius:30px;</string>
            <string>Buying</string>
           </property>
          </widget>
-         <widget class="QComboBox" name="buyingCurrency_CB">
+         <widget class="QComboBox" name="buyingCurrency_swap_CB">
           <property name="geometry">
            <rect>
             <x>10</x>
             <y>20</y>
-            <width>131</width>
+            <width>321</width>
             <height>31</height>
            </rect>
           </property>
@@ -693,11 +690,305 @@ border-radius:30px;</string>
         <attribute name="title">
          <string>Buy</string>
         </attribute>
+        <widget class="QWidget" name="widget_12" native="true">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>341</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(39, 40, 40);
+border-radius:30px;</string>
+         </property>
+         <widget class="QLabel" name="buying_LA_2">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>0</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Buying</string>
+          </property>
+         </widget>
+         <widget class="QComboBox" name="buyingCurrency_buy_CB">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>321</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <item>
+           <property name="text">
+            <string>BTC</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ETH</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SOL</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BNB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DODGECOIN</string>
+           </property>
+          </item>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="widget_11" native="true">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>110</y>
+           <width>341</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(39, 40, 40);
+border-radius:30px;</string>
+         </property>
+         <widget class="QLabel" name="selling_LA_2">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>0</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Quantity</string>
+          </property>
+         </widget>
+         <widget class="QDoubleSpinBox" name="quantity_buy_SB">
+          <property name="geometry">
+           <rect>
+            <x>270</x>
+            <y>20</y>
+            <width>62</width>
+            <height>31</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLabel" name="sellingCurrency_LA_2">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>20</y>
+            <width>81</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QLabel" name="priceBuy_LA">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>200</y>
+           <width>161</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="buy_PB">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>250</y>
+           <width>191</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 106, 35);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="Sell">
         <attribute name="title">
-         <string>Page</string>
+         <string>Sell</string>
         </attribute>
+        <widget class="QWidget" name="widget_13" native="true">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>110</y>
+           <width>341</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(39, 40, 40);
+border-radius:30px;</string>
+         </property>
+         <widget class="QLabel" name="selling_LA_3">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>0</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Quantity</string>
+          </property>
+         </widget>
+         <widget class="QDoubleSpinBox" name="quantity_sell_SB">
+          <property name="geometry">
+           <rect>
+            <x>270</x>
+            <y>20</y>
+            <width>62</width>
+            <height>31</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLabel" name="sellingCurrency_LA_3">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>20</y>
+            <width>81</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="widget_14" native="true">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>341</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(39, 40, 40);
+border-radius:30px;</string>
+         </property>
+         <widget class="QLabel" name="buying_LA_3">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>0</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Selling</string>
+          </property>
+         </widget>
+         <widget class="QComboBox" name="buyingCurrency_CB_3">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>321</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <item>
+           <property name="text">
+            <string>BTC</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ETH</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SOL</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BNB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DODGECOIN</string>
+           </property>
+          </item>
+         </widget>
+        </widget>
+        <widget class="QLabel" name="priceSell_LA">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>200</y>
+           <width>211</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="sell_PB">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>250</y>
+           <width>191</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 106, 35);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </widget>
       </widget>
      </widget>
@@ -819,25 +1110,6 @@ border-radius:30px;</string>
        </property>
        <property name="pixmap">
         <pixmap>images/solana.svg</pixmap>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_7">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>450</y>
-         <width>71</width>
-         <height>61</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>images/tether.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -987,8 +1259,6 @@ border-radius:10px;</string>
   <zorder>verticalLayoutWidget</zorder>
   <zorder>stackedWidget</zorder>
  </widget>
- <resources>
-  <include location="../resources/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
