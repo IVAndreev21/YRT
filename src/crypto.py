@@ -524,16 +524,29 @@ class Ui_Crypto(object):
                         cursor.execute(update_query, (new_balance,))
                         cnx.commit()
 
-                        # Insert into the crypto table
-                        crypto_name = str(self.buyingCurrency_buy_CB.currentText())  # Replace with the actual cryptocurrency name
-                        crypto_amount = float(self.quantity_buy_SB.value())  # Replace with the actual amount purchased
+                        # Check if the user already has a record for the cryptocurrency
+                        crypto_name = str(self.buyingCurrency_buy_CB.currentText())
+                        select_crypto_query = "SELECT `Crypto Amount` FROM crypto WHERE Username = %s AND `Crypto Name` = %s"
+                        cursor.execute(select_crypto_query, ('test', crypto_name))
+                        crypto_result = cursor.fetchone()
 
-                        insert_query = """
-                            INSERT INTO crypto (Username, `Crypto Name`, `Crypto Amount`, `Purchase Date`)
-                            VALUES (%s, %s, %s, %s)
-                        """
-                        purchase_date = datetime.now()
-                        cursor.execute(insert_query, (f'{username}', crypto_name, crypto_amount, purchase_date))
+                        if crypto_result:
+                            # If the user already has a record, update the quantity
+                            current_crypto_amount = float(crypto_result[0])
+                            new_crypto_amount = current_crypto_amount + float(self.quantity_buy_SB.value())
+
+                            update_crypto_query = "UPDATE crypto SET `Crypto Amount` = %s WHERE Username = %s AND `Crypto Name` = %s"
+                            cursor.execute(update_crypto_query, (new_crypto_amount, 'test', crypto_name))
+                        else:
+                            # If the user doesn't have a record, insert a new record
+                            crypto_amount = float(self.quantity_buy_SB.value())
+                            insert_query = """
+                                INSERT INTO crypto (Username, `Crypto Name`, `Crypto Amount`, `Purchase Date`)
+                                VALUES (%s, %s, %s, %s)
+                            """
+                            purchase_date = datetime.now()
+                            cursor.execute(insert_query, ('test', crypto_name, crypto_amount, purchase_date))
+
                         cnx.commit()
 
                         print("Purchase successful!")
