@@ -1,4 +1,4 @@
-#include "login.h"
+#include "login.hpp"
 #include "ui_login.h"
 #include <QDebug>
 #include <QMessageBox>
@@ -99,10 +99,10 @@ void logIn::DisplayEventsNotification()
 
     // Specify the working directory as an argument
     QStringList arguments;
-    arguments << "AppleNotification.py" << m_username;
+    arguments << "WindowsNotification.py" << m_username;
 
     // Start the process detached with the specified working directory
-    bool success = QProcess::startDetached("/usr/local/bin/python3.12", arguments, sourceFolderPath);
+    bool success = QProcess::startDetached("C:/Users/boyan/AppData/Local/Programs/Python/Python312/python.exe", arguments, sourceFolderPath);
 
     if (!success) {
         qDebug() << "Error starting process: " << process.errorString();

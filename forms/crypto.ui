@@ -18,7 +18,7 @@
     <rect>
      <x>150</x>
      <y>-10</y>
-     <width>20</width>
+     <width>16</width>
      <height>751</height>
     </rect>
    </property>
@@ -26,75 +26,29 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>70</y>
-     <width>121</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="options_BL">
-    <item>
-     <widget class="QPushButton" name="dashboard_PB">
-      <property name="text">
-       <string>Dashboard</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="portfolio_PB">
-      <property name="text">
-       <string>Portfolio</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="market_PB">
-      <property name="text">
-       <string>Market</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="transactions_PB">
-      <property name="text">
-       <string>Transactions</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="watchlist_PB">
-      <property name="text">
-       <string>Watchlist</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>10</y>
-     <width>1091</width>
-     <height>721</height>
+     <x>150</x>
+     <y>-20</y>
+     <width>1161</width>
+     <height>751</height>
     </rect>
    </property>
    <widget class="QWidget" name="Dashboard">
     <widget class="QWidget" name="widget_2" native="true">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>-20</y>
-       <width>941</width>
-       <height>741</height>
+       <x>10</x>
+       <y>10</y>
+       <width>1121</width>
+       <height>731</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(39, 40, 40);
-border-radius:10px;</string>
+border-radius:10px;
+color: white;</string>
      </property>
      <widget class="QWidget" name="widget" native="true">
       <property name="geometry">
@@ -122,7 +76,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>:/images/solana.svg</pixmap>
+        <pixmap resource="../resources/resources.qrc">:/images/solana.svg</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -157,7 +111,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>:/images/binance.png</pixmap>
+        <pixmap resource="../resources/resources.qrc">:/images/binance.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -176,7 +130,7 @@ border-radius:30px;</string>
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>:/images/etherium.png</pixmap>
+        <pixmap resource="../resources/resources.qrc">:/images/etherium.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -191,6 +145,9 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
+       </property>
        <property name="text">
         <string>Bitcoin</string>
        </property>
@@ -203,6 +160,9 @@ border-radius:30px;</string>
          <width>58</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
        </property>
        <property name="text">
         <string>BTC</string>
@@ -230,6 +190,9 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
+       </property>
        <property name="text">
         <string>Solana</string>
        </property>
@@ -242,6 +205,9 @@ border-radius:30px;</string>
          <width>58</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
        </property>
        <property name="text">
         <string>SOL</string>
@@ -256,6 +222,9 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
+       </property>
        <property name="text">
         <string>Etherium</string>
        </property>
@@ -268,6 +237,9 @@ border-radius:30px;</string>
          <width>58</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
        </property>
        <property name="text">
         <string>ETH</string>
@@ -282,6 +254,9 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
+       </property>
        <property name="text">
         <string>Binance</string>
        </property>
@@ -294,6 +269,9 @@ border-radius:30px;</string>
          <width>58</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
        </property>
        <property name="text">
         <string>BNB</string>
@@ -321,6 +299,9 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
+       </property>
        <property name="text">
         <string>Now</string>
        </property>
@@ -347,6 +328,9 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
+       </property>
        <property name="text">
         <string>Now</string>
        </property>
@@ -360,6 +344,9 @@ border-radius:30px;</string>
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
+       </property>
        <property name="text">
         <string>Now</string>
        </property>
@@ -372,6 +359,9 @@ border-radius:30px;</string>
          <width>71</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
        </property>
        <property name="text">
         <string>Now</string>
@@ -412,6 +402,9 @@ border-radius:30px;</string>
          <height>20</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
+       </property>
        <property name="text">
         <string>Watchlist</string>
        </property>
@@ -425,6 +418,9 @@ border-radius:30px;</string>
         <width>101</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;</string>
       </property>
       <property name="text">
        <string>Your portfolio</string>
@@ -443,6 +439,19 @@ border-radius:30px;</string>
        <string notr="true">background-color: rgb(57, 58, 58);
 border-radius:30px;</string>
       </property>
+      <widget class="QTableView" name="tableView_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>441</width>
+         <height>261</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: white;</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="widget_4" native="true">
       <property name="geometry">
@@ -463,8 +472,11 @@ border-radius:30px;</string>
          <x>20</x>
          <y>20</y>
          <width>361</width>
-         <height>371</height>
+         <height>351</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:black;</string>
        </property>
        <property name="currentIndex">
         <number>1</number>
@@ -484,7 +496,8 @@ border-radius:30px;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(39, 40, 40);
-border-radius:30px;</string>
+border-radius:30px;
+color:white;</string>
          </property>
          <widget class="QComboBox" name="currencySelect_CB">
           <property name="geometry">
@@ -549,7 +562,8 @@ border-radius:30px;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(39, 40, 40);
-border-radius:30px;</string>
+border-radius:30px;
+color:white;</string>
          </property>
          <widget class="QLabel" name="selling_LA">
           <property name="geometry">
@@ -570,11 +584,14 @@ border-radius:30px;</string>
          <widget class="QDoubleSpinBox" name="quantity_swap_SB">
           <property name="geometry">
            <rect>
-            <x>270</x>
+            <x>250</x>
             <y>20</y>
-            <width>62</width>
+            <width>91</width>
             <height>31</height>
            </rect>
+          </property>
+          <property name="decimals">
+           <number>8</number>
           </property>
          </widget>
          <widget class="QLabel" name="sellingCurrency_LA">
@@ -602,7 +619,8 @@ border-radius:30px;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(39, 40, 40);
-border-radius:30px;</string>
+border-radius:30px;
+color:white;</string>
          </property>
          <widget class="QLabel" name="buying_LA">
           <property name="geometry">
@@ -665,6 +683,9 @@ border-radius:30px;</string>
            <height>16</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">color:white;</string>
+         </property>
          <property name="text">
           <string>Exchange fee</string>
          </property>
@@ -679,7 +700,8 @@ border-radius:30px;</string>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 106, 35);</string>
+          <string notr="true">background-color: rgb(255, 106, 35);
+color:white;</string>
          </property>
          <property name="text">
           <string/>
@@ -701,7 +723,8 @@ border-radius:30px;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(39, 40, 40);
-border-radius:30px;</string>
+border-radius:30px;
+color:white;</string>
          </property>
          <widget class="QLabel" name="buying_LA_2">
           <property name="geometry">
@@ -766,7 +789,8 @@ border-radius:30px;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(39, 40, 40);
-border-radius:30px;</string>
+border-radius:30px;
+color:white;</string>
          </property>
          <widget class="QLabel" name="selling_LA_2">
           <property name="geometry">
@@ -787,11 +811,14 @@ border-radius:30px;</string>
          <widget class="QDoubleSpinBox" name="quantity_buy_SB">
           <property name="geometry">
            <rect>
-            <x>270</x>
+            <x>250</x>
             <y>20</y>
-            <width>62</width>
+            <width>81</width>
             <height>31</height>
            </rect>
+          </property>
+          <property name="decimals">
+           <number>8</number>
           </property>
          </widget>
          <widget class="QLabel" name="sellingCurrency_LA_2">
@@ -817,6 +844,9 @@ border-radius:30px;</string>
            <height>41</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">color:white;</string>
+         </property>
          <property name="text">
           <string>TextLabel</string>
          </property>
@@ -831,7 +861,8 @@ border-radius:30px;</string>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 106, 35);</string>
+          <string notr="true">background-color: rgb(255, 106, 35);
+color:white;</string>
          </property>
          <property name="text">
           <string/>
@@ -853,7 +884,8 @@ border-radius:30px;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(39, 40, 40);
-border-radius:30px;</string>
+border-radius:30px;
+color:white;</string>
          </property>
          <widget class="QLabel" name="selling_LA_3">
           <property name="geometry">
@@ -874,11 +906,14 @@ border-radius:30px;</string>
          <widget class="QDoubleSpinBox" name="quantity_sell_SB">
           <property name="geometry">
            <rect>
-            <x>270</x>
+            <x>250</x>
             <y>20</y>
-            <width>62</width>
+            <width>81</width>
             <height>31</height>
            </rect>
+          </property>
+          <property name="decimals">
+           <number>8</number>
           </property>
          </widget>
          <widget class="QLabel" name="sellingCurrency_LA_3">
@@ -906,7 +941,8 @@ border-radius:30px;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(39, 40, 40);
-border-radius:30px;</string>
+border-radius:30px;
+color:white;</string>
          </property>
          <widget class="QLabel" name="buying_LA_3">
           <property name="geometry">
@@ -969,6 +1005,9 @@ border-radius:30px;</string>
            <height>41</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">color:white;</string>
+         </property>
          <property name="text">
           <string>TextLabel</string>
          </property>
@@ -983,7 +1022,8 @@ border-radius:30px;</string>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 106, 35);</string>
+          <string notr="true">background-color: rgb(255, 106, 35);
+color:white;</string>
          </property>
          <property name="text">
           <string/>
@@ -992,6 +1032,10 @@ border-radius:30px;</string>
        </widget>
       </widget>
      </widget>
+     <zorder>widget_4</zorder>
+     <zorder>widget</zorder>
+     <zorder>portfolio_LA</zorder>
+     <zorder>widget_3</zorder>
     </widget>
    </widget>
    <widget class="QWidget" name="Portfolio"/>
@@ -1228,9 +1272,9 @@ border-radius:30px;</string>
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>10</y>
+     <y>0</y>
      <width>151</width>
-     <height>671</height>
+     <height>721</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -1241,24 +1285,42 @@ border-radius:10px;</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>620</y>
+      <y>660</y>
       <width>100</width>
       <height>32</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(84, 85, 85);</string>
+     <string notr="true">background-color: rgb(84, 85, 85);
+color: white;</string>
     </property>
     <property name="text">
      <string>Back</string>
     </property>
    </widget>
+   <widget class="QWidget" name="widget_15" native="true">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>70</y>
+      <width>1151</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 40, 40);
+border-radius:10px;</string>
+    </property>
+   </widget>
+   <zorder>widget_15</zorder>
+   <zorder>back_PB</zorder>
   </widget>
   <zorder>widget_10</zorder>
   <zorder>line</zorder>
-  <zorder>verticalLayoutWidget</zorder>
   <zorder>stackedWidget</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

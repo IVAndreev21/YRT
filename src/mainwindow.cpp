@@ -1,6 +1,6 @@
-#include "mainwindow.h"
+#include "mainwindow.hpp"
 #include "ui_mainwindow.h"
-#include "login.h"
+#include "login.hpp"
 MainWindow::MainWindow(logIn* login, const QString& IBAN_ref, const QString& username_ref, QWidget *parent)
     : QWidget(parent), ui(new Ui::MainWindow)
 {
@@ -470,12 +470,16 @@ void MainWindow::DisplayCrypto()
     arguments << "crypto.py" << m_username;
 
     // Start the process detached with the specified working directory
-    bool success = QProcess::startDetached("/usr/local/bin/python3.12", arguments, sourceFolderPath);
+    bool success = QProcess::startDetached("C:/Users/boyan/AppData/Local/Programs/Python/Python312/python.exe", arguments, sourceFolderPath);
 
     if (!success) {
         qDebug() << "Error starting process: " << process.errorString();
     } else {
         qDebug() << "Process started successfully.";
+        QByteArray outputData = process.readAllStandardOutput();
+        QString outputString = QString::fromUtf8(outputData);
+
+        qDebug() << "Output:" << outputString;
     }
 }
 

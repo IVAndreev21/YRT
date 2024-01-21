@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
+
 
 #include <QWidget>
 #include <QByteArray>
@@ -21,8 +21,8 @@
 #include <QSqlQuery>
 #include <QBuffer>
 #include <QSqlQueryModel>
-#include "calendar.h"
-#include "addheir.h"
+#include "calendar.hpp"
+#include "addheir.hpp"
 
 class logIn;
 namespace Ui {
@@ -95,5 +95,3 @@ private:
 
     void DisplayCrypto();
 };
-
-#endif // MAINWINDOW_H

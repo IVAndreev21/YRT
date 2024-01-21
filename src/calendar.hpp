@@ -1,12 +1,11 @@
-#ifndef CALENDAR_H
-#define CALENDAR_H
+#pragma once
 
 #include <QWidget>
 #include <QDebug>
 #include <QCalendarWidget>
 #include <QSqlQuery>
 #include <QTextCharFormat>
-#include "calendarpopup.h"
+#include "calendarpopup.hpp"
 
 class MainWindow;
 
@@ -37,5 +36,3 @@ private:
     std::shared_ptr<MainWindow> m_mainWindow;
     void DisplayEvents();
 };
-
-#endif // CALENDAR_H

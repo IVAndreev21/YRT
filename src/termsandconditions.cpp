@@ -1,4 +1,4 @@
-#include "termsandconditions.h"
+#include "termsandconditions.hpp"
 #include "ui_termsandconditions.h"
 #include <QVBoxLayout>
 #include <QLabel>

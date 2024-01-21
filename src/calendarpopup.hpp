@@ -1,5 +1,4 @@
-#ifndef CALENDARPOPUP_H
-#define CALENDARPOPUP_H
+#pragma once
 
 #include <QWidget>
 #include <QMessageBox>
@@ -15,7 +14,7 @@ class CalendarPopUp : public QWidget
     Q_OBJECT
 
 public:
-    explicit CalendarPopUp(std::shared_ptr<Calendar> Calendar, const QString& username_ref, QWidget *parent = nullptr);
+    CalendarPopUp(std::shared_ptr<Calendar> Calendar, const QString& username_ref, QWidget *parent = nullptr);
     ~CalendarPopUp();
 
 private slots:
@@ -30,4 +29,3 @@ private:
     std::shared_ptr<Calendar> m_calendar;
 };
 
-#endif // CALENDARPOPUP_H

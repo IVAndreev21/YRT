@@ -1,5 +1,4 @@
-#ifndef RESETCREDENTIALS_H
-#define RESETCREDENTIALS_H
+#pragma once
 
 #include <QWidget>
 #include <QSqlQuery>
@@ -44,5 +43,3 @@ private:
 
     std::shared_ptr<logIn> m_LogIn;
 };
-
-#endif // RESETCREDENTIALS_H

@@ -1,6 +1,6 @@
-#include "resetcredentials.h"
+#include "resetcredentials.hpp"
 #include "ui_resetcredentials.h"
-#include "login.h"  // Include the forward declaration of the logIn class
+#include "login.hpp"  // Include the forward declaration of the logIn class
 ResetCredentials::ResetCredentials(std::shared_ptr<logIn> login, QWidget *parent)
     : QWidget(parent), ui(new Ui::ResetCredentials), m_LogIn(login)
 {

@@ -1,10 +1,9 @@
-#ifndef MAINMENU_H
-#define MAINMENU_H
+#pragma once
 
 #include <QWidget>
 #include <QMainWindow>
-#include "login.h"
-#include "register.h"
+#include "login.hpp"
+#include "register.hpp"
 namespace Ui {
 class MainMenu;
 }
@@ -27,5 +26,3 @@ private:
     logIn* logInWindow;
     Register* registerWindow;
 };
-
-#endif // MAINMENU_H

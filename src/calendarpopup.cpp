@@ -1,6 +1,6 @@
-#include "calendarpopup.h"
+#include "calendarpopup.hpp"
 #include "ui_calendarpopup.h"
-#include "calendar.h"
+#include "calendar.hpp"
 #include <QSqlQuery>
 CalendarPopUp::CalendarPopUp(std::shared_ptr<Calendar> calendar,const QString& username_ref, QWidget *parent)
     : QWidget(parent), ui(new Ui::CalendarPopUp), m_calendar(calendar)

@@ -22,16 +22,17 @@ SOURCES += \
     src/termsandconditions.cpp
 
 HEADERS += \
-    src/addheir.h \
-    src/calendarpopup.h \
-    src/calendar.h \
-    src/mainwindow.h \
+    src/addheir.hpp \
+    src/calendar.hpp \
+    src/calendarpopup.hpp \
+    src/login.hpp \
+    src/mainmenu.hpp \
     src/databasemanager.hpp \
-    src/login.h \
-    src/mainmenu.h \
-    src/register.h \
-    src/resetcredentials.h \
-    src/termsandconditions.h
+    src/mainwindow.hpp \
+    src/pch.hpp \
+    src/register.hpp \
+    src/resetcredentials.hpp \
+    src/termsandconditions.hpp
 
 FORMS += \
     forms/addheir.ui \

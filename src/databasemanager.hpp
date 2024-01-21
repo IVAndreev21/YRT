@@ -1,5 +1,4 @@
-#ifndef DATABASEMANAGER_HPP
-#define DATABASEMANAGER_HPP
+#pragma once
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -16,4 +15,3 @@ private:
     QSqlDatabase m_db;
 };
 
-#endif // DATABASEMANAGER_HPP

@@ -1,11 +1,9 @@
-#ifndef LOGIN_H
-#define LOGIN_H
-
+#pragma once
 #include <QWidget>
 #include <QProcess>
 #include "databasemanager.hpp"
-#include "mainwindow.h"
-#include "resetcredentials.h"
+#include "mainwindow.hpp"
+#include "resetcredentials.hpp"
 namespace Ui {
 class logIn;
 }
@@ -36,4 +34,3 @@ private:
     QString m_username;
 
 };
-#endif // LOGIN_H

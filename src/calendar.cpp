@@ -1,6 +1,6 @@
-#include "calendar.h"
+#include "calendar.hpp"
 #include "ui_calendar.h"
-#include "mainwindow.h"
+#include "mainwindow.hpp"
 
 Calendar::Calendar(std::shared_ptr<MainWindow> mainwindow, const QString& username_ref, QWidget *parent)
     : QWidget(parent), ui(new Ui::Calendar), m_mainWindow(mainwindow)

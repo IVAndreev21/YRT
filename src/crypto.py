@@ -17,44 +17,36 @@ username = sys.argv[1]
 
 
 class Ui_Crypto(object):
+
+    def __init__(self):
+        try:
+            # Establish a connection
+            self.cnx = mysql.connector.connect(**config)
+            if self.cnx.is_connected():
+                print("Connection successful!")
+            else:
+                print("Connection failed.")
+        except mysql.connector.Error as e:
+            print("Error connecting to MySQL database:", e)
+
     def setupUi(self, Crypto):
         Crypto.setObjectName("Crypto")
         Crypto.resize(1280, 720)
         self.line = QtWidgets.QFrame(parent=Crypto)
-        self.line.setGeometry(QtCore.QRect(150, -10, 20, 751))
+        self.line.setGeometry(QtCore.QRect(150, -10, 16, 751))
         self.line.setFrameShape(QtWidgets.QFrame.Shape.VLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
         self.line.setObjectName("line")
-        self.verticalLayoutWidget = QtWidgets.QWidget(parent=Crypto)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 70, 121, 231))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.options_BL = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.options_BL.setContentsMargins(0, 0, 0, 0)
-        self.options_BL.setObjectName("options_BL")
-        self.dashboard_PB = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
-        self.dashboard_PB.setObjectName("dashboard_PB")
-        self.options_BL.addWidget(self.dashboard_PB)
-        self.portfolio_PB = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
-        self.portfolio_PB.setObjectName("portfolio_PB")
-        self.options_BL.addWidget(self.portfolio_PB)
-        self.market_PB = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
-        self.market_PB.setObjectName("market_PB")
-        self.options_BL.addWidget(self.market_PB)
-        self.transactions_PB = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
-        self.transactions_PB.setObjectName("transactions_PB")
-        self.options_BL.addWidget(self.transactions_PB)
-        self.watchlist_PB = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
-        self.watchlist_PB.setObjectName("watchlist_PB")
-        self.options_BL.addWidget(self.watchlist_PB)
         self.stackedWidget = QtWidgets.QStackedWidget(parent=Crypto)
-        self.stackedWidget.setGeometry(QtCore.QRect(180, 10, 1091, 721))
+        self.stackedWidget.setGeometry(QtCore.QRect(150, -20, 1161, 751))
         self.stackedWidget.setObjectName("stackedWidget")
         self.Dashboard = QtWidgets.QWidget()
         self.Dashboard.setObjectName("Dashboard")
         self.widget_2 = QtWidgets.QWidget(parent=self.Dashboard)
-        self.widget_2.setGeometry(QtCore.QRect(0, -20, 941, 741))
+        self.widget_2.setGeometry(QtCore.QRect(10, 10, 1121, 731))
         self.widget_2.setStyleSheet("background-color: rgb(39, 40, 40);\n"
-"border-radius:10px;")
+"border-radius:10px;\n"
+"color: white;")
         self.widget_2.setObjectName("widget_2")
         self.widget = QtWidgets.QWidget(parent=self.widget_2)
         self.widget.setGeometry(QtCore.QRect(10, 40, 341, 291))
@@ -70,9 +62,9 @@ class Ui_Crypto(object):
         self.bitcoin_img_LA = QtWidgets.QLabel(parent=self.widget)
         self.bitcoin_img_LA.setGeometry(QtCore.QRect(10, 10, 61, 51))
         self.bitcoin_img_LA.setText("")
-        self.bitcoin_img_LA.setPixmap(QtGui.QPixmap("../resources/bitcoin.png"))
         self.bitcoin_img_LA.setScaledContents(True)
         self.bitcoin_img_LA.setObjectName("bitcoin_img_LA")
+        self.bitcoin_img_LA.setPixmap(QtGui.QPixmap("../resources/bitcoin.png"))
         self.BNB_img_LA = QtWidgets.QLabel(parent=self.widget)
         self.BNB_img_LA.setGeometry(QtCore.QRect(10, 210, 61, 61))
         self.BNB_img_LA.setText("")
@@ -87,9 +79,11 @@ class Ui_Crypto(object):
         self.ETH_img_LA.setObjectName("ETH_img_LA")
         self.Bitcon_LA = QtWidgets.QLabel(parent=self.widget)
         self.Bitcon_LA.setGeometry(QtCore.QRect(80, 20, 58, 16))
+        self.Bitcon_LA.setStyleSheet("color: white;")
         self.Bitcon_LA.setObjectName("Bitcon_LA")
         self.BTC_LA = QtWidgets.QLabel(parent=self.widget)
         self.BTC_LA.setGeometry(QtCore.QRect(80, 40, 58, 16))
+        self.BTC_LA.setStyleSheet("color: white;")
         self.BTC_LA.setObjectName("BTC_LA")
         self.line_2 = QtWidgets.QFrame(parent=self.widget)
         self.line_2.setGeometry(QtCore.QRect(10, 70, 118, 3))
@@ -98,21 +92,27 @@ class Ui_Crypto(object):
         self.line_2.setObjectName("line_2")
         self.solana_LA = QtWidgets.QLabel(parent=self.widget)
         self.solana_LA.setGeometry(QtCore.QRect(80, 80, 58, 16))
+        self.solana_LA.setStyleSheet("color: white;")
         self.solana_LA.setObjectName("solana_LA")
         self.SOL_LA = QtWidgets.QLabel(parent=self.widget)
         self.SOL_LA.setGeometry(QtCore.QRect(80, 100, 58, 16))
+        self.SOL_LA.setStyleSheet("color: white;")
         self.SOL_LA.setObjectName("SOL_LA")
         self.Etherium_LA = QtWidgets.QLabel(parent=self.widget)
         self.Etherium_LA.setGeometry(QtCore.QRect(70, 140, 58, 16))
+        self.Etherium_LA.setStyleSheet("color: white;")
         self.Etherium_LA.setObjectName("Etherium_LA")
         self.ETH_LA = QtWidgets.QLabel(parent=self.widget)
         self.ETH_LA.setGeometry(QtCore.QRect(70, 170, 58, 16))
+        self.ETH_LA.setStyleSheet("color: white;")
         self.ETH_LA.setObjectName("ETH_LA")
         self.Binance_LA = QtWidgets.QLabel(parent=self.widget)
         self.Binance_LA.setGeometry(QtCore.QRect(80, 220, 58, 16))
+        self.Binance_LA.setStyleSheet("color: white;")
         self.Binance_LA.setObjectName("Binance_LA")
         self.BNB_LA = QtWidgets.QLabel(parent=self.widget)
         self.BNB_LA.setGeometry(QtCore.QRect(80, 250, 58, 16))
+        self.BNB_LA.setStyleSheet("color: white;")
         self.BNB_LA.setObjectName("BNB_LA")
         self.BTC_price_LA = QtWidgets.QLabel(parent=self.widget)
         self.BTC_price_LA.setGeometry(QtCore.QRect(160, 20, 121, 16))
@@ -120,6 +120,7 @@ class Ui_Crypto(object):
         self.BTC_price_LA.setObjectName("BTC_price_LA")
         self.now_LA = QtWidgets.QLabel(parent=self.widget)
         self.now_LA.setGeometry(QtCore.QRect(170, 40, 71, 16))
+        self.now_LA.setStyleSheet("color: white;")
         self.now_LA.setObjectName("now_LA")
         self.SOL_price_LA = QtWidgets.QLabel(parent=self.widget)
         self.SOL_price_LA.setGeometry(QtCore.QRect(160, 80, 101, 16))
@@ -127,12 +128,15 @@ class Ui_Crypto(object):
         self.SOL_price_LA.setObjectName("SOL_price_LA")
         self.now_LA_3 = QtWidgets.QLabel(parent=self.widget)
         self.now_LA_3.setGeometry(QtCore.QRect(170, 110, 71, 16))
+        self.now_LA_3.setStyleSheet("color: white;")
         self.now_LA_3.setObjectName("now_LA_3")
         self.now_LA_2 = QtWidgets.QLabel(parent=self.widget)
         self.now_LA_2.setGeometry(QtCore.QRect(170, 170, 71, 16))
+        self.now_LA_2.setStyleSheet("color: white;")
         self.now_LA_2.setObjectName("now_LA_2")
         self.now_LA_4 = QtWidgets.QLabel(parent=self.widget)
         self.now_LA_4.setGeometry(QtCore.QRect(170, 250, 71, 16))
+        self.now_LA_4.setStyleSheet("color: white;")
         self.now_LA_4.setObjectName("now_LA_4")
         self.ETH_price_LA = QtWidgets.QLabel(parent=self.widget)
         self.ETH_price_LA.setGeometry(QtCore.QRect(160, 140, 91, 20))
@@ -144,29 +148,37 @@ class Ui_Crypto(object):
         self.BNB_price_LA.setObjectName("BNB_price_LA")
         self.label = QtWidgets.QLabel(parent=self.widget)
         self.label.setGeometry(QtCore.QRect(130, 0, 61, 20))
+        self.label.setStyleSheet("color: white;")
         self.label.setObjectName("label")
         self.portfolio_LA = QtWidgets.QLabel(parent=self.widget_2)
         self.portfolio_LA.setGeometry(QtCore.QRect(20, 380, 101, 16))
+        self.portfolio_LA.setStyleSheet("color: white;")
         self.portfolio_LA.setObjectName("portfolio_LA")
         self.widget_3 = QtWidgets.QWidget(parent=self.widget_2)
         self.widget_3.setGeometry(QtCore.QRect(10, 410, 481, 281))
         self.widget_3.setStyleSheet("background-color: rgb(57, 58, 58);\n"
 "border-radius:30px;")
         self.widget_3.setObjectName("widget_3")
+        self.tableView_2 = QtWidgets.QTableView(parent=self.widget_3)
+        self.tableView_2.setGeometry(QtCore.QRect(20, 10, 441, 261))
+        self.tableView_2.setStyleSheet("color: white;")
+        self.tableView_2.setObjectName("tableView_2")
         self.widget_4 = QtWidgets.QWidget(parent=self.widget_2)
         self.widget_4.setGeometry(QtCore.QRect(520, 340, 401, 381))
         self.widget_4.setStyleSheet("background-color: rgb(57, 58, 58);\n"
 "border-radius:30px;")
         self.widget_4.setObjectName("widget_4")
         self.tabWidget = QtWidgets.QTabWidget(parent=self.widget_4)
-        self.tabWidget.setGeometry(QtCore.QRect(20, 20, 361, 371))
+        self.tabWidget.setGeometry(QtCore.QRect(20, 20, 361, 351))
+        self.tabWidget.setStyleSheet("color:black;")
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.widget_6 = QtWidgets.QWidget(parent=self.tab)
         self.widget_6.setGeometry(QtCore.QRect(0, 10, 341, 61))
         self.widget_6.setStyleSheet("background-color: rgb(39, 40, 40);\n"
-"border-radius:30px;")
+"border-radius:30px;\n"
+"color:white;")
         self.widget_6.setObjectName("widget_6")
         self.currencySelect_CB = QtWidgets.QComboBox(parent=self.widget_6)
         self.currencySelect_CB.setGeometry(QtCore.QRect(20, 10, 301, 51))
@@ -183,14 +195,16 @@ class Ui_Crypto(object):
         self.widget_7 = QtWidgets.QWidget(parent=self.tab)
         self.widget_7.setGeometry(QtCore.QRect(0, 90, 341, 61))
         self.widget_7.setStyleSheet("background-color: rgb(39, 40, 40);\n"
-"border-radius:30px;")
+"border-radius:30px;\n"
+"color:white;")
         self.widget_7.setObjectName("widget_7")
         self.selling_LA = QtWidgets.QLabel(parent=self.widget_7)
         self.selling_LA.setGeometry(QtCore.QRect(20, 0, 71, 16))
         self.selling_LA.setStyleSheet("")
         self.selling_LA.setObjectName("selling_LA")
         self.quantity_swap_SB = QtWidgets.QDoubleSpinBox(parent=self.widget_7)
-        self.quantity_swap_SB.setGeometry(QtCore.QRect(270, 20, 62, 31))
+        self.quantity_swap_SB.setGeometry(QtCore.QRect(250, 20, 91, 31))
+        self.quantity_swap_SB.setDecimals(8)
         self.quantity_swap_SB.setObjectName("quantity_swap_SB")
         self.sellingCurrency_LA = QtWidgets.QLabel(parent=self.widget_7)
         self.sellingCurrency_LA.setGeometry(QtCore.QRect(20, 20, 81, 31))
@@ -199,7 +213,8 @@ class Ui_Crypto(object):
         self.widget_8 = QtWidgets.QWidget(parent=self.tab)
         self.widget_8.setGeometry(QtCore.QRect(0, 170, 341, 61))
         self.widget_8.setStyleSheet("background-color: rgb(39, 40, 40);\n"
-"border-radius:30px;")
+"border-radius:30px;\n"
+"color:white;")
         self.widget_8.setObjectName("widget_8")
         self.buying_LA = QtWidgets.QLabel(parent=self.widget_8)
         self.buying_LA.setGeometry(QtCore.QRect(20, 0, 71, 16))
@@ -215,10 +230,12 @@ class Ui_Crypto(object):
         self.buyingCurrency_swap_CB.addItem("")
         self.exchangeFee_LA = QtWidgets.QLabel(parent=self.tab)
         self.exchangeFee_LA.setGeometry(QtCore.QRect(10, 240, 91, 16))
+        self.exchangeFee_LA.setStyleSheet("color:white;")
         self.exchangeFee_LA.setObjectName("exchangeFee_LA")
         self.exchange_PB = QtWidgets.QPushButton(parent=self.tab)
         self.exchange_PB.setGeometry(QtCore.QRect(80, 270, 191, 61))
-        self.exchange_PB.setStyleSheet("background-color: rgb(255, 106, 35);")
+        self.exchange_PB.setStyleSheet("background-color: rgb(255, 106, 35);\n"
+"color:white;")
         self.exchange_PB.setText("")
         self.exchange_PB.setObjectName("exchange_PB")
         self.tabWidget.addTab(self.tab, "")
@@ -227,7 +244,8 @@ class Ui_Crypto(object):
         self.widget_12 = QtWidgets.QWidget(parent=self.tab_2)
         self.widget_12.setGeometry(QtCore.QRect(10, 20, 341, 61))
         self.widget_12.setStyleSheet("background-color: rgb(39, 40, 40);\n"
-"border-radius:30px;")
+"border-radius:30px;\n"
+"color:white;")
         self.widget_12.setObjectName("widget_12")
         self.buying_LA_2 = QtWidgets.QLabel(parent=self.widget_12)
         self.buying_LA_2.setGeometry(QtCore.QRect(20, 0, 71, 16))
@@ -244,14 +262,16 @@ class Ui_Crypto(object):
         self.widget_11 = QtWidgets.QWidget(parent=self.tab_2)
         self.widget_11.setGeometry(QtCore.QRect(10, 110, 341, 61))
         self.widget_11.setStyleSheet("background-color: rgb(39, 40, 40);\n"
-"border-radius:30px;")
+"border-radius:30px;\n"
+"color:white;")
         self.widget_11.setObjectName("widget_11")
         self.selling_LA_2 = QtWidgets.QLabel(parent=self.widget_11)
         self.selling_LA_2.setGeometry(QtCore.QRect(20, 0, 71, 16))
         self.selling_LA_2.setStyleSheet("")
         self.selling_LA_2.setObjectName("selling_LA_2")
         self.quantity_buy_SB = QtWidgets.QDoubleSpinBox(parent=self.widget_11)
-        self.quantity_buy_SB.setGeometry(QtCore.QRect(270, 20, 62, 31))
+        self.quantity_buy_SB.setGeometry(QtCore.QRect(250, 20, 81, 31))
+        self.quantity_buy_SB.setDecimals(8)
         self.quantity_buy_SB.setObjectName("quantity_buy_SB")
         self.sellingCurrency_LA_2 = QtWidgets.QLabel(parent=self.widget_11)
         self.sellingCurrency_LA_2.setGeometry(QtCore.QRect(20, 20, 81, 31))
@@ -259,11 +279,13 @@ class Ui_Crypto(object):
         self.sellingCurrency_LA_2.setObjectName("sellingCurrency_LA_2")
         self.priceBuy_LA = QtWidgets.QLabel(parent=self.tab_2)
         self.priceBuy_LA.setGeometry(QtCore.QRect(20, 200, 161, 41))
+        self.priceBuy_LA.setStyleSheet("color:white;")
         self.priceBuy_LA.setObjectName("priceBuy_LA")
         self.buy_PB = QtWidgets.QPushButton(parent=self.tab_2)
         self.buy_PB.setGeometry(QtCore.QRect(80, 250, 191, 61))
-        self.buy_PB.setStyleSheet("background-color: rgb(255, 106, 35);")
-        self.buy_PB.setText("0 USD")
+        self.buy_PB.setStyleSheet("background-color: rgb(255, 106, 35);\n"
+"color:white;")
+        self.buy_PB.setText("")
         self.buy_PB.setObjectName("buy_PB")
         self.tabWidget.addTab(self.tab_2, "")
         self.Sell = QtWidgets.QWidget()
@@ -271,14 +293,16 @@ class Ui_Crypto(object):
         self.widget_13 = QtWidgets.QWidget(parent=self.Sell)
         self.widget_13.setGeometry(QtCore.QRect(10, 110, 341, 61))
         self.widget_13.setStyleSheet("background-color: rgb(39, 40, 40);\n"
-"border-radius:30px;")
+"border-radius:30px;\n"
+"color:white;")
         self.widget_13.setObjectName("widget_13")
         self.selling_LA_3 = QtWidgets.QLabel(parent=self.widget_13)
         self.selling_LA_3.setGeometry(QtCore.QRect(20, 0, 71, 16))
         self.selling_LA_3.setStyleSheet("")
         self.selling_LA_3.setObjectName("selling_LA_3")
         self.quantity_sell_SB = QtWidgets.QDoubleSpinBox(parent=self.widget_13)
-        self.quantity_sell_SB.setGeometry(QtCore.QRect(270, 20, 62, 31))
+        self.quantity_sell_SB.setGeometry(QtCore.QRect(250, 20, 81, 31))
+        self.quantity_sell_SB.setDecimals(8)
         self.quantity_sell_SB.setObjectName("quantity_sell_SB")
         self.sellingCurrency_LA_3 = QtWidgets.QLabel(parent=self.widget_13)
         self.sellingCurrency_LA_3.setGeometry(QtCore.QRect(20, 20, 81, 31))
@@ -287,7 +311,8 @@ class Ui_Crypto(object):
         self.widget_14 = QtWidgets.QWidget(parent=self.Sell)
         self.widget_14.setGeometry(QtCore.QRect(10, 20, 341, 61))
         self.widget_14.setStyleSheet("background-color: rgb(39, 40, 40);\n"
-"border-radius:30px;")
+"border-radius:30px;\n"
+"color:white;")
         self.widget_14.setObjectName("widget_14")
         self.buying_LA_3 = QtWidgets.QLabel(parent=self.widget_14)
         self.buying_LA_3.setGeometry(QtCore.QRect(20, 0, 71, 16))
@@ -303,13 +328,19 @@ class Ui_Crypto(object):
         self.buyingCurrency_CB_3.addItem("")
         self.priceSell_LA = QtWidgets.QLabel(parent=self.Sell)
         self.priceSell_LA.setGeometry(QtCore.QRect(20, 200, 211, 41))
+        self.priceSell_LA.setStyleSheet("color:white;")
         self.priceSell_LA.setObjectName("priceSell_LA")
         self.sell_PB = QtWidgets.QPushButton(parent=self.Sell)
         self.sell_PB.setGeometry(QtCore.QRect(80, 250, 191, 61))
-        self.sell_PB.setStyleSheet("background-color: rgb(255, 106, 35);")
+        self.sell_PB.setStyleSheet("background-color: rgb(255, 106, 35);\n"
+"color:white;")
         self.sell_PB.setText("")
         self.sell_PB.setObjectName("sell_PB")
         self.tabWidget.addTab(self.Sell, "")
+        self.widget_4.raise_()
+        self.widget.raise_()
+        self.portfolio_LA.raise_()
+        self.widget_3.raise_()
         self.stackedWidget.addWidget(self.Dashboard)
         self.Portfolio = QtWidgets.QWidget()
         self.Portfolio.setObjectName("Portfolio")
@@ -329,7 +360,7 @@ class Ui_Crypto(object):
         self.label_2 = QtWidgets.QLabel(parent=self.widget_9)
         self.label_2.setGeometry(QtCore.QRect(20, 50, 71, 61))
         self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap(""))
+        self.label_2.setPixmap(QtGui.QPixmap("../resources/bitcoin.png"))
         self.label_2.setScaledContents(True)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(parent=self.widget_9)
@@ -388,31 +419,33 @@ class Ui_Crypto(object):
         self.watchlist.setObjectName("watchlist")
         self.stackedWidget.addWidget(self.watchlist)
         self.widget_10 = QtWidgets.QWidget(parent=Crypto)
-        self.widget_10.setGeometry(QtCore.QRect(0, 10, 151, 671))
+        self.widget_10.setGeometry(QtCore.QRect(0, 0, 151, 721))
         self.widget_10.setStyleSheet("background-color: rgb(39, 40, 40);\n"
 "border-radius:10px;")
         self.widget_10.setObjectName("widget_10")
         self.back_PB = QtWidgets.QPushButton(parent=self.widget_10)
-        self.back_PB.setGeometry(QtCore.QRect(20, 620, 100, 32))
-        self.back_PB.setStyleSheet("background-color: rgb(84, 85, 85);")
+        self.back_PB.setGeometry(QtCore.QRect(20, 660, 100, 32))
+        self.back_PB.setStyleSheet("background-color: rgb(84, 85, 85);\n"
+"color: white;")
         self.back_PB.setObjectName("back_PB")
+        self.widget_15 = QtWidgets.QWidget(parent=self.widget_10)
+        self.widget_15.setGeometry(QtCore.QRect(140, 70, 1151, 661))
+        self.widget_15.setStyleSheet("background-color: rgb(39, 40, 40);\n"
+"border-radius:10px;")
+        self.widget_15.setObjectName("widget_15")
+        self.widget_15.raise_()
+        self.back_PB.raise_()
         self.widget_10.raise_()
         self.line.raise_()
-        self.verticalLayoutWidget.raise_()
         self.stackedWidget.raise_()
 
         self.retranslateUi(Crypto)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(Crypto)
 
     def retranslateUi(self, Crypto):
         _translate = QtCore.QCoreApplication.translate
         Crypto.setWindowTitle(_translate("Crypto", "Form"))
-        self.dashboard_PB.setText(_translate("Crypto", "Dashboard"))
-        self.portfolio_PB.setText(_translate("Crypto", "Portfolio"))
-        self.market_PB.setText(_translate("Crypto", "Market"))
-        self.transactions_PB.setText(_translate("Crypto", "Transactions"))
-        self.watchlist_PB.setText(_translate("Crypto", "Watchlist"))
         self.Bitcon_LA.setText(_translate("Crypto", "Bitcoin"))
         self.BTC_LA.setText(_translate("Crypto", "BTC"))
         self.solana_LA.setText(_translate("Crypto", "Solana"))
@@ -495,17 +528,14 @@ class Ui_Crypto(object):
 
     def buyCrypto(self):
         try:
-            # Establish a connection
-            cnx = mysql.connector.connect(**config)
-
-            if cnx.is_connected():
+            if self.cnx.is_connected():
                 print("Connection successful!")
 
-                cursor = cnx.cursor()
+                cursor = self.cnx.cursor()
 
                 # Fetch user's balance
-                select_query = "SELECT `Balance` FROM users WHERE username = 'test'"
-                cursor.execute(select_query)
+                select_query = "SELECT `Balance` FROM users WHERE username = %s"
+                cursor.execute(select_query, (username,))
                 balance_result = cursor.fetchone()
 
                 if balance_result:
@@ -520,14 +550,15 @@ class Ui_Crypto(object):
                         new_balance = balance - total_cost
 
                         # Update the user's balance
-                        update_query = "UPDATE users SET `Balance` = %s WHERE username = 'test'"
-                        cursor.execute(update_query, (new_balance,))
-                        cnx.commit()
+                        update_query = "UPDATE users SET `Balance` = %s WHERE username = %s"
+                        cursor.execute(update_query, (new_balance, username))
+
+                        self.cnx.commit()
 
                         # Check if the user already has a record for the cryptocurrency
                         crypto_name = str(self.buyingCurrency_buy_CB.currentText())
                         select_crypto_query = "SELECT `Crypto Amount` FROM crypto WHERE Username = %s AND `Crypto Name` = %s"
-                        cursor.execute(select_crypto_query, ('test', crypto_name))
+                        cursor.execute(select_crypto_query, (f'{username}', crypto_name))
                         crypto_result = cursor.fetchone()
 
                         if crypto_result:
@@ -536,18 +567,18 @@ class Ui_Crypto(object):
                             new_crypto_amount = current_crypto_amount + float(self.quantity_buy_SB.value())
 
                             update_crypto_query = "UPDATE crypto SET `Crypto Amount` = %s WHERE Username = %s AND `Crypto Name` = %s"
-                            cursor.execute(update_crypto_query, (new_crypto_amount, 'test', crypto_name))
+                            cursor.execute(update_crypto_query, (new_crypto_amount, f'{username}', crypto_name))
                         else:
                             # If the user doesn't have a record, insert a new record
                             crypto_amount = float(self.quantity_buy_SB.value())
                             insert_query = """
-                                INSERT INTO crypto (Username, `Crypto Name`, `Crypto Amount`, `Purchase Date`)
-                                VALUES (%s, %s, %s, %s)
-                            """
+                                        INSERT INTO crypto (Username, `Crypto Name`, `Crypto Amount`, `Purchase Date`)
+                                        VALUES (%s, %s, %s, %s)
+                                    """
                             purchase_date = datetime.now()
-                            cursor.execute(insert_query, ('test', crypto_name, crypto_amount, purchase_date))
+                            cursor.execute(insert_query, (f'{username}', crypto_name, crypto_amount, purchase_date))
 
-                        cnx.commit()
+                        self.cnx.commit()
 
                         print("Purchase successful!")
                         print(f"New balance: {new_balance} USD")
@@ -559,8 +590,6 @@ class Ui_Crypto(object):
                 print("Connection failed.")
         except mysql.connector.Error as e:
             print("Error connecting to MySQL database:", e)
-        finally:
-            cnx.close()
 
     def updateBuyPrice(self):
         cryptoCurrency = self.buyingCurrency_buy_CB.currentText()

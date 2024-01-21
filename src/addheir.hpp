@@ -1,6 +1,4 @@
-#ifndef ADDHEIR_H
-#define ADDHEIR_H
-
+#pragma once
 #include <QWidget>
 #include <QSqlQuery>
 #include <QCryptographicHash>
@@ -35,5 +33,3 @@ private:
 
     std::shared_ptr<MainWindow> m_mainwindow;
 };
-
-#endif // ADDHEIR_H

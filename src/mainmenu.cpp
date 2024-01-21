@@ -1,4 +1,4 @@
-#include "mainmenu.h"
+#include "mainmenu.hpp"
 #include "ui_mainmenu.h"
 #include <QProcess>
 #include <QProcessEnvironment>

@@ -1,7 +1,7 @@
-#include "addheir.h"
+#include "addheir.hpp"
 #include "ui_addheir.h"
 #include <QMessageBox>
-#include "mainwindow.h"
+#include "mainwindow.hpp"
 AddHeir::AddHeir(std::shared_ptr<MainWindow> mainwindow, QString& username_ref, QWidget *parent)
     : QWidget(parent), ui(new Ui::AddHeir), m_mainwindow(mainwindow)
 {

@@ -1,12 +1,11 @@
-#ifndef REGISTER_H
-#define REGISTER_H
+#pragma once
 
 #include <QWidget>
 #include <QRandomGenerator>
 #include <QMessageBox>
 #include "databasemanager.hpp"
-#include "login.h"
-#include "termsandconditions.h"
+#include "login.hpp"
+#include "termsandconditions.hpp"
 namespace Ui {
 class Register;
 }
@@ -48,4 +47,3 @@ private:
 
     bool m_accepted;
 };
-#endif // REGISTER_H

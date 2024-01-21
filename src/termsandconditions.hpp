@@ -1,5 +1,4 @@
-#ifndef TERMSANDCONDITIONS_H
-#define TERMSANDCONDITIONS_H
+#pragma once
 
 #include <QWidget>
 
@@ -27,5 +26,3 @@ private:
 
     bool m_accepted;
 };
-
-#endif // TERMSANDCONDITIONS_H
