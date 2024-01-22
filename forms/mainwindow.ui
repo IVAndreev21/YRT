@@ -613,12 +613,15 @@ color:white}</string>
      <property name="styleSheet">
       <string notr="true">QPushButton{
 background-color: rgb(95, 97, 97);
-border-radius:20px
+border-radius:20px;
+ color:white;
 }
-QPushButton
+
+QPushButton:hover
 {
-   color:white;
-}
+   background-color:white;
+  color:black;
+};
 </string>
      </property>
      <property name="text">
@@ -666,16 +669,15 @@ QPushButton
      <property name="styleSheet">
       <string notr="true">QPushButton{
 background-color: rgb(95, 97, 97);
-border-radius:30px
+border-radius:30px;
+ color:white;
 }
-QPushButton
-{
-   color:white;
-}
+
 QPushButton:hover
 {
-  background-color: rgb(75, 77, 77);
-}
+   background-color:white;
+  color:black;
+};
 </string>
      </property>
      <property name="text">
@@ -801,15 +803,15 @@ background-color:rgb(66, 66, 66);
       <rect>
        <x>0</x>
        <y>10</y>
-       <width>751</width>
-       <height>481</height>
+       <width>1061</width>
+       <height>711</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <property name="enabled">

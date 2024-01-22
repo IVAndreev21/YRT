@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Title</string>
@@ -43,7 +43,8 @@
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
+color: rgb(0, 0, 0);
+border-radius:12px;</string>
    </property>
   </widget>
   <widget class="QLabel" name="description_LA">
@@ -56,7 +57,7 @@ color: rgb(0, 0, 0);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
+    <string notr="true">color:white;</string>
    </property>
    <property name="text">
     <string>Description</string>
@@ -73,7 +74,8 @@ color: rgb(0, 0, 0);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
+color: rgb(0, 0, 0);
+border-radius:12px;</string>
    </property>
   </widget>
   <widget class="QLabel" name="time_period_LA">
@@ -86,7 +88,7 @@ color: rgb(0, 0, 0);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
+    <string notr="true">color:white;</string>
    </property>
    <property name="text">
     <string>Time period</string>
@@ -102,7 +104,7 @@ color: rgb(0, 0, 0);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
+    <string notr="true">color:white;</string>
    </property>
    <property name="text">
     <string>From</string>
@@ -135,7 +137,7 @@ color: rgb(0, 0, 0);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
+    <string notr="true">color:white;</string>
    </property>
    <property name="text">
     <string>TIll</string>
@@ -168,8 +170,7 @@ color: rgb(0, 0, 0);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(255, 255, 255);</string>
+    <string notr="true">color:white;</string>
    </property>
    <item>
     <property name="text">
@@ -201,14 +202,24 @@ background-color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>360</y>
-     <width>100</width>
-     <height>32</height>
+     <y>340</y>
+     <width>131</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(255, 255, 255);</string>
+    <string notr="true">QPushButton{
+background-color: rgb(95, 97, 97);
+border-radius:20px;
+ color:white;
+}
+
+QPushButton:hover
+{
+   background-color:white;
+  color:black;
+};
+</string>
    </property>
    <property name="text">
     <string>Save</string>
@@ -224,7 +235,7 @@ background-color: rgb(255, 255, 255);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
+    <string notr="true">color:white;</string>
    </property>
    <property name="text">
     <string>Repeat</string>
@@ -233,15 +244,25 @@ background-color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="abort_PB">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>360</y>
-     <width>100</width>
-     <height>32</height>
+     <x>300</x>
+     <y>340</y>
+     <width>131</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(255, 255, 255);</string>
+    <string notr="true">QPushButton{
+background-color: rgb(95, 97, 97);
+border-radius:20px;
+ color:white;
+}
+
+QPushButton:hover
+{
+   background-color:white;
+  color:black;
+};
+</string>
    </property>
    <property name="text">
     <string>Abort</string>
@@ -257,8 +278,8 @@ background-color: rgb(255, 255, 255);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:0.715909, stop:0 rgba(0, 0, 0, 9), stop:0.375 rgba(0, 0, 0, 50), stop:0.835227 rgba(0, 0, 0, 75));
-border-radius:20px;</string>
+    <string notr="true">background-color: rgb(71, 72, 72);
+</string>
    </property>
    <property name="text">
     <string/>
@@ -267,10 +288,10 @@ border-radius:20px;</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>317</x>
      <y>10</y>
-     <width>58</width>
-     <height>41</height>
+     <width>111</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="text">

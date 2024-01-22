@@ -356,7 +356,6 @@ void MainWindow::UpdateDashboard()
         }
     }
     series->clear();
-
     series->append("Income", m_userIncome);
     series->append("Expenses", m_userExpenses);
 
@@ -369,24 +368,22 @@ void MainWindow::UpdateDashboard()
     chart->addSeries(series);
     chart->setTitle("Total Balance");
 
-    // Set background color
-    QBrush backgroundBrush(QColor(180, 184, 184));
-    chart->setBackgroundBrush(backgroundBrush);
+    // Set the background color of the chart to be transparent
+    chart->setBackgroundBrush(QBrush(Qt::transparent));
 
-    // If you want to add rounded corners, you may need to use a QGraphicsDropShadowEffect
-    QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect;
-    shadowEffect->setBlurRadius(30);
-    shadowEffect->setColor(QColor(180, 184, 184));
-    shadowEffect->setOffset(0, 0);
-    chart->setGraphicsEffect(shadowEffect);
-
-    chart->setTitleBrush(Qt::white);
+    // Hide the legend
     chart->legend()->hide();
 
+    // Set the title brush to be transparent
+    chart->setTitleBrush(Qt::transparent);
 
     chartView->setRenderHint(QPainter::Antialiasing);
 
+    // Set the background color of the chart view to be transparent
+    chartView->setBackgroundBrush(QBrush(Qt::transparent));
+
     ui->PieChart_LY->addWidget(chartView);
+
 }
 
 void MainWindow::on_calendar_PB_clicked()
@@ -470,7 +467,7 @@ void MainWindow::DisplayCrypto()
     arguments << "crypto.py" << m_username;
 
     // Start the process detached with the specified working directory
-    bool success = QProcess::startDetached("C:/Users/boyan/AppData/Local/Programs/Python/Python312/python.exe", arguments, sourceFolderPath);
+    bool success = QProcess::startDetached("/usr/local/bin/python3.12", arguments, sourceFolderPath);
 
     if (!success) {
         qDebug() << "Error starting process: " << process.errorString();
