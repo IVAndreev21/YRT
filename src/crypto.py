@@ -537,8 +537,6 @@ class Ui_Crypto(object):
         # Set the button text to reflect the swap
         self.exchange_PB.setText(f"Get {quantity_to_swap} {buying_crypto_name}")
 
-    
-
     def buyCrypto(self):
         try:
             if self.cnx.is_connected():
@@ -604,7 +602,64 @@ class Ui_Crypto(object):
         except mysql.connector.Error as e:
             print("Error connecting to MySQL database:", e)
 
+    def sellCrypto(self):
+        try:
+            if self.cnx.is_connected():
+                print("Connection successful!")
 
+                cursor = self.cnx.cursor()
+
+                # Fetch user's balance
+                select_query = "SELECT `Balance` FROM users WHERE username = %s"
+                cursor.execute(select_query, (username,))
+                balance_result = cursor.fetchone()
+
+                if balance_result:
+                    balance = float(balance_result[0])
+
+                    # Get the total earnings from the sell_PB button text
+                    total_earnings_str = self.sell_PB.text().split()[0]
+                    total_earnings = float(total_earnings_str)
+
+                    # Check if the user has enough cryptocurrency to make the sale
+                    crypto_name = str(self.sellingCurrency_CB.currentText())
+                    select_crypto_query = "SELECT `Crypto Amount` FROM crypto WHERE Username = %s AND `Crypto Name` = %s"
+                    cursor.execute(select_crypto_query, (f'{username}', crypto_name))
+                    crypto_result = cursor.fetchone()
+
+                    if crypto_result:
+                        current_crypto_amount = float(crypto_result[0])
+
+                        # Check if the user has enough cryptocurrency to make the sale
+                        if current_crypto_amount >= self.quantity_sell_SB.value():
+                            new_crypto_amount = current_crypto_amount - float(self.quantity_sell_SB.value())
+
+                            # Update the user's cryptocurrency amount
+                            update_crypto_query = "UPDATE crypto SET `Crypto Amount` = %s WHERE Username = %s AND `Crypto Name` = %s"
+                            cursor.execute(update_crypto_query, (new_crypto_amount, f'{username}', crypto_name))
+
+                            # Calculate and update the user's balance
+                            earnings = total_earnings * (self.quantity_sell_SB.value() / current_crypto_amount)
+                            new_balance = balance + earnings
+
+                            update_balance_query = "UPDATE users SET `Balance` = %s WHERE username = %s"
+                            cursor.execute(update_balance_query, (new_balance, username))
+
+                            self.cnx.commit()
+
+                            print("Sale successful!")
+                            print(f"Earnings: {earnings} USD")
+                            print(f"New balance: {new_balance} USD")
+                        else:
+                            print("Insufficient cryptocurrency for the sale.")
+                    else:
+                        print("Cryptocurrency not found or no amount information.")
+                else:
+                    print("User not found or no balance information.")
+            else:
+                print("Connection failed.")
+        except mysql.connector.Error as e:
+            print("Error connecting to MySQL database:", e)
 
     def updateBuyPrice(self):
         cryptoCurrency = self.buyingCurrency_buy_CB.currentText()
