@@ -1,21 +1,27 @@
 #include "register.hpp"
 #include "ui_register.h"
 
-Register::Register(QWidget *parent)
+Register::Register(QWidget* parent)
     : QWidget(parent), ui(new Ui::Register)
 {
     ui->setupUi(this);
     ui->password_LE->setEchoMode(QLineEdit::Password);
+
+    // Initialize login window
     m_LogIn = std::make_unique<logIn>();
     this->setWindowTitle("Register");
+
+    // Initialize database manager
     m_databaseManager = std::make_unique<DatabaseManager>();
     m_databaseManager->OpenConnection();
 
+    // Initialize terms and conditions window
     m_termsAndConditions = std::make_unique<TermsAndConditions>();
     m_termsAndConditions->setParent(this);
     m_termsAndConditions->hide();
     m_accepted = false;
 
+    // Set placeholder texts
     ui->first_name_LE->setPlaceholderText("First name");
     ui->last_name_LE->setPlaceholderText("Last name");
     ui->SSN_LE->setPlaceholderText("SSN");
@@ -29,8 +35,8 @@ Register::Register(QWidget *parent)
     ui->username_LE->setPlaceholderText("Username");
     ui->password_LE->setPlaceholderText("Password");
     ui->security_question_LE->setPlaceholderText("Security Answer");
-
 }
+
 
 Register::~Register()
 {
@@ -96,6 +102,7 @@ void Register::on_submit_PB_clicked()
     QString securityAnswer = ui->security_question_LE->text();
     QList<int> randomNumbers;
 
+    // Generate random numbers for IBAN
     for (int i = 0; i < 10; ++i) {
         int randomNumber = QRandomGenerator::global()->bounded(10);
         randomNumbers.append(randomNumber);
@@ -106,7 +113,6 @@ void Register::on_submit_PB_clicked()
         randomNumbersString.append(QString::number(number));
     }
 
-
     QString passwordSalt = GenerateSalt();
     QString securityAnswerSalt = GenerateSalt();
 
@@ -116,24 +122,29 @@ void Register::on_submit_PB_clicked()
     QString IBAN = "BG" + QString::number(QRandomGenerator::global()->bounded(10, 100)) + "YRT9661" + randomNumbersString;
 
     QSqlQuery qry;
+
+    // Check if username is taken
     qry.prepare("SELECT * FROM users WHERE Username = :username");
     qry.bindValue(":username", usernameToCheck);
     if (qry.exec() && qry.next()) {
         usernameTaken = true;
     }
 
+    // Check if SSN is taken
     qry.prepare("SELECT * FROM users WHERE SSN = :ssn");
     qry.bindValue(":ssn", SSNToCheck);
     if (qry.exec() && qry.next()) {
         ssnTaken = true;
     }
 
+    // Check if phone number is taken
     qry.prepare("SELECT * FROM users WHERE Phone = :phone");
     qry.bindValue(":phone", phoneToCheck);
     if (qry.exec() && qry.next()) {
         phoneTaken = true;
     }
 
+    // Display error messages if needed
     if (usernameTaken) {
         QMessageBox::critical(this, "Error", "Username is already taken.");
     }
@@ -145,13 +156,13 @@ void Register::on_submit_PB_clicked()
     if (phoneTaken) {
         QMessageBox::critical(this, "Error", "Phone number is already taken.");
     }
-    if(!m_accepted)
-    {
-        QMessageBox::critical(this, "Error", "Please agree to our terms and conditions before registrating an account");
 
+    // Check if terms and conditions are accepted
+    if(!m_accepted) {
+        QMessageBox::critical(this, "Error", "Please agree to our terms and conditions before registering an account");
     }
 
-
+    // If no issues, proceed with registration
     if (!usernameTaken && !ssnTaken && !phoneTaken && m_accepted) {
         qry.prepare("INSERT INTO users (`First Name`, `Last Name`, `Date of birth`, Gender, SSN, Street, City, `State/Province`, `Postal code`, Phone, Email, `Employment Status`, Income, Type, Username, Password, `Security question`, `Security answer`, IBAN, `Password Salt`, `Security Answer Salt`)"
                     "VALUES (:First_Name, :Last_Name, :Date_of_birth, :Gender, :SSN, :Street, :City, :State_Province, :Postal_code, :Phone, :Email, :Employment_Status, :Income, :Type, :Username, :Password, :Security_question, :Security_answer, :IBAN, :passwordSalt, :SQSalt)");
@@ -179,7 +190,7 @@ void Register::on_submit_PB_clicked()
         qry.bindValue(":SQSalt", securityAnswerSalt);
 
         if (qry.exec()) {
-            QMessageBox::information(this, "Success", "Your registration to trawma bank has been successful. \n\nRedirecting to the login page..");
+            QMessageBox::information(this, "Success", "Your registration to Trawma Bank has been successful. \n\nRedirecting to the login page..");
             this->hide();
             m_LogIn->show();
         } else {
@@ -209,16 +220,17 @@ QString Register::Hash(const QString& password, const QString& salt) {
 
 void Register::on_terms_and_conditions_stateChanged(int arg1)
 {
-    if(arg1 == Qt::Checked)
+    if (arg1 == Qt::Checked)
     {
         m_termsAndConditions->move(QPoint(ui->terms_and_conditions->pos().x() - 400, ui->terms_and_conditions->pos().y() - 300));
         m_termsAndConditions->show();
         m_accepted = true;
     }
-    else if(arg1 == Qt::Unchecked)
+    else if (arg1 == Qt::Unchecked)
     {
         m_termsAndConditions->hide();
         m_accepted = false;
     }
 }
+
 

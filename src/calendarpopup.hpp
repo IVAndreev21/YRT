@@ -14,7 +14,7 @@ class CalendarPopUp : public QWidget
     Q_OBJECT
 
 public:
-    CalendarPopUp(std::shared_ptr<Calendar> Calendar, const QString& username_ref, QWidget *parent = nullptr);
+    CalendarPopUp(std::shared_ptr<Calendar> Calendar, const QString& username_ref, QWidget* parent = nullptr);
     ~CalendarPopUp();
 
 private slots:
@@ -23,7 +23,7 @@ private slots:
     void on_abort_PB_clicked();
 
 private:
-    Ui::CalendarPopUp *ui;
+    Ui::CalendarPopUp* ui;
     QString m_username;
 
     std::shared_ptr<Calendar> m_calendar;

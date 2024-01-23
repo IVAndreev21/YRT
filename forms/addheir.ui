@@ -13,19 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="detected_LA">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>90</y>
-     <width>241</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
@@ -42,8 +29,8 @@
    <widget class="QLabel" name="securityQuestion_LA">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>180</y>
+      <x>30</x>
+      <y>220</y>
       <width>351</width>
       <height>16</height>
      </rect>
@@ -54,7 +41,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
+     <string notr="true">color:white;</string>
     </property>
     <property name="text">
      <string/>
@@ -85,9 +72,9 @@
    <widget class="QLabel" name="addUsername_LA">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>70</y>
-      <width>131</width>
+      <x>30</x>
+      <y>120</y>
+      <width>161</width>
       <height>16</height>
      </rect>
     </property>
@@ -106,9 +93,9 @@
    <widget class="QLabel" name="enterPass_LA">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>140</y>
-      <width>131</width>
+      <x>30</x>
+      <y>180</y>
+      <width>151</width>
       <height>20</height>
      </rect>
     </property>
@@ -127,8 +114,8 @@
    <widget class="QPushButton" name="addHeir_PB">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>290</y>
+      <x>220</x>
+      <y>320</y>
       <width>100</width>
       <height>32</height>
      </rect>
@@ -154,8 +141,8 @@ QPushButton
    <widget class="QPushButton" name="abort_PB">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>290</y>
+      <x>100</x>
+      <y>320</y>
       <width>100</width>
       <height>32</height>
      </rect>
@@ -182,7 +169,7 @@ QPushButton
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>140</y>
+      <y>180</y>
       <width>221</width>
       <height>31</height>
      </rect>
@@ -194,8 +181,8 @@ QPushButton
    <widget class="QLineEdit" name="heir_LE">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>60</y>
+      <x>180</x>
+      <y>110</y>
       <width>221</width>
       <height>31</height>
      </rect>
@@ -208,7 +195,7 @@ QPushButton
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>210</y>
+      <y>240</y>
       <width>311</width>
       <height>61</height>
      </rect>
@@ -219,8 +206,8 @@ QPushButton
      <rect>
       <x>30</x>
       <y>20</y>
-      <width>58</width>
-      <height>41</height>
+      <width>101</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="text">
@@ -233,9 +220,20 @@ QPushButton
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="detected_LA">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>160</y>
+      <width>241</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
-  <zorder>widget</zorder>
-  <zorder>detected_LA</zorder>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>

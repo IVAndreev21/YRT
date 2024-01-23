@@ -11,7 +11,7 @@ class TermsAndConditions : public QWidget
     Q_OBJECT
 
 public:
-    explicit TermsAndConditions(QWidget *parent = nullptr);
+    TermsAndConditions(QWidget* parent = nullptr);
     ~TermsAndConditions();
 
     bool getStatus();
@@ -22,7 +22,7 @@ private slots:
     void on_cancel_PB_clicked();
 
 private:
-    Ui::TermsAndConditions *ui;
+    Ui::TermsAndConditions* ui;
 
     bool m_accepted;
 };

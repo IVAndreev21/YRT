@@ -15,7 +15,7 @@ class Register : public QWidget
     Q_OBJECT
 
 public:
-    explicit Register(QWidget *parent = nullptr);
+    Register(QWidget* parent = nullptr);
     ~Register();
 
 private slots:
@@ -36,7 +36,7 @@ private slots:
     void on_terms_and_conditions_stateChanged(int arg1);
 
 private:
-    Ui::Register *ui;
+    Ui::Register* ui;
     std::unique_ptr<DatabaseManager> m_databaseManager;
     std::unique_ptr<logIn> m_LogIn;
     std::unique_ptr<TermsAndConditions> m_termsAndConditions;

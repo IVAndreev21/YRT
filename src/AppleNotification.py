@@ -45,7 +45,6 @@ try:
                     # Display notification for matching dates
                     send_notification(eventTitle, eventDescription)
 
-                    print(result[0])
         else:
             print("No records found for the given username")
 
