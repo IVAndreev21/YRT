@@ -479,7 +479,7 @@ border-radius:30px;</string>
         <string notr="true">color:black;</string>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
@@ -960,7 +960,7 @@ color:white;</string>
            <string>Selling</string>
           </property>
          </widget>
-         <widget class="QComboBox" name="buyingCurrency_CB_3">
+         <widget class="QComboBox" name="sellingCurrency_CB">
           <property name="geometry">
            <rect>
             <x>10</x>

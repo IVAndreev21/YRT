@@ -44,6 +44,11 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">
 QPushButton{
@@ -70,6 +75,11 @@ QPushButton:hover
      <width>161</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">

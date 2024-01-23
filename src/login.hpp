@@ -13,13 +13,13 @@ class logIn : public QWidget
     Q_OBJECT
 
 public:
-    explicit logIn(QWidget *parent = nullptr);
+    logIn(QWidget* parent = nullptr);
     ~logIn();
 
 private slots:
     void on_logIn_PB_clicked();
 
-    void on_forgotenPassword_LA_linkActivated(const QString &link);
+    void on_forgotenPassword_LA_linkActivated(const QString& link);
 
 private:
     Ui::logIn *ui;
@@ -27,7 +27,7 @@ private:
     std::shared_ptr<MainWindow> m_mainWindow;
     std::shared_ptr<ResetCredentials> m_resetCredentials;
 
-    QString Hash(const QString &password, const QString &salt);
+    QString Hash(const QString& password, const QString& salt);
 
     void DisplayEventsNotification();
 

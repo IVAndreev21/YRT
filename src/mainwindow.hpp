@@ -34,7 +34,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit MainWindow(logIn* login, const QString& IBAN_ref, const QString& username_ref, QWidget *parent = nullptr);
+    MainWindow(logIn* login, const QString& IBAN_ref, const QString& username_ref, QWidget* parent = nullptr);
     ~MainWindow();
 
     void UpdateDashboard();
@@ -68,7 +68,7 @@ private slots:
     void on_signOut_PB_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
     std::shared_ptr<Calendar> m_calendar;
     std::shared_ptr<AddHeir> m_addHeir;
     void Updatepfp();

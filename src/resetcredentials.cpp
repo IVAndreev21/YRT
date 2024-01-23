@@ -1,24 +1,27 @@
 #include "resetcredentials.hpp"
 #include "ui_resetcredentials.h"
 #include "login.hpp"  // Include the forward declaration of the logIn class
-ResetCredentials::ResetCredentials(std::shared_ptr<logIn> login, QWidget *parent)
+
+// Constructor
+ResetCredentials::ResetCredentials(std::shared_ptr<logIn> login, QWidget* parent)
     : QWidget(parent), ui(new Ui::ResetCredentials), m_LogIn(login)
 {
+    // Setup UI
     ui->setupUi(this);
     ui->security_question_LE->hide();
     ui->stackedWidget->hide();
     ui->reset_password_PB->hide();
     ui->reset_username_PB->hide();
     ui->confirm_password_LE->setEchoMode(QLineEdit::Password);
-
-
 }
 
+// Destructor
 ResetCredentials::~ResetCredentials()
 {
     delete ui;
 }
 
+// Handle email line edit editing finished event
 void ResetCredentials::on_email_LE_editingFinished()
 {
     QString email = ui->email_LE->text();
@@ -46,6 +49,7 @@ void ResetCredentials::on_email_LE_editingFinished()
     }
 }
 
+// Hash function for security answer
 QString ResetCredentials::Hash(const QString& answer, const QString& salt)
 {
     QByteArray answerWithSalt = (answer + salt).toUtf8();
@@ -53,6 +57,7 @@ QString ResetCredentials::Hash(const QString& answer, const QString& salt)
     return hashedAnswer.toHex();
 }
 
+// Handle security question line edit editing finished event
 void ResetCredentials::on_security_question_LE_editingFinished()
 {
     QSqlQuery qry;
@@ -71,28 +76,26 @@ void ResetCredentials::on_security_question_LE_editingFinished()
         }
         else
         {
-            QMessageBox::critical(this, "Security answer incorrect", "Your answer to the security question don't match");
+            QMessageBox::critical(this, "Security answer incorrect", "Your answer to the security question doesn't match");
         }
     }
 }
 
-
-
+// Handle reset password button clicked event
 void ResetCredentials::on_reset_password_PB_clicked()
 {
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex(0);
-
 }
 
-
+// Handle reset username button clicked event
 void ResetCredentials::on_reset_username_PB_clicked()
 {
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-
+// Handle confirm password button clicked event
 void ResetCredentials::on_confirm_password_PB_clicked()
 {
     QSqlQuery qry;
@@ -130,43 +133,42 @@ void ResetCredentials::on_confirm_password_PB_clicked()
     }
 }
 
-
+// Handle confirm username button clicked event
 void ResetCredentials::on_confirm_username_PB_clicked()
 {
     QSqlQuery qry;
     QString username = ui->new_username_LE->text();
     QString email = ui->email_LE->text();
 
-        qry.prepare("SELECT * FROM users WHERE email = :email");
+    qry.prepare("SELECT * FROM users WHERE email = :email");
+    qry.bindValue(":email", email);
+    if(qry.exec() && qry.next())
+    {
+        qry.prepare("UPDATE users SET Username = :username WHERE email = :email");
+        qry.bindValue(":username", username);
         qry.bindValue(":email", email);
-        if(qry.exec() && qry.next())
+        if(qry.exec())
         {
-            qry.prepare("UPDATE users SET Username = :username WHERE email = :email");
-            qry.bindValue(":username", username);
-            qry.bindValue(":email", email);
-            if(qry.exec())
-            {
-                QMessageBox::information(this, "Username reset", "Your username has been reset");
-                this->hide();
-                m_LogIn->show();
-                qDebug() << qry.lastError().text();
-                qDebug() << qry.lastQuery();  // Print the last executed query for further inspection
-                qDebug() << qry.boundValues();  // Print the bound values for further inspection
-            }
-        }
-        else
-        {
-            QMessageBox::critical(this, "Data not inserted", "Data was not inserted correctly. Please contact us immediately");
+            QMessageBox::information(this, "Username reset", "Your username has been reset");
+            this->hide();
+            m_LogIn->show();
             qDebug() << qry.lastError().text();
             qDebug() << qry.lastQuery();  // Print the last executed query for further inspection
             qDebug() << qry.boundValues();  // Print the bound values for further inspection
         }
+    }
+    else
+    {
+        QMessageBox::critical(this, "Data not inserted", "Data was not inserted correctly. Please contact us immediately");
+        qDebug() << qry.lastError().text();
+        qDebug() << qry.lastQuery();  // Print the last executed query for further inspection
+        qDebug() << qry.boundValues();  // Print the bound values for further inspection
+    }
 }
 
-
+// Handle back button clicked event
 void ResetCredentials::on_back_PB_clicked()
 {
     this->hide();
     m_LogIn->show();
 }
-

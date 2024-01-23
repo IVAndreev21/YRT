@@ -17,7 +17,7 @@ class ResetCredentials : public QWidget
     Q_OBJECT
 
 public:
-    explicit ResetCredentials(std::shared_ptr<logIn> login, QWidget *parent = nullptr);
+    ResetCredentials(std::shared_ptr<logIn> login, QWidget* parent = nullptr);
     ~ResetCredentials();
 
 private slots:
@@ -36,7 +36,7 @@ private slots:
     void on_back_PB_clicked();
 
 private:
-    Ui::ResetCredentials *ui;
+    Ui::ResetCredentials* ui;
 
     QString Hash(const QString& asnwer, const QString& salt);
     QString m_SQSalt;

@@ -13,19 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="detected_LA">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>90</y>
-     <width>241</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
@@ -42,8 +29,8 @@
    <widget class="QLabel" name="securityQuestion_LA">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>180</y>
+      <x>30</x>
+      <y>220</y>
       <width>351</width>
       <height>16</height>
      </rect>
@@ -54,7 +41,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
+     <string notr="true">color:white;</string>
     </property>
     <property name="text">
      <string/>
@@ -86,7 +73,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>110</y>
+      <y>120</y>
       <width>161</width>
       <height>16</height>
      </rect>
@@ -207,7 +194,7 @@ QPushButton
    <widget class="QLineEdit" name="securityAnswer_LE">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>70</x>
       <y>240</y>
       <width>311</width>
       <height>61</height>
@@ -220,7 +207,7 @@ QPushButton
       <x>30</x>
       <y>20</y>
       <width>101</width>
-      <height>71</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="text">
@@ -233,9 +220,20 @@ QPushButton
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="detected_LA">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>160</y>
+      <width>241</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
-  <zorder>widget</zorder>
-  <zorder>detected_LA</zorder>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>

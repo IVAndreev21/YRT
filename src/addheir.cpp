@@ -2,7 +2,9 @@
 #include "ui_addheir.h"
 #include <QMessageBox>
 #include "mainwindow.hpp"
-AddHeir::AddHeir(std::shared_ptr<MainWindow> mainwindow, QString& username_ref, QWidget *parent)
+
+//constructor of AddHeir class
+AddHeir::AddHeir(std::shared_ptr<MainWindow> mainwindow, QString& username_ref, QWidget* parent)
     : QWidget(parent), ui(new Ui::AddHeir), m_mainwindow(mainwindow)
 {
     ui->setupUi(this);
@@ -14,11 +16,13 @@ AddHeir::AddHeir(std::shared_ptr<MainWindow> mainwindow, QString& username_ref, 
     m_username = username_ref;
 }
 
+//Destructor of AddHeir class
 AddHeir::~AddHeir()
 {
     delete ui;
 }
 
+// Function called when editing of heir username is finished
 void AddHeir::on_heir_LE_editingFinished()
 {
     QString heirUsername = ui->heir_LE->text();
@@ -41,7 +45,7 @@ void AddHeir::on_heir_LE_editingFinished()
     }
 }
 
-
+// Function called when editing of password is finished
 void AddHeir::on_password_LE_editingFinished()
 {
     QSqlQuery qry;
@@ -64,14 +68,14 @@ void AddHeir::on_password_LE_editingFinished()
     }
 }
 
-
+// Function to hash a given string with a provided salt
 QString AddHeir::Hash(const QString& toHash, const QString& salt) {
     QByteArray toHashWithSalt = (toHash + salt).toUtf8();
     QByteArray hashed = QCryptographicHash::hash(toHashWithSalt, QCryptographicHash::Sha256);
     return hashed.toHex();
 }
 
-
+// Function called when the "Add Heir" button is clicked
 void AddHeir::on_addHeir_PB_clicked()
 {
     QSqlQuery qry;
@@ -105,14 +109,11 @@ void AddHeir::on_addHeir_PB_clicked()
     {
         QMessageBox::critical(this, "Failure", "Wrong password or username");
     }
-
 }
 
-
+// Function called when the "Abort" button is clicked
 void AddHeir::on_abort_PB_clicked()
 {
-
     this->hide();
     m_mainwindow->show();
 }
-

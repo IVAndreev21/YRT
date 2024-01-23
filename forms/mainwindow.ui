@@ -229,7 +229,7 @@ color: rgb(255, 255, 255);</string>
     </font>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="dashboard_page">
     <widget class="QWidget" name="gridLayoutWidget">
@@ -1395,9 +1395,17 @@ border-radius:20px;
       <rect>
        <x>730</x>
        <y>110</y>
-       <width>101</width>
+       <width>131</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>15</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Transaction Type</string>
@@ -1406,10 +1414,10 @@ border-radius:20px;
     <widget class="QLineEdit" name="last_name_mt_LE">
      <property name="geometry">
       <rect>
-       <x>420</x>
-       <y>330</y>
-       <width>113</width>
-       <height>22</height>
+       <x>410</x>
+       <y>320</y>
+       <width>141</width>
+       <height>51</height>
       </rect>
      </property>
     </widget>
@@ -1421,6 +1429,14 @@ border-radius:20px;
        <width>251</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>15</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Recipient Account Number(IBAN)</string>
@@ -1435,6 +1451,14 @@ border-radius:20px;
        <height>21</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>15</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="text">
       <string>Amount</string>
      </property>
@@ -1444,19 +1468,33 @@ border-radius:20px;
       <rect>
        <x>730</x>
        <y>240</y>
-       <width>113</width>
-       <height>22</height>
+       <width>131</width>
+       <height>31</height>
       </rect>
      </property>
     </widget>
     <widget class="QPushButton" name="confrim_mt_PB">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>450</x>
        <y>450</y>
-       <width>131</width>
-       <height>24</height>
+       <width>151</width>
+       <height>51</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+background-color: rgb(95, 97, 97);
+border-radius:20px;
+ color:white;
+}
+
+QPushButton:hover
+{
+   background-color:white;
+  color:black;
+};
+</string>
      </property>
      <property name="text">
       <string>Confrim Transaction</string>
@@ -1470,6 +1508,14 @@ border-radius:20px;
        <width>101</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>15</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Description</string>
@@ -1508,28 +1554,28 @@ border-radius:20px;
     <widget class="QLineEdit" name="IBAN_mt_LE">
      <property name="geometry">
       <rect>
-       <x>420</x>
-       <y>150</y>
-       <width>113</width>
-       <height>22</height>
+       <x>410</x>
+       <y>140</y>
+       <width>141</width>
+       <height>41</height>
       </rect>
      </property>
     </widget>
     <widget class="QLineEdit" name="first_name_mt_LE">
      <property name="geometry">
       <rect>
-       <x>420</x>
-       <y>230</y>
-       <width>113</width>
-       <height>22</height>
+       <x>410</x>
+       <y>220</y>
+       <width>131</width>
+       <height>51</height>
       </rect>
      </property>
     </widget>
     <widget class="QLineEdit" name="description_mt_LE">
      <property name="geometry">
       <rect>
-       <x>710</x>
-       <y>330</y>
+       <x>700</x>
+       <y>320</y>
        <width>221</width>
        <height>61</height>
       </rect>
@@ -1538,11 +1584,25 @@ border-radius:20px;
     <widget class="QPushButton" name="cancel_mt_PB">
      <property name="geometry">
       <rect>
-       <x>650</x>
-       <y>460</y>
-       <width>119</width>
-       <height>24</height>
+       <x>660</x>
+       <y>450</y>
+       <width>171</width>
+       <height>51</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+background-color: rgb(95, 97, 97);
+border-radius:20px;
+ color:white;
+}
+
+QPushButton:hover
+{
+   background-color:white;
+  color:black;
+};
+</string>
      </property>
      <property name="text">
       <string>Cancel</string>
@@ -1557,6 +1617,14 @@ border-radius:20px;
        <height>16</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>15</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="text">
       <string>Recipient First Name</string>
      </property>
@@ -1566,9 +1634,17 @@ border-radius:20px;
       <rect>
        <x>560</x>
        <y>60</y>
-       <width>131</width>
-       <height>21</height>
+       <width>201</width>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>20</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Make Transaction</string>
@@ -1582,6 +1658,14 @@ border-radius:20px;
        <width>291</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>15</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Recipient Last Name</string>
@@ -1662,10 +1746,10 @@ border-radius:15px;</string>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>520</y>
-     <width>71</width>
-     <height>61</height>
+     <x>10</x>
+     <y>530</y>
+     <width>111</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="text">
