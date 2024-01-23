@@ -171,25 +171,8 @@ void MainWindow::on_pfp_acc_PB_clicked()
         qDebug() << "invalid image";
     }
 }
-
-void MainWindow::on_crypto_PB_clicked()
-{
-    DisplayCrypto();
-}
-
-void MainWindow::on_settings_PB_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(3);
-}
-
-void MainWindow::on_make_tr_PB_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(4);
-}
-
 void MainWindow::PerformTransaction(const QString& receiverIBAN, const QString& amountStr, const QString& type, const QString& firstName, const QString& lastName)
 {
-    // Check sender's balance and perform the transaction
     QSqlQuery senderQuery;
     senderQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
     senderQuery.bindValue(":IBAN", m_IBAN);
@@ -203,7 +186,6 @@ void MainWindow::PerformTransaction(const QString& receiverIBAN, const QString& 
 
         if (conversionOK && senderBalance >= amount)
         {
-            // Retrieve receiver's information
             QSqlQuery receiverQuery;
             receiverQuery.prepare("SELECT * FROM users WHERE IBAN = :IBAN");
             receiverQuery.bindValue(":IBAN", receiverIBAN);
@@ -215,14 +197,12 @@ void MainWindow::PerformTransaction(const QString& receiverIBAN, const QString& 
                 double receiverBalance = receiverQuery.value("Balance").toDouble();
                 double receiverNewBalance = receiverBalance + amount;
 
-                // Update sender's balance
                 QSqlQuery updateSenderQuery;
                 updateSenderQuery.prepare("UPDATE users SET balance = :newBalance, expenses = :expense WHERE IBAN = :IBAN");
                 updateSenderQuery.bindValue(":newBalance", senderNewBalance);
                 updateSenderQuery.bindValue(":expense", senderNewExpenseBalance);
                 updateSenderQuery.bindValue(":IBAN", m_IBAN);
 
-                // Update receiver's balance
                 QSqlQuery updateReceiverQuery;
                 updateReceiverQuery.prepare("UPDATE users SET balance = :newBalance WHERE IBAN = :IBAN");
                 updateReceiverQuery.bindValue(":newBalance", receiverNewBalance);
@@ -230,11 +210,31 @@ void MainWindow::PerformTransaction(const QString& receiverIBAN, const QString& 
 
                 if (updateSenderQuery.exec() && updateReceiverQuery.exec())
                 {
-                    // Record the transaction details
-                    RecordTransaction(receiverIBAN, amountStr, type, firstName, lastName, senderQuery);
+                    QSqlQuery insertQuery;
+                    QString Date = QDateTime::currentDateTime().toString();
+                    insertQuery.prepare("INSERT INTO transactions (Date, `IBAN`, `Sender First Name`, `Sender Last Name`, `Receiver First Name`, `Receiver Last Name`, Phone, Type, Amount, Description, `Sender IBAN`) "
+                                        "VALUES (:Date, :IBAN, :Sender_First_Name, :Sender_Last_Name, :Receiver_First_Name, :Receiver_Last_Name, :Phone, :Type, :Amount, :Description, :Sender_IBAN)");
+                    insertQuery.bindValue(":Date", Date);
+                    insertQuery.bindValue(":IBAN", receiverIBAN);
+                    insertQuery.bindValue(":Sender_First_Name", senderQuery.value(1));
+                    insertQuery.bindValue(":Sender_Last_Name", senderQuery.value(2));
+                    insertQuery.bindValue(":Receiver_First_Name", firstName);
+                    insertQuery.bindValue(":Receiver_Last_Name", lastName);
+                    insertQuery.bindValue(":Phone", senderQuery.value(10));
+                    insertQuery.bindValue(":Type", type);
+                    insertQuery.bindValue(":Amount", amountStr);
+                    insertQuery.bindValue(":Description", "Transfer to " + firstName);
+                    insertQuery.bindValue(":Sender_IBAN", m_IBAN);
 
-                    // Show success message
-                    QMessageBox::information(this, "Transaction success", "Transaction has been successful");
+                    if (insertQuery.exec())
+                    {
+                        QMessageBox::information(this, "Transaction success", "Transaction has been successful");
+                    }
+                    else
+                    {
+                        QMessageBox::critical(this, "Transaction failure", "Transaction failed");
+                        qDebug() << insertQuery.lastError();
+                    }
                 }
                 else
                 {
@@ -256,9 +256,10 @@ void MainWindow::PerformTransaction(const QString& receiverIBAN, const QString& 
         QMessageBox::critical(this, "Sender not found", "Sender not found in the database");
     }
 
-    // Update dashboard and transactions
+
     UpdateDashboard();
     UpdateTransactions(transactions_TV, Recent_tr_TV);
+
 }
 
 void MainWindow::on_confrim_mt_PB_clicked()

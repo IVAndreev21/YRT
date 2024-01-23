@@ -318,14 +318,14 @@ class Ui_Crypto(object):
         self.buying_LA_3.setGeometry(QtCore.QRect(20, 0, 71, 16))
         self.buying_LA_3.setStyleSheet("")
         self.buying_LA_3.setObjectName("buying_LA_3")
-        self.buyingCurrency_CB_3 = QtWidgets.QComboBox(parent=self.widget_14)
-        self.buyingCurrency_CB_3.setGeometry(QtCore.QRect(10, 20, 321, 31))
-        self.buyingCurrency_CB_3.setObjectName("buyingCurrency_CB_3")
-        self.buyingCurrency_CB_3.addItem("")
-        self.buyingCurrency_CB_3.addItem("")
-        self.buyingCurrency_CB_3.addItem("")
-        self.buyingCurrency_CB_3.addItem("")
-        self.buyingCurrency_CB_3.addItem("")
+        self.sellingCurrency_CB = QtWidgets.QComboBox(parent=self.widget_14)
+        self.sellingCurrency_CB.setGeometry(QtCore.QRect(10, 20, 321, 31))
+        self.sellingCurrency_CB.setObjectName("sellingCurrency_CB")
+        self.sellingCurrency_CB.addItem("")
+        self.sellingCurrency_CB.addItem("")
+        self.sellingCurrency_CB.addItem("")
+        self.sellingCurrency_CB.addItem("")
+        self.sellingCurrency_CB.addItem("")
         self.priceSell_LA = QtWidgets.QLabel(parent=self.Sell)
         self.priceSell_LA.setGeometry(QtCore.QRect(20, 200, 211, 41))
         self.priceSell_LA.setStyleSheet("color:white;")
@@ -486,11 +486,11 @@ class Ui_Crypto(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Crypto", "Buy"))
         self.selling_LA_3.setText(_translate("Crypto", "Quantity"))
         self.buying_LA_3.setText(_translate("Crypto", "Selling"))
-        self.buyingCurrency_CB_3.setItemText(0, _translate("Crypto", "BTC"))
-        self.buyingCurrency_CB_3.setItemText(1, _translate("Crypto", "ETH"))
-        self.buyingCurrency_CB_3.setItemText(2, _translate("Crypto", "SOL"))
-        self.buyingCurrency_CB_3.setItemText(3, _translate("Crypto", "BNB"))
-        self.buyingCurrency_CB_3.setItemText(4, _translate("Crypto", "DODGECOIN"))
+        self.sellingCurrency_CB.setItemText(0, _translate("Crypto", "BTC"))
+        self.sellingCurrency_CB.setItemText(1, _translate("Crypto", "ETH"))
+        self.sellingCurrency_CB.setItemText(2, _translate("Crypto", "SOL"))
+        self.sellingCurrency_CB.setItemText(3, _translate("Crypto", "BNB"))
+        self.sellingCurrency_CB.setItemText(4, _translate("Crypto", "DODGECOIN"))
         self.priceSell_LA.setText(_translate("Crypto", "TextLabel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Sell), _translate("Crypto", "Sell"))
         self.label_3.setText(_translate("Crypto", "Bitcoin"))
@@ -507,11 +507,14 @@ class Ui_Crypto(object):
         self.timer = QtCore.QTimer(Crypto)
         self.timer.timeout.connect(self.updatePrices)
         self.timer.timeout.connect(self.updateBuyPrice)
+        self.timer.timeout.connect(self.updateSellGain)
+        self.timer.timeout.connect(self.updateButtonText)
         self.timer.start(2000)  # Set the interval in milliseconds
 
         QtCore.QMetaObject.connectSlotsByName(Crypto)
 
         self.buy_PB.clicked.connect(lambda: self.buyCrypto())
+        self.sell_PB.clicked.connect(lambda: self.sellCrypto())
 
     def updatePrices(self):
         # Cryptocurrencies to display
@@ -525,6 +528,16 @@ class Ui_Crypto(object):
             price_label = getattr(self, f"{crypto}_price_LA")  # Get the label by its name
             crypto_price = price_data[crypto]['USD']
             price_label.setText(f"{crypto_price} USD")
+
+    def updateButtonText(self):
+        selling_crypto_name = str(self.currencySelect_CB.currentText())
+        buying_crypto_name = str(self.buyingCurrency_swap_CB.currentText())
+        quantity_to_swap = float(self.quantity_swap_SB.value())
+
+        # Set the button text to reflect the swap
+        self.exchange_PB.setText(f"Get {quantity_to_swap} {buying_crypto_name}")
+
+    
 
     def buyCrypto(self):
         try:
@@ -591,6 +604,8 @@ class Ui_Crypto(object):
         except mysql.connector.Error as e:
             print("Error connecting to MySQL database:", e)
 
+
+
     def updateBuyPrice(self):
         cryptoCurrency = self.buyingCurrency_buy_CB.currentText()
         quantity = self.quantity_buy_SB.value()
@@ -599,6 +614,16 @@ class Ui_Crypto(object):
         price = cryptoPrice * quantity
         rounded_price = round(price, 2)  # Round to the second decimal place
         self.buy_PB.setText(str(rounded_price) + " USD")
+
+    def updateSellGain(self):
+        cryptoCurrency = self.sellingCurrency_CB.currentText()
+        quantity = self.quantity_sell_SB.value()
+        cryptoData = cryptocompare.get_price(cryptoCurrency, currency="USD")
+        cryptoPrice = cryptoData[cryptoCurrency]['USD']
+        sellAmount = cryptoPrice * quantity
+        rounded_sell_amount = round(sellAmount, 2)  # Round to the second decimal place
+        self.sell_PB.setText(str(rounded_sell_amount) + " USD")
+
 
 if __name__ == "__main__":
     import sys

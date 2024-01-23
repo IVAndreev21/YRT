@@ -94,4 +94,6 @@ private:
 
 
     void DisplayCrypto();
+    void SetCircularMaskAndStyle(QFrame* frame, QLabel* imageLabel, const QPixmap& userPixmap);
+
 };
