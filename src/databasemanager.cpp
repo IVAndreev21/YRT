@@ -11,11 +11,11 @@ QSqlDatabase DatabaseManager::GetDatabase() {
 void DatabaseManager::OpenConnection() {
     // Configure the database connection parameters
     m_db = QSqlDatabase::addDatabase("QMYSQL");
-    m_db.setHostName("project-yrt.mysql.database.azure.com");
+    m_db.setHostName("localhost");
     m_db.setPort(3306);  // Default MySQL port
-    m_db.setDatabaseName("yrt");
-    m_db.setUserName("sqladmin");
-    m_db.setPassword("Project-YRT");
+    m_db.setDatabaseName("qt");
+    m_db.setUserName("root");
+    m_db.setPassword("bobii4i4i");
 
     // Open the database connection and handle success or failure
     if (m_db.open() && m_db.isOpen()) {

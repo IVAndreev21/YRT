@@ -34,6 +34,7 @@ MainWindow::MainWindow(logIn* login, const QString& IBAN_ref, const QString& use
     UpdateSettings();
 
     ui->password_LE->setEchoMode(QLineEdit::Password);
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 // Destructor of MainWindow class
@@ -128,7 +129,7 @@ void MainWindow::on_make_tr_PB_clicked()
 void MainWindow::on_pfp_acc_PB_clicked()
 {
     // Open a file dialog to select an image
-    QString ImagePath = QFileDialog::getOpenFileName(this, tr("Select Image"), QCoreApplication::applicationDirPath(), tr("Image Files (*.jpg *.png)"), 0, QFileDialog::DontUseNativeDialog);
+    QString ImagePath = QFileDialog::getOpenFileName(this, tr("Select Image"), QCoreApplication::applicationDirPath(), tr("Image Files (*.jpg *.png)"), 0);
 
     if (!ImagePath.isEmpty())
     {
@@ -152,12 +153,15 @@ void MainWindow::on_pfp_acc_PB_clicked()
                 qry.prepare("UPDATE users SET pfp = :pfp WHERE IBAN = :IBAN");
                 qry.bindValue(":pfp", FinalDataToSave);
                 qry.bindValue(":IBAN", m_IBAN);
-
                 if (qry.exec())
                 {
                     QSqlDatabase::database().commit();
                     ui->pfp_acc_LA->setPixmap(Image);
                     ui->pfp_acc_LA_2->setPixmap(Image);
+                }
+                else
+                {
+                    qDebug() << qry.lastError();
                 }
             }
             else
@@ -198,13 +202,13 @@ void MainWindow::PerformTransaction(const QString& receiverIBAN, const QString& 
                 double receiverNewBalance = receiverBalance + amount;
 
                 QSqlQuery updateSenderQuery;
-                updateSenderQuery.prepare("UPDATE users SET balance = :newBalance, expenses = :expense WHERE IBAN = :IBAN");
+                updateSenderQuery.prepare("UPDATE users SET Balance = :newBalance, Expenses = :expense WHERE IBAN = :IBAN");
                 updateSenderQuery.bindValue(":newBalance", senderNewBalance);
                 updateSenderQuery.bindValue(":expense", senderNewExpenseBalance);
                 updateSenderQuery.bindValue(":IBAN", m_IBAN);
 
                 QSqlQuery updateReceiverQuery;
-                updateReceiverQuery.prepare("UPDATE users SET balance = :newBalance WHERE IBAN = :IBAN");
+                updateReceiverQuery.prepare("UPDATE users SET Balance = :newBalance WHERE IBAN = :IBAN");
                 updateReceiverQuery.bindValue(":newBalance", receiverNewBalance);
                 updateReceiverQuery.bindValue(":IBAN", receiverIBAN);
 

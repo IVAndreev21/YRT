@@ -233,6 +233,17 @@ QPushButton
      <string/>
     </property>
    </widget>
+   <zorder>securityQuestion_LA</zorder>
+   <zorder>logIn_LA</zorder>
+   <zorder>addUsername_LA</zorder>
+   <zorder>enterPass_LA</zorder>
+   <zorder>abort_PB</zorder>
+   <zorder>password_LE</zorder>
+   <zorder>heir_LE</zorder>
+   <zorder>securityAnswer_LE</zorder>
+   <zorder>label</zorder>
+   <zorder>detected_LA</zorder>
+   <zorder>addHeir_PB</zorder>
   </widget>
  </widget>
  <resources>
